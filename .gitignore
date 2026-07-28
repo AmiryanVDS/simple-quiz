@@ -1,0 +1,19 @@
+.DS_Store
+node_modules
+*.inspect.ndjson
+
+# Тяжёлые и воспроизводимые данные Telegram
+telegram_archive/media/
+telegram_archive/pages/
+telegram_archive/ocr*.jsonl
+
+# Временные превью и резервные копии
+outputs/preview/
+outputs/pre_edit_preview/
+outputs/*before*.xlsx
+
+# Локальные временные файлы
+*.tmp
+*.log
+__pycache__/
+*.pyc
