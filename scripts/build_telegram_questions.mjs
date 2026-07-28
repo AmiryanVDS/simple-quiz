@@ -16,6 +16,22 @@ const verifiedAnswerRows = (await fs.readFile("telegram_archive/verified_answers
 const verifiedAnswerByPost = new Map(
   verifiedAnswerRows.map((row) => [row.postId, row]),
 );
+const manualAnswerRows = (await fs.readFile("telegram_archive/manual_answers.tsv", "utf8"))
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [catalogId, postId, answer, source] = line.split("\t");
+    return {
+      catalogId: Number(catalogId),
+      postId: Number(postId),
+      answer: answer.trim(),
+      source: source.trim(),
+    };
+  });
+const manualAnswerByPost = new Map(
+  manualAnswerRows.map((row) => [row.postId, row]),
+);
 const ocrRows = (await fs.readFile("telegram_archive/ocr_preprocessed.jsonl", "utf8"))
   .trim()
   .split("\n")
@@ -60,11 +76,12 @@ for (const post of manifest.posts) {
       (captionCue.test(post.text || "") || text.length >= 130 || /вопрос\s*\d/i.test(ocr.text || "")));
   if (!selected) continue;
   const verifiedAnswer = verifiedAnswerByPost.get(post.id);
+  const manualAnswer = manualAnswerByPost.get(post.id);
   questions.push({
     postId: post.id,
     date: post.date ? post.date.slice(0, 10) : "",
     question: text,
-    answer: verifiedAnswer?.answer || "",
+    answer: manualAnswer?.answer || verifiedAnswer?.answer || "",
     answerSourceCommentId: verifiedAnswer?.commentId || "",
     answerSourceUrl: verifiedAnswer
       ? `https://t.me/simple_quiz/${post.id}?comment=${verifiedAnswer.commentId}`
@@ -72,11 +89,20 @@ for (const post of manifest.posts) {
     answerReactionActor: verifiedAnswer
       ? "«Симпл Квиз» | Минута на обсуждение"
       : "",
+    answerSourceType: manualAnswer
+      ? "user_correction"
+      : verifiedAnswer
+        ? "channel_reaction"
+        : "",
+    answerSourceNote: manualAnswer?.source || "",
+    manualCatalogId: manualAnswer?.catalogId || "",
     postUrl: post.url,
     mediaPath: `telegram_archive/media/${file}`,
     caption: (post.text || "").replace(/\s+/g, " ").trim(),
     ocrConfidence: Number(ocr.confidence.toFixed(4)),
-    reviewStatus: verifiedAnswer
+    reviewStatus: manualAnswer
+      ? "Ответ подтверждён пользователем"
+      : verifiedAnswer
       ? "Ответ подтверждён реакцией канала"
       : ocr.confidence >= 0.9 && text.length >= 100
         ? "Распознано — проверить ответ"
@@ -97,6 +123,9 @@ const headers = [
   "answerSourceCommentId",
   "answerSourceUrl",
   "answerReactionActor",
+  "answerSourceType",
+  "answerSourceNote",
+  "manualCatalogId",
   "postUrl",
   "mediaPath",
   "caption",
@@ -117,8 +146,9 @@ await fs.writeFile(
       extractedAt: new Date().toISOString(),
       questionCount: questions.length,
       verifiedAnswerCount: verifiedAnswerRows.length,
+      manualAnswerCount: manualAnswerRows.length,
       note:
-        "Ответы подтверждены реакциями аккаунта обсуждения канала; неоднозначные случаи оставлены пустыми.",
+        "Ответы подтверждены реакциями аккаунта обсуждения канала или прямыми уточнениями пользователя; неоднозначные случаи оставлены пустыми.",
       questions,
     },
     null,

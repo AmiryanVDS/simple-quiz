@@ -47,6 +47,20 @@ const verifiedAnswers = fs
       answer: answerParts.join("\t").trim(),
     };
   });
+const manualAnswers = fs
+  .readFileSync("telegram_archive/manual_answers.tsv", "utf8")
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [catalogId, postId, answer, source] = line.split("\t");
+    return {
+      catalogId: Number(catalogId),
+      postId: Number(postId),
+      answer: answer.trim(),
+      source: source.trim(),
+    };
+  });
 const html = fs.readFileSync(
   "outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html",
   "utf8",
@@ -86,6 +100,21 @@ for (const verified of verifiedAnswers) {
     throw new Error(`Ответ TG-${verified.postId} не попал в итоговую базу`);
   }
 }
+for (const manual of manualAnswers) {
+  const question = questions.questions.find(
+    (item) => item.postId === manual.postId,
+  );
+  if (
+    question?.catalogId !== manual.catalogId ||
+    question?.answer !== manual.answer ||
+    question?.answerSourceType !== "user_correction" ||
+    question?.answerSourceNote !== manual.source
+  ) {
+    throw new Error(
+      `Пользовательское уточнение для вопроса ${manual.catalogId} не попало в итоговую базу`,
+    );
+  }
+}
 if (likedRows.length !== questions.questionCount) {
   throw new Error(
     `Журнал реакций содержит ${likedRows.length} строк вместо ${questions.questionCount}`,
@@ -99,6 +128,8 @@ const expected = {
   duplicates: questions.duplicatesSkipped,
   downloaded: mediaFiles.length,
   answered: questions.questions.filter((question) => question.answer).length,
+  reactionAnswered: verifiedAnswers.length,
+  manualAnswered: manualAnswers.length,
 };
 for (const [key, value] of Object.entries(expected)) {
   if (htmlData.stats[key] !== value) {
@@ -116,5 +147,6 @@ console.log(
     `Медиа: ${expected.downloaded}`,
     `Ответы: ${expected.answered}`,
     `Из них по реакциям: ${verifiedAnswers.length}`,
+    `Из них по уточнениям пользователя: ${manualAnswers.length}`,
   ].join("\n"),
 );

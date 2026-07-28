@@ -78,7 +78,9 @@ const catalogRows = uniqueQuestions.map((question, index) => [
   "Не размечено",
   "Спорт / смешанное",
   question.answer
-    ? `Ответ подтверждён реакцией канала: ${question.answerSourceUrl}`
+    ? question.answerSourceType === "user_correction"
+      ? `Ответ уточнён пользователем: ${question.answerSourceNote}`
+      : `Ответ подтверждён реакцией канала: ${question.answerSourceUrl}`
     : "OCR из карточки; требуется редакторская проверка",
   null,
   "Не оценена",
@@ -171,6 +173,7 @@ telegram.getRange(`I4:I${telegramLastRow}`).dataValidation = {
       "OCR — проверить формулировку",
       "Дубликат каталога",
       "Ответ подтверждён реакцией канала",
+      "Ответ подтверждён пользователем",
       "Проверено",
     ],
   },
