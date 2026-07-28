@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "archive": "node scripts/archive_telegram_channel.mjs --download",
+    "extract:comments": "node scripts/extract_telegram_comment_candidates.mjs",
     "ocr": "python3 scripts/ocr_preprocessed.py telegram_archive/media telegram_archive/ocr_preprocessed.jsonl 6",
     "extract": "node scripts/build_telegram_questions.mjs",
     "build:xlsx": "node scripts/update_workbook_with_telegram.mjs",

@@ -17,6 +17,36 @@ const manifest = JSON.parse(fs.readFileSync("telegram_archive/manifest.json", "u
 const questions = JSON.parse(
   fs.readFileSync("telegram_archive/questions_enriched.json", "utf8"),
 );
+const likedRows = fs
+  .readFileSync("telegram_archive/channel_liked_comments.tsv", "utf8")
+  .trimEnd()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [postId, status, likedIds = ""] = line.split("\t");
+    return {
+      postId: Number(postId),
+      status,
+      likedIds: likedIds
+        .split(",")
+        .filter(Boolean)
+        .map(Number),
+    };
+  });
+const likedByPost = new Map(likedRows.map((row) => [row.postId, row]));
+const verifiedAnswers = fs
+  .readFileSync("telegram_archive/verified_answers.tsv", "utf8")
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [postId, commentId, ...answerParts] = line.split("\t");
+    return {
+      postId: Number(postId),
+      commentId: Number(commentId),
+      answer: answerParts.join("\t").trim(),
+    };
+  });
 const html = fs.readFileSync(
   "outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html",
   "utf8",
@@ -39,6 +69,28 @@ for (const question of questions.questions) {
     throw new Error(`Нет карточки вопроса: ${question.mediaPath}`);
   }
 }
+for (const verified of verifiedAnswers) {
+  const liked = likedByPost.get(verified.postId);
+  if (!liked?.likedIds.includes(verified.commentId)) {
+    throw new Error(
+      `Ответ TG-${verified.postId} ссылается на неподтверждённый комментарий ${verified.commentId}`,
+    );
+  }
+  const question = questions.questions.find(
+    (item) => item.postId === verified.postId,
+  );
+  if (
+    question?.answer !== verified.answer ||
+    question?.answerSourceCommentId !== verified.commentId
+  ) {
+    throw new Error(`Ответ TG-${verified.postId} не попал в итоговую базу`);
+  }
+}
+if (likedRows.length !== questions.questionCount) {
+  throw new Error(
+    `Журнал реакций содержит ${likedRows.length} строк вместо ${questions.questionCount}`,
+  );
+}
 
 const expected = {
   catalog: questions.finalCatalogCount,
@@ -46,6 +98,7 @@ const expected = {
   added: questions.uniqueAddedToCatalog,
   duplicates: questions.duplicatesSkipped,
   downloaded: mediaFiles.length,
+  answered: questions.questions.filter((question) => question.answer).length,
 };
 for (const [key, value] of Object.entries(expected)) {
   if (htmlData.stats[key] !== value) {
@@ -61,5 +114,7 @@ console.log(
     `Новые: ${expected.added}`,
     `Дубликаты: ${expected.duplicates}`,
     `Медиа: ${expected.downloaded}`,
+    `Ответы: ${expected.answered}`,
+    `Из них по реакциям: ${verifiedAnswers.length}`,
   ].join("\n"),
 );

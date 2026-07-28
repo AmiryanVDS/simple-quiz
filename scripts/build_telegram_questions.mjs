@@ -1,6 +1,21 @@
 import fs from "node:fs/promises";
 
 const manifest = JSON.parse(await fs.readFile("telegram_archive/manifest.json", "utf8"));
+const verifiedAnswerRows = (await fs.readFile("telegram_archive/verified_answers.tsv", "utf8"))
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [postId, commentId, ...answerParts] = line.split("\t");
+    return {
+      postId: Number(postId),
+      commentId: Number(commentId),
+      answer: answerParts.join("\t").trim(),
+    };
+  });
+const verifiedAnswerByPost = new Map(
+  verifiedAnswerRows.map((row) => [row.postId, row]),
+);
 const ocrRows = (await fs.readFile("telegram_archive/ocr_preprocessed.jsonl", "utf8"))
   .trim()
   .split("\n")
@@ -44,17 +59,26 @@ for (const post of manifest.posts) {
       questionCue.test(text) &&
       (captionCue.test(post.text || "") || text.length >= 130 || /вопрос\s*\d/i.test(ocr.text || "")));
   if (!selected) continue;
+  const verifiedAnswer = verifiedAnswerByPost.get(post.id);
   questions.push({
     postId: post.id,
     date: post.date ? post.date.slice(0, 10) : "",
     question: text,
-    answer: "",
+    answer: verifiedAnswer?.answer || "",
+    answerSourceCommentId: verifiedAnswer?.commentId || "",
+    answerSourceUrl: verifiedAnswer
+      ? `https://t.me/simple_quiz/${post.id}?comment=${verifiedAnswer.commentId}`
+      : "",
+    answerReactionActor: verifiedAnswer
+      ? "«Симпл Квиз» | Минута на обсуждение"
+      : "",
     postUrl: post.url,
     mediaPath: `telegram_archive/media/${file}`,
     caption: (post.text || "").replace(/\s+/g, " ").trim(),
     ocrConfidence: Number(ocr.confidence.toFixed(4)),
-    reviewStatus:
-      ocr.confidence >= 0.9 && text.length >= 100
+    reviewStatus: verifiedAnswer
+      ? "Ответ подтверждён реакцией канала"
+      : ocr.confidence >= 0.9 && text.length >= 100
         ? "Распознано — проверить ответ"
         : "OCR — проверить формулировку",
   });
@@ -70,6 +94,9 @@ const headers = [
   "date",
   "question",
   "answer",
+  "answerSourceCommentId",
+  "answerSourceUrl",
+  "answerReactionActor",
   "postUrl",
   "mediaPath",
   "caption",
@@ -89,7 +116,9 @@ await fs.writeFile(
       channel: manifest.channel,
       extractedAt: new Date().toISOString(),
       questionCount: questions.length,
-      note: "Ответы не публиковались на карточках; поля answer оставлены пустыми.",
+      verifiedAnswerCount: verifiedAnswerRows.length,
+      note:
+        "Ответы подтверждены реакциями аккаунта обсуждения канала; неоднозначные случаи оставлены пустыми.",
       questions,
     },
     null,

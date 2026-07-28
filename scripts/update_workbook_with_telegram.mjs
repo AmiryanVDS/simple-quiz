@@ -57,7 +57,7 @@ const enriched = archive.questions.map((question) => {
     ...question,
     duplicateOfId: duplicate?.id || "",
     duplicateScore: Number(best.score.toFixed(4)),
-    answer: duplicate?.answer || "",
+    answer: question.answer || duplicate?.answer || "",
     catalogId: "",
   };
 });
@@ -74,10 +74,12 @@ const catalogRows = uniqueQuestions.map((question, index) => [
   "Telegram-архив",
   index + 1,
   question.question,
-  "Не опубликован в посте",
+  question.answer || "Не опубликован в посте",
   "Не размечено",
   "Спорт / смешанное",
-  "OCR из карточки; требуется редакторская проверка",
+  question.answer
+    ? `Ответ подтверждён реакцией канала: ${question.answerSourceUrl}`
+    : "OCR из карточки; требуется редакторская проверка",
   null,
   "Не оценена",
   question.mediaPath,
@@ -105,7 +107,7 @@ telegram.getRange("A1:J1").format = {
 telegram.getRange("A1:J1").format.rowHeight = 30;
 telegram.getRange("A2:J2").merge();
 telegram.getRange("A2").values = [[
-  `130 распознанных карточек; ${uniqueQuestions.length} новых вопросов добавлено в «Каталог», ${enriched.length - uniqueQuestions.length} совпадений отмечено как дубликаты. Ответы отсутствуют на исходных карточках.`,
+  `130 распознанных карточек; ${uniqueQuestions.length} новых вопросов добавлено в «Каталог», ${enriched.length - uniqueQuestions.length} совпадений отмечено как дубликаты. ${enriched.filter((question) => question.answer).length} ответов заполнено.`,
 ]];
 telegram.getRange("A2:J2").format = {
   fill: "#D9EAF7",
@@ -150,7 +152,7 @@ telegram.getRange(`A3:J${telegramLastRow}`).format.font = { size: 10 };
 telegram.getRange("A3:J3").format.font = { bold: true, color: "#FFFFFF", size: 10 };
 telegram.getRange("A3:J3").format.fill = "#244F7D";
 telegram.getRange("A3:J3").format.rowHeight = 24;
-telegram.getRange(`A4:J${telegramLastRow}`).format.rowHeight = 46;
+telegram.getRange(`A4:J${telegramLastRow}`).format.rowHeight = 72;
 telegram.getRange(`A4:A${telegramLastRow}`).format.columnWidthPx = 84;
 telegram.getRange(`B4:B${telegramLastRow}`).format.columnWidthPx = 88;
 telegram.getRange(`C4:C${telegramLastRow}`).format.columnWidthPx = 62;
@@ -168,6 +170,7 @@ telegram.getRange(`I4:I${telegramLastRow}`).dataValidation = {
       "Распознано — проверить ответ",
       "OCR — проверить формулировку",
       "Дубликат каталога",
+      "Ответ подтверждён реакцией канала",
       "Проверено",
     ],
   },

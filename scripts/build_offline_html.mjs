@@ -31,6 +31,7 @@ const data = {
     videos: manifest.videoCount,
     downloaded: manifest.media.filter((item) => item.file).length,
     failures: manifest.failures.length,
+    answered: telegram.questions.filter((question) => question.answer).length,
   },
   repeatability: dashboard.slice(10, 13).map((row) => [row[0], row[1]]),
   roundDifficulty: dashboard.slice(16, 24).map((row) => [row[0], row[1]]),
@@ -132,7 +133,7 @@ const html = `<!doctype html>
           <p><b>${data.stats.posts}</b> публикаций · <b>${data.stats.photos}</b> фото · <b>${data.stats.videos}</b> видео в публичной ленте.</p>
           <p><b>${data.stats.duplicates}</b> карточек совпали с исходными вопросами и не были добавлены повторно.</p>
           <p><b>${data.stats.failures}</b> файл не скачался: CDN Telegram вернул ошибку 500.</p>
-          <div class="note">Ответы на карточках канала не публиковались. Для новых записей поле ответа помечено как «Не опубликован в посте»; формулировки с менее уверенным OCR выделены жёлтым статусом.</div>
+          <div class="note"><b>${data.stats.answered}</b> ответов заполнено по комментариям, отмеченным реакцией аккаунта «Симпл Квиз | Минута на обсуждение». Неоднозначные случаи оставлены как «Не опубликован в посте».</div>
         </div>
       </div>
     </section>
