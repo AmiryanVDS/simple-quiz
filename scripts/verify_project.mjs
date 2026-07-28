@@ -2,9 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 
 const requiredFiles = [
-  "data/source/Simple_Quiz_Intelligence_base.xlsx",
-  "outputs/Simple_Quiz_Intelligence_with_Telegram.xlsx",
+  "data/source/Simple_Quiz_Intelligence_base.json",
   "outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html",
+  "Simple_Quiz_Intelligence_v1_offline.html",
   "telegram_archive/manifest.json",
   "telegram_archive/questions_enriched.json",
 ];
@@ -16,6 +16,9 @@ for (const file of requiredFiles) {
 const manifest = JSON.parse(fs.readFileSync("telegram_archive/manifest.json", "utf8"));
 const questions = JSON.parse(
   fs.readFileSync("telegram_archive/questions_enriched.json", "utf8"),
+);
+const source = JSON.parse(
+  fs.readFileSync("data/source/Simple_Quiz_Intelligence_base.json", "utf8"),
 );
 const likedRows = fs
   .readFileSync("telegram_archive/channel_liked_comments.tsv", "utf8")
@@ -65,6 +68,10 @@ const html = fs.readFileSync(
   "outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html",
   "utf8",
 );
+const rootHtml = fs.readFileSync("Simple_Quiz_Intelligence_v1_offline.html", "utf8");
+if (rootHtml !== html) {
+  throw new Error("Корневая и выходная HTML-версии различаются");
+}
 const scriptMatch = html.match(/<script>([\s\S]*)<\/script>/);
 if (!scriptMatch) throw new Error("В офлайн-HTML отсутствует встроенный скрипт");
 new Function(scriptMatch[1]);
@@ -131,6 +138,12 @@ const expected = {
   reactionAnswered: verifiedAnswers.length,
   manualAnswered: manualAnswers.length,
 };
+if (
+  htmlData.sheets["Каталог"].rows.length !== expected.catalog ||
+  source.sheets["Каталог"].rows.length + expected.added !== expected.catalog
+) {
+  throw new Error("Итоговый HTML-каталог не совпадает с исходными данными");
+}
 for (const [key, value] of Object.entries(expected)) {
   if (htmlData.stats[key] !== value) {
     throw new Error(`Статистика ${key}: HTML=${htmlData.stats[key]}, данные=${value}`);

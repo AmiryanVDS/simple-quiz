@@ -1,22 +1,43 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { FileBlob, SpreadsheetFile } from "@oai/artifact-tool";
 
-const workbook = await SpreadsheetFile.importXlsx(
-  await FileBlob.load("outputs/Simple_Quiz_Intelligence_with_Telegram.xlsx"),
+const source = JSON.parse(
+  await fs.readFile("data/source/Simple_Quiz_Intelligence_base.json", "utf8"),
 );
 const manifest = JSON.parse(await fs.readFile("telegram_archive/manifest.json", "utf8"));
 const telegram = JSON.parse(await fs.readFile("telegram_archive/questions_enriched.json", "utf8"));
 
-function sheetValues(name) {
-  return workbook.worksheets.getItem(name).getUsedRange().values;
+function answerNote(question) {
+  if (!question.answer) return "OCR из карточки; требуется редакторская проверка";
+  if (question.answerSourceType === "user_correction") {
+    return `Ответ уточнён пользователем: ${question.answerSourceNote}`;
+  }
+  return `Ответ подтверждён реакцией канала: ${question.answerSourceUrl}`;
 }
 
-const catalog = sheetValues("Каталог");
-const mechanics = sheetValues("Механики");
-const rounds = sheetValues("Раунды");
-const packages = sheetValues("Новые пакеты");
-const dashboard = sheetValues("Дашборд");
+const uniqueQuestions = telegram.questions.filter(
+  (question) => !question.duplicateOfId,
+);
+const telegramCatalogRows = uniqueQuestions.map((question, index) => [
+  question.catalogId,
+  "TG",
+  "Telegram-архив",
+  index + 1,
+  question.question,
+  question.answer || "Не опубликован в посте",
+  "Не размечено",
+  "Спорт / смешанное",
+  answerNote(question),
+  null,
+  "Не оценена",
+  question.mediaPath,
+  null,
+  question.postUrl,
+]);
+const catalog = {
+  headers: source.sheets["Каталог"].headers,
+  rows: [...source.sheets["Каталог"].rows, ...telegramCatalogRows],
+};
 const projectRoot = process.cwd();
 
 const data = {
@@ -35,10 +56,10 @@ const data = {
     reactionAnswered: telegram.verifiedAnswerCount,
     manualAnswered: telegram.manualAnswerCount || 0,
   },
-  repeatability: dashboard.slice(10, 13).map((row) => [row[0], row[1]]),
-  roundDifficulty: dashboard.slice(16, 24).map((row) => [row[0], row[1]]),
+  repeatability: source.repeatability,
+  roundDifficulty: source.roundDifficulty,
   sheets: {
-    "Каталог": { headers: catalog[0], rows: catalog.slice(1) },
+    "Каталог": catalog,
     "Telegram-архив": {
       headers: [
         "Telegram ID",
@@ -65,9 +86,9 @@ const data = {
         question.duplicateOfId || "",
       ]),
     },
-    "Механики": { headers: mechanics[0], rows: mechanics.slice(1) },
-    "Раунды": { headers: rounds[0], rows: rounds.slice(1) },
-    "Новые пакеты": { headers: packages[0], rows: packages.slice(1) },
+    "Механики": source.sheets["Механики"],
+    "Раунды": source.sheets["Раунды"],
+    "Новые пакеты": source.sheets["Новые пакеты"],
   },
   mediaRoot: path.join(projectRoot, "telegram_archive", "media"),
 };

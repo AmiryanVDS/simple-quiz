@@ -8,9 +8,9 @@
     "extract:comments": "node scripts/extract_telegram_comment_candidates.mjs",
     "ocr": "python3 scripts/ocr_preprocessed.py telegram_archive/media telegram_archive/ocr_preprocessed.jsonl 6",
     "extract": "node scripts/build_telegram_questions.mjs",
-    "build:xlsx": "node scripts/update_workbook_with_telegram.mjs",
+    "enrich": "node scripts/enrich_telegram_questions.mjs",
     "build:html": "node scripts/build_offline_html.mjs",
-    "build": "npm run extract && npm run build:xlsx && npm run build:html && npm run verify",
+    "build": "npm run extract && npm run enrich && npm run build:html && npm run verify",
     "refresh:telegram": "npm run archive && npm run ocr && npm run build",
     "verify": "node scripts/verify_project.mjs"
   }

@@ -2,9 +2,9 @@
 
 ## `source/`
 
-`Simple_Quiz_Intelligence_base.xlsx` — неизменяемая исходная база из 48
-вопросов. Скрипт `scripts/update_workbook_with_telegram.mjs` всегда начинает
-сборку с этого файла, поэтому повторный запуск не создаёт дубликаты.
+`Simple_Quiz_Intelligence_base.json` — исходная база из 48 вопросов и
+справочные таблицы. Скрипт `scripts/enrich_telegram_questions.mjs` всегда
+начинает сборку с этого файла, поэтому повторный запуск не создаёт дубликаты.
 
 ## Производные данные
 

@@ -5,11 +5,11 @@
 
 ## Что находится в проекте
 
-- `data/source/` — неизменяемая исходная база.
+- `data/source/` — исходные таблицы в JSON.
 - `telegram_archive/` — манифест канала, распознанные вопросы и локальный
   медиархив.
 - `scripts/` — выгрузка, OCR, дедупликация и сборка.
-- `outputs/` — готовая база XLSX, офлайн-HTML и отчёты.
+- `outputs/` — готовая офлайн-HTML-база и отчёты.
 - `AGENTS.md` — обязательные правила для Codex и участников.
 - `CONTRIBUTING.md` — процесс совместной работы через Git.
 
@@ -35,10 +35,6 @@ npm run verify
 npm run build
 ```
 
-Сборка XLSX использует `@oai/artifact-tool`, который предоставляется рабочей
-средой Codex. Если модуль не найден, попросите Codex загрузить зависимости
-рабочей области и повторить сборку.
-
 OCR требует:
 
 - Tesseract;
@@ -47,11 +43,11 @@ OCR требует:
 
 ## Готовые файлы
 
-- `outputs/Simple_Quiz_Intelligence_with_Telegram.xlsx`
 - `outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html`
 - `outputs/IMPORT_REPORT.md`
 
-Офлайн-HTML работает без Excel и подключения к интернету. Ссылки на карточки
+Целевой формат проекта — автономный HTML. Он работает без Excel и подключения
+к интернету. Ссылки на карточки
 открывают локальные файлы из `telegram_archive/media/`.
 
 ## Совместная работа двух пользователей Codex
