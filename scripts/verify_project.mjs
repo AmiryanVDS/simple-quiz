@@ -6,6 +6,7 @@ const requiredFiles = [
   "outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html",
   "Simple_Quiz_Intelligence_v1_offline.html",
   "telegram_archive/manifest.json",
+  "telegram_archive/question_analysis.tsv",
   "telegram_archive/questions_enriched.json",
 ];
 
@@ -20,6 +21,29 @@ const questions = JSON.parse(
 const source = JSON.parse(
   fs.readFileSync("data/source/Simple_Quiz_Intelligence_base.json", "utf8"),
 );
+const analysisRows = fs
+  .readFileSync("telegram_archive/question_analysis.tsv", "utf8")
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [
+      postId,
+      mechanic,
+      areas,
+      solutionChain,
+      difficulty,
+      repeatability,
+    ] = line.split("\t");
+    return {
+      postId: Number(postId),
+      mechanic,
+      areas,
+      solutionChain,
+      difficulty: Number(difficulty),
+      repeatability,
+    };
+  });
 const likedRows = fs
   .readFileSync("telegram_archive/channel_liked_comments.tsv", "utf8")
   .trimEnd()
@@ -89,6 +113,29 @@ for (const question of questions.questions) {
   if (!fs.existsSync(question.mediaPath)) {
     throw new Error(`Нет карточки вопроса: ${question.mediaPath}`);
   }
+  if (
+    !question.mechanic ||
+    !question.areas ||
+    !question.solutionChain ||
+    !Number.isInteger(question.difficulty) ||
+    question.difficulty < 1 ||
+    question.difficulty > 10 ||
+    !["Высокая", "Средняя", "Низкая"].includes(question.repeatability)
+  ) {
+    throw new Error(`Неполный анализ Telegram-поста ${question.postId}`);
+  }
+}
+const uniqueQuestions = questions.questions.filter(
+  (question) => !question.duplicateOfId,
+);
+if (
+  analysisRows.length !== uniqueQuestions.length ||
+  new Set(analysisRows.map((row) => row.postId)).size !== analysisRows.length ||
+  uniqueQuestions.some(
+    (question) => !analysisRows.some((row) => row.postId === question.postId),
+  )
+) {
+  throw new Error("Источник анализа не соответствует новым Telegram-вопросам");
 }
 for (const verified of verifiedAnswers) {
   const liked = likedByPost.get(verified.postId);
@@ -137,6 +184,10 @@ const expected = {
   answered: questions.questions.filter((question) => question.answer).length,
   reactionAnswered: verifiedAnswers.length,
   manualAnswered: manualAnswers.length,
+  analyzed: questions.questions.length,
+  serviceCards: questions.questions.filter(
+    (question) => question.mechanic === "Служебная карточка — не вопрос",
+  ).length,
 };
 if (
   htmlData.sheets["Каталог"].rows.length !== expected.catalog ||
@@ -161,5 +212,8 @@ console.log(
     `Ответы: ${expected.answered}`,
     `Из них по реакциям: ${verifiedAnswers.length}`,
     `Из них по уточнениям пользователя: ${manualAnswers.length}`,
+    `Проанализировано: ${expected.analyzed}`,
+    `Служебные карточки: ${expected.serviceCards}`,
+    `Средняя сложность: ${htmlData.analysis.averageDifficulty}`,
   ].join("\n"),
 );

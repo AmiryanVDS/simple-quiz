@@ -11,6 +11,7 @@
 Производные данные Telegram остаются в `telegram_archive/`:
 
 - `manifest.json`;
+- `question_analysis.tsv`;
 - `questions.json`;
 - `questions_enriched.json`;
 - `questions.csv`.

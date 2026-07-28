@@ -25,11 +25,11 @@ const telegramCatalogRows = uniqueQuestions.map((question, index) => [
   index + 1,
   question.question,
   question.answer || "Не опубликован в посте",
-  "Не размечено",
-  "Спорт / смешанное",
-  answerNote(question),
-  null,
-  "Не оценена",
+  question.mechanic,
+  question.areas,
+  question.solutionChain,
+  question.difficulty,
+  question.repeatability,
   question.mediaPath,
   null,
   question.postUrl,
@@ -38,6 +38,33 @@ const catalog = {
   headers: source.sheets["Каталог"].headers,
   rows: [...source.sheets["Каталог"].rows, ...telegramCatalogRows],
 };
+const analyzedQuestions = telegram.questions.filter(
+  (question) => question.mechanic && question.solutionChain,
+);
+const repeatabilityCounts = Object.fromEntries(
+  ["Высокая", "Средняя", "Низкая"].map((value) => [
+    value,
+    analyzedQuestions.filter((question) => question.repeatability === value).length,
+  ]),
+);
+const averageDifficulty =
+  analyzedQuestions.reduce(
+    (sum, question) => sum + Number(question.difficulty || 0),
+    0,
+  ) / (analyzedQuestions.length || 1);
+const serviceCardCount = analyzedQuestions.filter(
+  (question) => question.mechanic === "Служебная карточка — не вопрос",
+).length;
+const difficultyGroups = [
+  ["1–3 · лёгкие", analyzedQuestions.filter((question) => question.difficulty <= 3).length],
+  [
+    "4–6 · средние",
+    analyzedQuestions.filter(
+      (question) => question.difficulty >= 4 && question.difficulty <= 6,
+    ).length,
+  ],
+  ["7–10 · сложные", analyzedQuestions.filter((question) => question.difficulty >= 7).length],
+];
 const projectRoot = process.cwd();
 
 const data = {
@@ -55,6 +82,13 @@ const data = {
     answered: telegram.questions.filter((question) => question.answer).length,
     reactionAnswered: telegram.verifiedAnswerCount,
     manualAnswered: telegram.manualAnswerCount || 0,
+    analyzed: analyzedQuestions.length,
+    serviceCards: serviceCardCount,
+  },
+  analysis: {
+    averageDifficulty: Number(averageDifficulty.toFixed(2)),
+    difficultyGroups,
+    repeatability: repeatabilityCounts,
   },
   repeatability: source.repeatability,
   roundDifficulty: source.roundDifficulty,
@@ -67,6 +101,11 @@ const data = {
         "Post ID",
         "Текст вопроса",
         "Ответ",
+        "Механика",
+        "Области",
+        "Цепочка решения",
+        "Сложность 1–10",
+        "Повторяемость механики",
         "Источник",
         "Медиа",
         "OCR",
@@ -79,6 +118,11 @@ const data = {
         question.postId,
         question.question,
         question.answer || "Не опубликован в посте",
+        question.mechanic,
+        question.areas,
+        question.solutionChain,
+        question.difficulty,
+        question.repeatability,
         question.postUrl,
         question.mediaPath,
         question.ocrConfidence,
@@ -109,7 +153,7 @@ const html = `<!doctype html>
     main{max-width:1600px;margin:auto;padding:24px}.hero{display:flex;justify-content:space-between;gap:28px;padding:30px 34px;border-radius:18px;background:var(--navy);color:#fff;box-shadow:var(--shadow)}
     .eyebrow{margin:0 0 6px;color:#b8c9df;font-size:11px;font-weight:800;letter-spacing:.14em}.hero h1,.sheet-head h1{margin:0;font-size:clamp(27px,4vw,46px);line-height:1.08}.hero p{max-width:780px;color:#dbe7f4}.hero-mark{display:grid;place-items:center;min-width:108px;height:108px;border-radius:24px;background:var(--violet);font-size:28px;font-weight:900}
     .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}.kpi{display:flex;align-items:flex-end;justify-content:space-between;min-height:105px;padding:19px;border-radius:14px;background:#fff;box-shadow:var(--shadow)}.kpi span{max-width:140px;color:var(--muted);font-size:13px}.kpi strong{color:var(--navy);font-size:34px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{padding:22px;border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:var(--shadow)}.panel h2{margin:0 0 15px}.summary{display:grid;gap:10px}.summary-row{display:grid;grid-template-columns:150px 1fr 48px;gap:10px;align-items:center}.track{height:10px;border-radius:99px;background:#e9eef4;overflow:hidden}.fill{height:100%;border-radius:99px;background:var(--blue)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{padding:22px;border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:var(--shadow)}.panel.wide{grid-column:1/-1}.panel h2{margin:0 0 15px}.summary{display:grid;gap:10px}.summary-row{display:grid;grid-template-columns:220px 1fr 48px;gap:10px;align-items:center}.track{height:10px;border-radius:99px;background:#e9eef4;overflow:hidden}.fill{height:100%;border-radius:99px;background:var(--blue)}
     .note{margin-top:16px;padding:16px 18px;border-left:5px solid var(--amber);border-radius:10px;background:#fff8df}.sheet-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:4px 0 16px}.sheet-head h1{font-size:34px}.sheet-head p{margin:0;color:var(--muted)}
     .table-shell{max-height:calc(100vh - 165px);overflow:auto;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}th{position:sticky;top:0;z-index:2;padding:10px 9px;background:var(--navy);color:#fff;text-align:left;white-space:nowrap;cursor:pointer}td{max-width:560px;padding:9px;border-bottom:1px solid #e4e8ee;vertical-align:top;white-space:pre-wrap}tbody tr:nth-child(even){background:#eaf5fb}tbody tr:hover{background:#fff3cd}td a{color:#165a96;text-decoration:none}td a:hover{text-decoration:underline}.status{display:inline-block;padding:3px 7px;border-radius:99px;background:#dcfce7;color:#166534;font-size:11px}.status.warn{background:#fef3c7;color:#92400e}.status.duplicate{background:#e2e8f0;color:#475569}
     [contenteditable="true"]{outline:none;background:#fffdf3}[contenteditable="true"]:focus{box-shadow:inset 0 0 0 2px var(--amber)}
@@ -158,6 +202,11 @@ const html = `<!doctype html>
           <p><b>${data.stats.failures}</b> файл не скачался: CDN Telegram вернул ошибку 500.</p>
           <div class="note"><b>${data.stats.answered}</b> ответов заполнено: <b>${data.stats.reactionAnswered}</b> по реакциям аккаунта «Симпл Квиз | Минута на обсуждение», <b>${data.stats.manualAnswered}</b> по уточнениям пользователя, остальные — из исходной базы. Неоднозначные случаи оставлены как «Не опубликован в посте».</div>
         </div>
+        <div class="panel wide"><h2>Анализ Telegram-вопросов</h2>
+          <p><b>${data.stats.analyzed}</b> карточек размечено · средняя сложность <b>${data.analysis.averageDifficulty}</b> из 10 · повторяемость: высокая <b>${data.analysis.repeatability["Высокая"]}</b>, средняя <b>${data.analysis.repeatability["Средняя"]}</b>, низкая <b>${data.analysis.repeatability["Низкая"]}</b>.</p>
+          <p><b>${data.stats.serviceCards}</b> карточки — анонсы, ошибочно попавшие в выборку вопросов; они сохранены и помечены как кандидаты на исключение.</p>
+          <div class="summary" id="difficulty-bars"></div>
+        </div>
       </div>
     </section>
     <section id="sheet" hidden>
@@ -172,6 +221,8 @@ const html = `<!doctype html>
     let active="Дашборд", sortColumn=-1, sortAsc=true, currentRows=[];
     const roundMax=Math.max(...DATA.roundDifficulty.map(row=>Number(row[1])||0),1);
     document.querySelector("#round-bars").innerHTML=DATA.roundDifficulty.map(([name,value])=>'<div class="summary-row"><span>'+escapeHtml(name)+'</span><div class="track"><div class="fill" style="width:'+((Number(value)||0)/roundMax*100)+'%"></div></div><b>'+Number(value).toFixed(1)+'</b></div>').join("");
+    const difficultyMax=Math.max(...DATA.analysis.difficultyGroups.map(row=>Number(row[1])||0),1);
+    document.querySelector("#difficulty-bars").innerHTML=DATA.analysis.difficultyGroups.map(([name,value])=>'<div class="summary-row"><span>'+escapeHtml(name)+'</span><div class="track"><div class="fill" style="width:'+((Number(value)||0)/difficultyMax*100)+'%"></div></div><b>'+value+'</b></div>').join("");
     function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));}
     function fileUrl(relative){return "file://"+DATA.mediaRoot+"/"+String(relative).split("/").pop();}
     function cellHtml(value,header){

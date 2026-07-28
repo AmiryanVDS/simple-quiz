@@ -1,6 +1,6 @@
 {
   "channel": "simple_quiz",
-  "extractedAt": "2026-07-28T13:59:25.863Z",
+  "extractedAt": "2026-07-28T14:19:42.858Z",
   "questionCount": 130,
   "verifiedAnswerCount": 105,
   "manualAnswerCount": 1,
@@ -24,7 +24,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1283,
-      "catalogId": 49
+      "catalogId": 49,
+      "mechanic": "Ироническое совпадение названия и события",
+      "areas": "NHL + природные явления",
+      "solutionChain": "Названия «Харрикейнз» и «Флэймз» → реальные причины переносов матчей → ураган и пожары",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 7,
@@ -44,7 +49,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1543,
-      "catalogId": 50
+      "catalogId": 50,
+      "mechanic": "Многозначное название команды",
+      "areas": "Американский спорт + музыка",
+      "solutionChain": "Названия клубов совпадают с жанрами → Utah Jazz и St. Louis Blues → джаз и блюз",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 17,
@@ -64,7 +74,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1056,
-      "catalogId": 51
+      "catalogId": 51,
+      "mechanic": "Хронология визуального брендинга",
+      "areas": "Футбол + видеоигры + реклама",
+      "solutionChain": "Цифры у рекламного знака меняются по поколениям консоли → логотип PlayStation",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 19,
@@ -84,7 +99,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2087,
-      "catalogId": 52
+      "catalogId": 52,
+      "mechanic": "Медийное событие через бренд",
+      "areas": "Футбол + рестораны + новости",
+      "solutionChain": "Российские футболисты и громкий инцидент 2018 года → сеть ресторанов «Кофемания»",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 35,
@@ -104,7 +124,12 @@
       "reviewStatus": "Ответ подтверждён пользователем",
       "duplicateOfId": "",
       "duplicateScore": 0.1957,
-      "catalogId": 53
+      "catalogId": 53,
+      "mechanic": "Этимология фамилий",
+      "areas": "Баскетбол + русский язык",
+      "solutionChain": "Значения «живот» и «верхние листья капусты» → фамилии Моня и Хряпа",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 50,
@@ -124,7 +149,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.2436,
-      "catalogId": 54
+      "catalogId": 54,
+      "mechanic": "Общий термин в биографиях",
+      "areas": "Футбол + баскетбол + история предметов",
+      "solutionChain": "Ваньяма и Вембаньяма → общий спортивный термин → предмет с зубчатым колесиком",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 127,
@@ -144,7 +174,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1874,
-      "catalogId": 55
+      "catalogId": 55,
+      "mechanic": "Восстановление цитаты",
+      "areas": "Теннис + советское кино",
+      "solutionChain": "Заголовок про Мугурусу → аллюзия на фразу из фильма о пионерах → восстановление пропуска",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 130,
@@ -164,7 +199,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1713,
-      "catalogId": 56
+      "catalogId": 56,
+      "mechanic": "Имя как название команды",
+      "areas": "Баскетбол + музыка + реклама",
+      "solutionChain": "Песня Queen в рекламе → слово Magic → Мэджик Джонсон и Orlando Magic",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 141,
@@ -184,7 +224,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1739,
-      "catalogId": 57
+      "catalogId": 57,
+      "mechanic": "Многозначное географическое слово",
+      "areas": "NBA + экипировка + география",
+      "solutionChain": "Предмет формы клуба и прежнее название команды НБА → jersey / Джерси",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 142,
@@ -204,7 +249,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1652,
-      "catalogId": 58
+      "catalogId": 58,
+      "mechanic": "Табличная мета-шутка",
+      "areas": "Медиафутбол + турнирная таблица",
+      "solutionChain": "Постоянная позиция 22 → название команды считывается из устройства таблицы",
+      "difficulty": 3,
+      "repeatability": "Низкая"
     },
     {
       "postId": 145,
@@ -224,7 +274,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1549,
-      "catalogId": 59
+      "catalogId": 59,
+      "mechanic": "Цепочка одноимённых сущностей",
+      "areas": "Футбол + автомобили + спортивные медиа",
+      "solutionChain": "Игроки, автомобильный образ и комментатор → общий именованный объект",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 157,
@@ -244,7 +299,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.219,
-      "catalogId": 60
+      "catalogId": 60,
+      "mechanic": "Контекстная многозначность",
+      "areas": "Стрелковый спорт + интернет-сленг",
+      "solutionChain": "Оскорбительный бытовой термин → стрельба по тарелочкам → «тарелочница»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 178,
@@ -264,7 +324,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1871,
-      "catalogId": 61
+      "catalogId": 61,
+      "mechanic": "Многозначный топоним",
+      "areas": "Живопись + футбол + география",
+      "solutionChain": "«Похищение Европы» → футболисты вне Европы → физическое нахождение в Европе",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 180,
@@ -284,7 +349,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1763,
-      "catalogId": 62
+      "catalogId": 62,
+      "mechanic": "Совпадение имени",
+      "areas": "Живопись + теннис",
+      "solutionChain": "Первое событие в жизни Венеры → «Рождение Венеры» Боттичелли и рождение Винус Уильямс",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 181,
@@ -304,7 +374,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1825,
-      "catalogId": 63
+      "catalogId": 63,
+      "mechanic": "Межъязыковой каламбур",
+      "areas": "Язык + игровые виды спорта",
+      "solutionChain": "Английское broski «братишка» → кириллическое «броски» → действия в петанке, дартсе и водном поло",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 187,
@@ -324,7 +399,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1842,
-      "catalogId": 64
+      "catalogId": 64,
+      "mechanic": "Название песни + спортивный город",
+      "areas": "Музыка + NBA",
+      "solutionChain": "Одинаковое название треков → Seattle → город Seattle SuperSonics",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 206,
@@ -344,7 +424,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1436,
-      "catalogId": 65
+      "catalogId": 65,
+      "mechanic": "Повторяющиеся слоги",
+      "areas": "Футбол + бизнес",
+      "solutionChain": "Предприниматель «Додо» и линия обороны «Ромы» → повтор слогов «до-до»",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 207,
@@ -364,7 +449,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.2033,
-      "catalogId": 66
+      "catalogId": 66,
+      "mechanic": "Имя апостола = фамилия игрока",
+      "areas": "Религия + футбол",
+      "solutionChain": "Недостающий двенадцатый апостол → совпадение с фамилией футболиста «Динамо»",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 213,
@@ -384,7 +474,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1714,
-      "catalogId": 67
+      "catalogId": 67,
+      "mechanic": "Каламбур на фамилиях художников",
+      "areas": "Живопись + футбол",
+      "solutionChain": "Моне и Мане не подходят к картинам → шедевром в матче становится Мане → Садио Мане",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 238,
@@ -404,7 +499,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.2058,
-      "catalogId": 68
+      "catalogId": 68,
+      "mechanic": "Символ + английская метафора",
+      "areas": "Хоккей + религия + спортивные прозвища",
+      "solutionChain": "Необычный приз → символ христианского праздника → английское родственное слово как спортивная аббревиатура",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 251,
@@ -424,7 +524,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1357,
-      "catalogId": 69
+      "catalogId": 69,
+      "mechanic": "Восстановление объекта из текста песни",
+      "areas": "Рэп + футбол",
+      "solutionChain": "Строчка Songer о потребности «Сити» в форварде → трансферная цель → Эрлинг Холанд",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 261,
@@ -444,7 +549,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.0952,
-      "catalogId": 70
+      "catalogId": 70,
+      "mechanic": "Исключение по географическому признаку",
+      "areas": "Футбол + география + УЕФА",
+      "solutionChain": "Сравнение Израиля, Кипра и Армении → общий признак членов УЕФА → территория вне Европы",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 262,
@@ -464,7 +574,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.139,
-      "catalogId": 71
+      "catalogId": 71,
+      "mechanic": "Числовое распределение клубов",
+      "areas": "Английский футбол + география",
+      "solutionChain": "Количество команд по дивизионам → единственный общий город с такой раскладкой → Лондон",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 263,
@@ -484,7 +599,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2189,
-      "catalogId": 72
+      "catalogId": 72,
+      "mechanic": "Имя внутри названия произведения",
+      "areas": "Футбол + аниме",
+      "solutionChain": "Имя футболиста дважды встречается в названии аниме → «Дан Да Дан» → Дан Петреску",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 264,
@@ -504,7 +624,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1802,
-      "catalogId": 73
+      "catalogId": 73,
+      "mechanic": "Разложение слова на химические символы",
+      "areas": "Футбол + химия + язык",
+      "solutionChain": "Название клуба раскладывается на элементы → Fe означает железо и испанскую «веру» → «Хетафе»",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 265,
@@ -524,7 +649,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1476,
-      "catalogId": 74
+      "catalogId": 74,
+      "mechanic": "Визуальная дедукция по эмблеме",
+      "areas": "Футбол + ботаника + товары",
+      "solutionChain": "Цена и форма предмета → небольшая округлая шишка на эмблеме клуба → кедровая шишка",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 285,
@@ -544,7 +674,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2128,
-      "catalogId": 75
+      "catalogId": 75,
+      "mechanic": "Двойное чтение надписи",
+      "areas": "Футбол + техника + римские цифры",
+      "solutionChain": "VIDIC читается как название видеоустройства и как V-I-D-I-C → Неманья Видич",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 286,
@@ -564,7 +699,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.182,
-      "catalogId": 76
+      "catalogId": 76,
+      "mechanic": "Каламбур из характеристики игрока",
+      "areas": "Футбол + скаутинг + язык",
+      "solutionChain": "Зрительно заметная особенность футболистов → scouting bias → наречие-каламбур из интервью",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 291,
@@ -584,7 +724,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.178,
-      "catalogId": 77
+      "catalogId": 77,
+      "mechanic": "Смена значения при добавлении участника",
+      "areas": "Киберспорт + музыка",
+      "solutionChain": "Соло 322 → при совместном исполнении это уже не соло → локальный мем о спортсмене",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 294,
@@ -604,7 +749,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1458,
-      "catalogId": 78
+      "catalogId": 78,
+      "mechanic": "Название песни = название клуба",
+      "areas": "Музыка + футбол",
+      "solutionChain": "Два трека с формами одного слова → трибунная песня болельщиков → «Зенит»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 301,
@@ -624,7 +774,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1592,
-      "catalogId": 79
+      "catalogId": 79,
+      "mechanic": "Перевод спортивных сокращений",
+      "areas": "NHL + английский язык",
+      "solutionChain": "Аббревиатуры клубов читаются как слова → CAR и VAN → автомобиль и фургон",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 302,
@@ -644,7 +799,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1488,
-      "catalogId": 80
+      "catalogId": 80,
+      "mechanic": "Название игры = клавиша",
+      "areas": "Видеоигры + компьютерная техника",
+      "solutionChain": "Серия игр F1 → одноимённая функциональная клавиша почти не используется в игре → F1",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 320,
@@ -664,7 +824,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1869,
-      "catalogId": 81
+      "catalogId": 81,
+      "mechanic": "Разговорный синоним внутри псевдонима",
+      "areas": "Музыка + язык",
+      "solutionChain": "Псевдоним «Тима ищет свет» → Тима как уменьшительное имя и разговорное «команда»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 321,
@@ -684,7 +849,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1515,
-      "catalogId": 82
+      "catalogId": 82,
+      "mechanic": "Цитатная параллель",
+      "areas": "Спортивные медиа + музыка + быт",
+      "solutionChain": "Домашний инвентарь Василия Уткина → контраст со строчкой «Кровостока» → гантели",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 325,
@@ -704,7 +874,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1207,
-      "catalogId": 83
+      "catalogId": 83,
+      "mechanic": "Общее прозвище команд",
+      "areas": "Футбол + студенческий баскетбол",
+      "solutionChain": "Красные на северо-западе Англии и синие в Северной Каролине → Red Devils и Blue Devils",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 326,
@@ -724,7 +899,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1976,
-      "catalogId": 84
+      "catalogId": 84,
+      "mechanic": "Оксюморон из термина и фамилии",
+      "areas": "Футбол + математика",
+      "solutionChain": "Фанатский термин «угол» + футболист Круговой → «угол круга»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 327,
@@ -744,7 +924,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1719,
-      "catalogId": 85
+      "catalogId": 85,
+      "mechanic": "Добавление одной гласной",
+      "areas": "Футбол + медиа + язык",
+      "solutionChain": "«Контент» + одна гласная → фамилия Контенто → игрок «Баварии» и «Бордо»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 330,
@@ -764,7 +949,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1471,
-      "catalogId": 86
+      "catalogId": 86,
+      "mechanic": "Бренд = спортивный город",
+      "areas": "Американский спорт + бренды + география",
+      "solutionChain": "Российский бренд «Балтимор» → город с командами NFL и MLB → отсутствие клубов трёх других лиг",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 345,
@@ -784,7 +974,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1672,
-      "catalogId": 87
+      "catalogId": 87,
+      "mechanic": "Мифологическое имя клуба",
+      "areas": "Футбол + мифология + геральдика",
+      "solutionChain": "Римский аналог Геракла и голова в лавровом венке → испанский клуб «Эркулес»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 349,
@@ -804,7 +999,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1866,
-      "catalogId": 88
+      "catalogId": 88,
+      "mechanic": "Совпадение фамилии",
+      "areas": "Живопись + автоспорт",
+      "solutionChain": "Автор картин Рубенс → гонщик Рубенс Баррикелло → общее имя Рубенс",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 355,
@@ -824,7 +1024,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1541,
-      "catalogId": 89
+      "catalogId": 89,
+      "mechanic": "Предмет как оскорбительный символ",
+      "areas": "Хоккей + фанатская культура",
+      "solutionChain": "Брошенные сосиски → «мясное» прозвище команды-соперника → ответ Максима Афиногенова",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 356,
@@ -844,7 +1049,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1934,
-      "catalogId": 90
+      "catalogId": 90,
+      "mechanic": "Название произведения как событие",
+      "areas": "Искусство + футбол + интернет-мемы",
+      "solutionChain": "Мем с Роналду и Адамом → даты рождения → «Сотворение Адама»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 367,
@@ -864,7 +1074,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1836,
-      "catalogId": 91
+      "catalogId": 91,
+      "mechanic": "Числовой ребус через имя",
+      "areas": "Футбол + мифология",
+      "solutionChain": "Бог Ра используется дважды как графическая запись одинакового счёта → 1:1",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 371,
@@ -884,7 +1099,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1818,
-      "catalogId": 92
+      "catalogId": 92,
+      "mechanic": "Культовое число дисциплины",
+      "areas": "Снукер + автомобильные номера + медиа",
+      "solutionChain": "Комментатор реагирует на номер → максимальный брейк в снукере → 147",
+      "difficulty": 5,
+      "repeatability": "Низкая"
     },
     {
       "postId": 374,
@@ -904,7 +1124,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1962,
-      "catalogId": 93
+      "catalogId": 93,
+      "mechanic": "Имя спортсмена = топонимы",
+      "areas": "Футбол + география",
+      "solutionChain": "Много объектов Санта-Крус → футболист Роке Санта-Крус → одноимённый мексиканский клуб",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 387,
@@ -924,7 +1149,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1774,
-      "catalogId": 94
+      "catalogId": 94,
+      "mechanic": "Фамилия бога → спортивная дисциплина",
+      "areas": "Баскетбол + мифология + лёгкая атлетика",
+      "solutionChain": "Джей Ти Тор → бог Тор и его молот → метание молота",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 388,
@@ -944,7 +1174,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2278,
-      "catalogId": 95
+      "catalogId": 95,
+      "mechanic": "Единственное и множественное число",
+      "areas": "Футбол + живопись",
+      "solutionChain": "Футболист Мак → картина Ван Гога «Маки» → проверка подсказкой о номере",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 392,
@@ -964,7 +1199,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1832,
-      "catalogId": 96
+      "catalogId": 96,
+      "mechanic": "Общее название человека и города",
+      "areas": "Литература + бокс + география",
+      "solutionChain": "Джек Лондон ранее Чейни → город Лондон ранее Августа → боксёр и место больших боёв",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 399,
@@ -984,7 +1224,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1568,
-      "catalogId": 97
+      "catalogId": 97,
+      "mechanic": "Идентификация вымышленного спортсмена",
+      "areas": "Анимация + автоспорт + брендинг",
+      "solutionChain": "Вымышленные шины и спонсоры → логотипы на машине → Молния Маккуин",
+      "difficulty": 3,
+      "repeatability": "Средняя"
     },
     {
       "postId": 415,
@@ -1004,7 +1249,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.176,
-      "catalogId": 98
+      "catalogId": 98,
+      "mechanic": "Общий новый медиаформат",
+      "areas": "Баскетбол + цифровые медиа",
+      "solutionChain": "Падение статистики после появления собственных шоу → термин 2004 года → подкаст",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 417,
@@ -1024,7 +1274,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1818,
-      "catalogId": 99
+      "catalogId": 99,
+      "mechanic": "Число как имя персонажа",
+      "areas": "Кино + футбол",
+      "solutionChain": "Оливия Уайлд и роль Тринадцатой → футболисты с номером 13 → «Тринадцатая»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 418,
@@ -1044,7 +1299,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1767,
-      "catalogId": 100
+      "catalogId": 100,
+      "mechanic": "Добавление согласной к слову",
+      "areas": "История + футбол + язык",
+      "solutionChain": "Цитата Франклина задаёт исходное слово → добавление согласной → клуб «Работнички»",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 421,
@@ -1064,7 +1324,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.0923,
-      "catalogId": 101
+      "catalogId": 101,
+      "mechanic": "Форма логотипа + список разновидностей",
+      "areas": "NBA + география + ботаника",
+      "solutionChain": "Старый логотип Knicks и сорта Fuji, Empire, Jonathan → яблоко → символ Нью-Йорка",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 431,
@@ -1084,7 +1349,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2034,
-      "catalogId": 102
+      "catalogId": 102,
+      "mechanic": "Одинаковое имя карты и божества",
+      "areas": "Киберспорт + история + мифология",
+      "solutionChain": "Карта Counter-Strike «Anubis» → шакалоголовый бог и бальзамирование → Анубис",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 434,
@@ -1104,7 +1374,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1525,
-      "catalogId": 103
+      "catalogId": 103,
+      "mechanic": "Распознавание рекламного ролика",
+      "areas": "Олимпийский спорт + реклама",
+      "solutionChain": "Видеоряд и спортсмен начала 2000-х → идентификация рекламы → восстановление слогана",
+      "difficulty": 7,
+      "repeatability": "Низкая"
     },
     {
       "postId": 437,
@@ -1124,7 +1399,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1429,
-      "catalogId": 104
+      "catalogId": 104,
+      "mechanic": "Общая категория списка",
+      "areas": "Футбол + городская инфраструктура",
+      "solutionChain": "ЦСКА, «Локомотив», «Спартак», «Динамо» входят в перечень 271 объекта → станции метро",
+      "difficulty": 3,
+      "repeatability": "Средняя"
     },
     {
       "postId": 438,
@@ -1144,7 +1424,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2173,
-      "catalogId": 105
+      "catalogId": 105,
+      "mechanic": "Государственная символика на эмблеме",
+      "areas": "Футбол + мифология + геральдика",
+      "solutionChain": "Четыре хранителя с герба страны → новая эмблема сборной → Исландия",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 441,
@@ -1164,7 +1449,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1245,
-      "catalogId": 106
+      "catalogId": 106,
+      "mechanic": "Визуальная историческая реконструкция",
+      "areas": "Шахматы + искусство + история",
+      "solutionChain": "Агитационный фарфор 1922 года → замена традиционных сторон → красные и белые",
+      "difficulty": 6,
+      "repeatability": "Низкая"
     },
     {
       "postId": 445,
@@ -1181,10 +1471,15 @@
       "mediaPath": "telegram_archive/media/post_0445_photo_01.jpg",
       "caption": "Бесплатный «Симпл Квиз» для новых команд Всем салют! В среду 14 января в 20:00 мы хотим сыграть бесплатный квиз для тех, кто никогда не играл в «Симпл Квиз». Новички могут познакомиться с форматом и проверить свои силы, сыграв пакет из вопросов первого сезона. Бесплатная игра пройдет в гостях у наших друзей, пабе «Басби», во многих смыслах культовом месте. «Басби» находится по адресу Никитский бульвар, 12. Немного об игре: 1. К участию принимаются команды от 2 человек 2. При этом, если у вас нет команды, вы можете прийти один – найдем вам команду 3. Заявить команду можно в личке у @iamkirian Что должно быть в заявке: • Название команды • Количество человек (хотя бы примерное – чтобы мы поняли, какой столик вам выделить) • ФИО капитана Команды, которые играли в регулярном сезоне «Симпл Квиза», к участию не допускаются. Собирайте друзей, и увидимся с вами в «Басби» 14 января! Еще раз: запись – @iamkirian 📌Никитский бульвар, 12 Ⓜ️Метро «Арбатская» 🕰 20:00",
       "ocrConfidence": 0.9116,
-      "reviewStatus": "Распознано — проверить ответ",
+      "reviewStatus": "Служебная карточка — проверить исключение",
       "duplicateOfId": "",
       "duplicateScore": 0.0615,
-      "catalogId": 107
+      "catalogId": 107,
+      "mechanic": "Служебная карточка — не вопрос",
+      "areas": "Анонс мероприятия",
+      "solutionChain": "Рекламная карточка бесплатной игры не содержит квизового вопроса",
+      "difficulty": 1,
+      "repeatability": "Низкая"
     },
     {
       "postId": 450,
@@ -1204,7 +1499,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2022,
-      "catalogId": 108
+      "catalogId": 108,
+      "mechanic": "Эволюция игрового сленга",
+      "areas": "Киберспорт + футбол + язык",
+      "solutionChain": "Особенность никнеймов сильных игроков FIFA → термин расширился → «араб»",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 451,
@@ -1221,10 +1521,15 @@
       "mediaPath": "telegram_archive/media/post_0451_photo_01.jpg",
       "caption": "Бесплатный «Симпл Квиз» для новых команд Всем салют! В среду 14 января в 20:00 мы хотим сыграть бесплатный квиз для тех, кто никогда не играл в «Симпл Квиз». Новички могут познакомиться с форматом и проверить свои силы, сыграв пакет из вопросов первого сезона. Бесплатная игра пройдет в гостях у наших друзей, пабе «Басби», во многих смыслах культовом месте. «Басби» находится по адресу Никитский бульвар, 12. Немного об игре: 1. К участию принимаются команды от 2 человек 2. При этом, если у вас нет команды, вы можете прийти один – найдем вам команду 3. Заявить команду можно в личке у @iamkirian Что должно быть в заявке: • Название команды • Количество человек (хотя бы примерное – чтобы мы поняли, какой столик вам выделить) • ФИО капитана Команды, которые играли в регулярном сезоне «Симпл Квиза», к участию не допускаются. Собирайте друзей, и увидимся с вами в «Басби» 14 января! Еще раз: запись – @iamkirian 📌Никитский бульвар, 12 Ⓜ️Метро «Арбатская» 🕰 20:00",
       "ocrConfidence": 0.9116,
-      "reviewStatus": "Распознано — проверить ответ",
+      "reviewStatus": "Служебная карточка — проверить исключение",
       "duplicateOfId": "",
       "duplicateScore": 0.0615,
-      "catalogId": 109
+      "catalogId": 109,
+      "mechanic": "Служебная карточка — не вопрос",
+      "areas": "Анонс мероприятия",
+      "solutionChain": "Рекламная карточка бесплатной игры не содержит квизового вопроса",
+      "difficulty": 1,
+      "repeatability": "Низкая"
     },
     {
       "postId": 452,
@@ -1244,7 +1549,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.159,
-      "catalogId": 110
+      "catalogId": 110,
+      "mechanic": "Название группы = фамилии игроков",
+      "areas": "Музыка + футбол",
+      "solutionChain": "Группа из саундтрека FIFA 07 → фамилии Робби и Роя Кина → Keane",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 454,
@@ -1264,7 +1574,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1287,
-      "catalogId": 111
+      "catalogId": 111,
+      "mechanic": "Общий рекламный носитель",
+      "areas": "Музыка + футбол + маркетинг",
+      "solutionChain": "Исполнители после 2022 года → логотипы на форме клуба → игровые футболки «Барселоны»",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 467,
@@ -1284,7 +1599,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1217,
-      "catalogId": 112
+      "catalogId": 112,
+      "mechanic": "Общий образ в фильмографии",
+      "areas": "Кино + стрельба из лука",
+      "solutionChain": "Актёры играли персонажей-лучников → общий олимпийский вид спорта → стрельба из лука",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 468,
@@ -1304,7 +1624,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.167,
-      "catalogId": 113
+      "catalogId": 113,
+      "mechanic": "Шифр + совпадение фамилии",
+      "areas": "Литература + NBA + криптография",
+      "solutionChain": "Зашифрованный персонаж → Шерлок Холмс → баскетболист с фамилией Холмс",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 469,
@@ -1324,7 +1649,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1495,
-      "catalogId": 114
+      "catalogId": 114,
+      "mechanic": "Визуальный ребус из логотипов и счёта",
+      "areas": "MLB + кино",
+      "solutionChain": "Упрощённые C и P плюс счёт 3:0 → запись C-3PO → персонаж «Звёздных войн»",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 473,
@@ -1344,7 +1674,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1991,
-      "catalogId": 115
+      "catalogId": 115,
+      "mechanic": "Общее имя знаменитостей",
+      "areas": "NBA + NFL + музыка",
+      "solutionChain": "Ламар Одом, Ламар Джексон и Кендрик Ламар → общее имя Ламар",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 474,
@@ -1364,7 +1699,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1644,
-      "catalogId": 116
+      "catalogId": 116,
+      "mechanic": "Исторический трофей как бытовой предмет",
+      "areas": "Крикет + история",
+      "solutionChain": "Некролог английскому крикету → серия The Ashes → трофей-урна",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 505,
@@ -1384,7 +1724,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1785,
-      "catalogId": 117
+      "catalogId": 117,
+      "mechanic": "Каламбур в заголовке",
+      "areas": "Биатлон + язык + спортивные медиа",
+      "solutionChain": "Шаблон «картина маслом» → фамилия призёра → «Скардино маслом»",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 507,
@@ -1404,7 +1749,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1669,
-      "catalogId": 118
+      "catalogId": 118,
+      "mechanic": "Общий медийный автор",
+      "areas": "Спорт + YouTube + массовая культура",
+      "solutionChain": "Спортсмены появились в проектах одного блогера → настоящее имя Джеймс Дональдсон → MrBeast",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 508,
@@ -1424,7 +1774,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2058,
-      "catalogId": 119
+      "catalogId": 119,
+      "mechanic": "Многозначное слово",
+      "areas": "Спорт + архитектура + язык",
+      "solutionChain": "Имена спортсменов встречаются в ордерах → архитектурные ордера → слово «ордер»",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 509,
@@ -1444,7 +1799,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.159,
-      "catalogId": 120
+      "catalogId": 120,
+      "mechanic": "Многозначная аббревиатура",
+      "areas": "Спортивные медиа + цифровая культура",
+      "solutionChain": "Трёхбуквенная аббревиатура из другого типа файлов → международное медиа с африканской редакцией → BBC",
+      "difficulty": 6,
+      "repeatability": "Низкая"
     },
     {
       "postId": 511,
@@ -1464,7 +1824,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2348,
-      "catalogId": 121
+      "catalogId": 121,
+      "mechanic": "Перевод слова + фамилия игрока",
+      "areas": "Футбол + французский язык + история",
+      "solutionChain": "Романтический «рыцарь» → французское chevalier → фамилия партнёра и степень ордена",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 512,
@@ -1484,7 +1849,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.204,
-      "catalogId": 122
+      "catalogId": 122,
+      "mechanic": "Этимология спортивного медиа",
+      "areas": "Американский спорт + медиа + язык",
+      "solutionChain": "Выцветшие скамейки и зрители → bleachers → Bleacher Report",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 514,
@@ -1504,7 +1874,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2308,
-      "catalogId": 123
+      "catalogId": 123,
+      "mechanic": "Биографический факт + историческое прозвище",
+      "areas": "Футбол + история России",
+      "solutionChain": "Связь Дзюбы с Тушино → прозвище Лжедмитрия II → «Тушинский вор»",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 516,
@@ -1524,7 +1899,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1176,
-      "catalogId": 124
+      "catalogId": 124,
+      "mechanic": "Вычитание из статистического списка",
+      "areas": "Американский футбол + телевидение",
+      "solutionChain": "100 крупнейших эфиров минус 94 матча NFL → три оставшиеся трансляции → NCAA",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 517,
@@ -1544,7 +1924,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.149,
-      "catalogId": 125
+      "catalogId": 125,
+      "mechanic": "Родственная спортивная преемственность",
+      "areas": "Волейбол + биография",
+      "solutionChain": "Белгородские клубы и отчества → Сергей и Павел Тетюхины → общая фамилия",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 518,
@@ -1564,7 +1949,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1527,
-      "catalogId": 126
+      "catalogId": 126,
+      "mechanic": "Рекламный персонаж через издателя",
+      "areas": "Футбол + видеоигры + маркетинг",
+      "solutionChain": "Спонсор Manchester City Eidos → героиня бренда на промофото → Лара Крофт",
+      "difficulty": 5,
+      "repeatability": "Низкая"
     },
     {
       "postId": 519,
@@ -1584,7 +1974,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1652,
-      "catalogId": 127
+      "catalogId": 127,
+      "mechanic": "Контекстная шутка о названии клуба",
+      "areas": "Футбол + история США + стендап",
+      "solutionChain": "Chicago Fire и трагедия 1871 года → перенос логики на Нью-Йорк → Jets",
+      "difficulty": 6,
+      "repeatability": "Низкая"
     },
     {
       "postId": 520,
@@ -1604,7 +1999,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1542,
-      "catalogId": 128
+      "catalogId": 128,
+      "mechanic": "Каламбур имени и сервиса",
+      "areas": "Футбол + социальные медиа",
+      "solutionChain": "Софья и сервис SofaScore → слитный никнейм → Sofascore",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 521,
@@ -1624,7 +2024,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1955,
-      "catalogId": 129
+      "catalogId": 129,
+      "mechanic": "Восстановление эпизода по тексту песни",
+      "areas": "Рэп + футбол",
+      "solutionChain": "Строчка о голе со стандарта и адресате Кану → поиск реального матча → фамилия автора гола",
+      "difficulty": 7,
+      "repeatability": "Низкая"
     },
     {
       "postId": 524,
@@ -1644,7 +2049,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1674,
-      "catalogId": 130
+      "catalogId": 130,
+      "mechanic": "Скрытое слово при кадрировании",
+      "areas": "Фигурное катание + фотография + язык",
+      "solutionChain": "Обрезанное название турнира → остаются шесть букв со вторым смыслом → «пофигу»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 527,
@@ -1664,7 +2074,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2187,
-      "catalogId": 131
+      "catalogId": 131,
+      "mechanic": "Буквенная трансформация имени",
+      "areas": "Хоррор + снукер + язык",
+      "solutionChain": "Фамилия монстра → добавление гласной и знака → прозвище О’Салливана → снукер",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 535,
@@ -1684,7 +2099,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2084,
-      "catalogId": 132
+      "catalogId": 132,
+      "mechanic": "Совпадение фамилии",
+      "areas": "Спортивные медиа + футбол",
+      "solutionChain": "Экс-комментатор НТВ-Плюс и футболист «Комо» → общая фамилия Батурин/Батурина",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 542,
@@ -1704,7 +2124,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1742,
-      "catalogId": 133
+      "catalogId": 133,
+      "mechanic": "Двойное значение фразы",
+      "areas": "Теннис + иконопись + история",
+      "solutionChain": "Победа Рублева над Федерером → спортивное «вынес» + фамилия иконописца → «вынес икону»",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 544,
@@ -1724,7 +2149,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1905,
-      "catalogId": 134
+      "catalogId": 134,
+      "mechanic": "Демоним как часть имени",
+      "areas": "Иконопись + футбол + география",
+      "solutionChain": "Феофан из Византии → прозвище Грек → чемпионы Европы-греки",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 545,
@@ -1744,7 +2174,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1496,
-      "catalogId": 135
+      "catalogId": 135,
+      "mechanic": "Омоним исторического явления и фамилии",
+      "areas": "История + спортивные медиа",
+      "solutionChain": "Бедствие при осаде города → мор → эксперт с фамилией Мор",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 551,
@@ -1764,7 +2199,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1325,
-      "catalogId": 136
+      "catalogId": 136,
+      "mechanic": "Классификация по цвету",
+      "areas": "Спорт + комиксы + анимация",
+      "solutionChain": "Составы из спортсменов и персонажей → общий цвет костюмов → оранжевый, красный, фиолетовый",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 552,
@@ -1784,7 +2224,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1845,
-      "catalogId": 137
+      "catalogId": 137,
+      "mechanic": "Имя + смысл фамилии",
+      "areas": "Футбол + автоспорт + язык",
+      "solutionChain": "Лишний вес Фелипе Кайседо → «масса» как вес → Фелипе Масса",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 553,
@@ -1804,7 +2249,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1935,
-      "catalogId": 138
+      "catalogId": 138,
+      "mechanic": "Общее спортивное прозвище",
+      "areas": "Автоспорт + шахматы + футбол + хоккей",
+      "solutionChain": "Разных спортсменов и тренера называли одинаково → оборонительная роль → «министр обороны»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 555,
@@ -1824,7 +2274,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1608,
-      "catalogId": 139
+      "catalogId": 139,
+      "mechanic": "Название фильма = прозвище",
+      "areas": "Кино + футбол",
+      "solutionChain": "Фильм Де Пальмы «Лицо со шрамом» → прозвище Франка Рибери → три слова",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 561,
@@ -1844,7 +2299,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1598,
-      "catalogId": 140
+      "catalogId": 140,
+      "mechanic": "Историческое событие + визуальная подсказка",
+      "areas": "Шахматы + технологии + филателия",
+      "solutionChain": "Марка к юбилею победы над Каспаровым → компьютер на изображении → Deep Blue",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 567,
@@ -1864,7 +2324,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1514,
-      "catalogId": 141
+      "catalogId": 141,
+      "mechanic": "Неожиданная ставка на событие",
+      "areas": "Баскетбол + политика + букмекеры",
+      "solutionChain": "Список публичных фигур и коэффициенты → общее возможное действие → выдвижение в президенты",
+      "difficulty": 5,
+      "repeatability": "Низкая"
     },
     {
       "postId": 568,
@@ -1884,7 +2349,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1789,
-      "catalogId": 142
+      "catalogId": 142,
+      "mechanic": "Одинаковое название устройства и медиа",
+      "areas": "Настольный футбол + спортивные медиа + история",
+      "solutionChain": "Запатентованное устройство с фигурками → kicker → немецкий журнал Kicker",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 569,
@@ -1904,7 +2374,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1528,
-      "catalogId": 143
+      "catalogId": 143,
+      "mechanic": "Непристойный межъязыковой каламбур",
+      "areas": "Футбол + английский язык + медиа",
+      "solutionChain": "Заголовок Old Lady unable to master … → название БАТЭ образует двусмысленную фразу",
+      "difficulty": 7,
+      "repeatability": "Низкая"
     },
     {
       "postId": 570,
@@ -1924,7 +2399,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2139,
-      "catalogId": 144
+      "catalogId": 144,
+      "mechanic": "Совпадение фамилии",
+      "areas": "Лёгкая атлетика + интеллектуальные игры + журналистика",
+      "solutionChain": "Спортсменка, медийная героиня и журналист → общая фамилия Лысенко",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 571,
@@ -1944,7 +2424,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.2039,
-      "catalogId": 145
+      "catalogId": 145,
+      "mechanic": "Фамилия после брака",
+      "areas": "Олимпийский спорт + спортивные медиа + биография",
+      "solutionChain": "Победы Марии до замужества → олимпийское золото при комментарии мужа → актуальная фамилия",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 572,
@@ -1964,7 +2449,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1375,
-      "catalogId": 146
+      "catalogId": 146,
+      "mechanic": "Числовой словесный ребус",
+      "areas": "Музыка + спортивные медиа + язык",
+      "solutionChain": "50 Cent и 21 Questions → 50 участников/вопросов конкурса → ИКС равен «вопрос»",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 587,
@@ -1984,7 +2474,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1176,
-      "catalogId": 147
+      "catalogId": 147,
+      "mechanic": "Цитата + фамилия игрока",
+      "areas": "Литература + NBA",
+      "solutionChain": "Строка Шекспира «колпак мозгов не портит» → Тимофей Мозгов и чемпионство Cleveland",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 588,
@@ -2004,7 +2499,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1442,
-      "catalogId": 148
+      "catalogId": 148,
+      "mechanic": "Имя как праздничный символ",
+      "areas": "Футбол + гастрономия + календарь",
+      "solutionChain": "Гол Оливье Жиру 1 января → русское «оливье» как новогоднее блюдо",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 589,
@@ -2024,7 +2524,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1479,
-      "catalogId": 149
+      "catalogId": 149,
+      "mechanic": "Перевод имени персонажа",
+      "areas": "Футбол + анимация + язык",
+      "solutionChain": "Gascoigne по-английски → Гасконец в «Псе в сапогах» → одно имя в двух языках",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 594,
@@ -2044,7 +2549,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1943,
-      "catalogId": 150
+      "catalogId": 150,
+      "mechanic": "Прозвище по внешности",
+      "areas": "Футбол + анимация",
+      "solutionChain": "Статуэтка Шрека принята за Хотэя → прозвище Уэйна Руни → «Шрек»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 601,
@@ -2064,7 +2574,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2186,
-      "catalogId": 151
+      "catalogId": 151,
+      "mechanic": "Фраза как название песни и команды",
+      "areas": "Музыка + футбольная тактика + медиафутбол",
+      "solutionChain": "Два глагола описывают примитивную тактику → песня и команда → «Бей-беги»",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 604,
@@ -2084,7 +2599,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1651,
-      "catalogId": 152
+      "catalogId": 152,
+      "mechanic": "Термин через единицы измерения",
+      "areas": "Баскетбол + антропометрия + английский язык",
+      "solutionChain": "2700 людей и 33 игрока NBA → рост не менее семи футов → семифутеры",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 607,
@@ -2104,7 +2624,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2209,
-      "catalogId": 153
+      "catalogId": 153,
+      "mechanic": "Мифологический омоним фамилии",
+      "areas": "Мифология + фигурное катание + медиа",
+      "solutionChain": "Славянский дух навка → Татьяна Навка → биографическая подсказка через мужа",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 611,
@@ -2124,7 +2649,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1368,
-      "catalogId": 154
+      "catalogId": 154,
+      "mechanic": "Маршрут между городами команд",
+      "areas": "Баскетбол + география + поп-культура",
+      "solutionChain": "Пары клубов задают города и номера шоссе → маршрут Газоля → Route 66",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 613,
@@ -2144,7 +2674,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1958,
-      "catalogId": 155
+      "catalogId": 155,
+      "mechanic": "Совпадение фамилии без родства",
+      "areas": "Лёгкая атлетика + блогинг",
+      "solutionChain": "Блогер с той же фамилией не является сыном олимпийской чемпионки → Татьяна Лебедева",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 617,
@@ -2164,7 +2699,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1946,
-      "catalogId": 156
+      "catalogId": 156,
+      "mechanic": "Общее имя внутри топонима",
+      "areas": "Автоспорт + география",
+      "solutionChain": "Себастьян Лёб и Себастьян Феттель → общее имя → Сан-Себастьян",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 618,
@@ -2184,7 +2724,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1091,
-      "catalogId": 157
+      "catalogId": 157,
+      "mechanic": "Классификация числовых последовательностей",
+      "areas": "Олимпийские игры + календарь",
+      "solutionChain": "Ряды олимпийских годов → разные циклы до реформы → летние и зимние Игры",
+      "difficulty": 3,
+      "repeatability": "Высокая"
     },
     {
       "postId": 620,
@@ -2204,7 +2749,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1128,
-      "catalogId": 158
+      "catalogId": 158,
+      "mechanic": "Общий год в спортивном списке",
+      "areas": "Футбол + музыка",
+      "solutionChain": "Перечень клубов → их достижения в одном году → название трека «2021»",
+      "difficulty": 5,
+      "repeatability": "Средняя"
     },
     {
       "postId": 623,
@@ -2224,7 +2774,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1466,
-      "catalogId": 159
+      "catalogId": 159,
+      "mechanic": "Вымышленная статистика как реальная",
+      "areas": "Анимация + автоспорт",
+      "solutionChain": "Победители с именами героев «Тачек» → рекордсмен Молния Маккуин → Кубок Поршня",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 624,
@@ -2244,7 +2799,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1694,
-      "catalogId": 160
+      "catalogId": 160,
+      "mechanic": "Буквенная операция с фамилией",
+      "areas": "Кино + снукер + язык",
+      "solutionChain": "Shelby → удалить h / Шелби → заменить Ш на С → Марк Селби",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 625,
@@ -2264,7 +2824,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.181,
-      "catalogId": 161
+      "catalogId": 161,
+      "mechanic": "Библейская парность имён",
+      "areas": "NBA + религия",
+      "solutionChain": "Гипотетический Эйбел/Авель рядом с игроком Orlando → братская пара → Каин",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 628,
@@ -2284,7 +2849,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2053,
-      "catalogId": 162
+      "catalogId": 162,
+      "mechanic": "Визуальный символ на деньгах",
+      "areas": "Баскетбол + религия + нумизматика",
+      "solutionChain": "Святой на куртке → образ всадника на монетах 1, 5, 10 и 50 → Георгий Победоносец",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 635,
@@ -2304,7 +2874,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 38,
       "duplicateScore": 1,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Протест-перформанс",
+      "areas": "Лыжное двоеборье + протест",
+      "solutionChain": "Если бы была мужчиной → нарисовала бороду",
+      "difficulty": 4,
+      "repeatability": "Средняя"
     },
     {
       "postId": 636,
@@ -2324,7 +2899,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 35,
       "duplicateScore": 0.9946,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Оригинальное название фильма и снаряда",
+      "areas": "Кино + NBA",
+      "solutionChain": "Moneyball как специальный мяч → российское название фильма",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     },
     {
       "postId": 644,
@@ -2344,7 +2924,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 27,
       "duplicateScore": 1,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Название песни + характеристика",
+      "areas": "Музыка + литература",
+      "solutionChain": "Название песни → характеристика героя/писателя",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 645,
@@ -2364,7 +2949,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 23,
       "duplicateScore": 0.9548,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Цитата → действие",
+      "areas": "NBA + стиль",
+      "solutionChain": "Выглядеть как лидер → тренерам носить костюм",
+      "difficulty": 3,
+      "repeatability": "Средняя"
     },
     {
       "postId": 647,
@@ -2384,7 +2974,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 8,
       "duplicateScore": 0.9484,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Многозначное слово",
+      "areas": "Теннис + язык",
+      "solutionChain": "Маргарет Корт → теннисный корт → корт имени Корт",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 648,
@@ -2404,7 +2999,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 12,
       "duplicateScore": 0.9667,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Совпадение фамилии",
+      "areas": "Математика + NFL",
+      "solutionChain": "Исаак Ньютон → ньютоны → Кэм Ньютон",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 649,
@@ -2424,7 +3024,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 3,
       "duplicateScore": 1,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Оригинальное название произведения",
+      "areas": "Живопись + кино",
+      "solutionChain": "«Ночной дозор» → The Night Watch → ночной просмотр американского спорта",
+      "difficulty": 6,
+      "repeatability": "Высокая"
     },
     {
       "postId": 659,
@@ -2444,7 +3049,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": 11,
       "duplicateScore": 0.971,
-      "catalogId": ""
+      "catalogId": "",
+      "mechanic": "Совпадение имени",
+      "areas": "Футбол + литература",
+      "solutionChain": "Данте-футболист → Данте Алигьери",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 664,
@@ -2464,7 +3074,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1685,
-      "catalogId": 163
+      "catalogId": 163,
+      "mechanic": "Многозначная фраза",
+      "areas": "Футбол + путешествия + медиа",
+      "solutionChain": "Личная история Слуцкого и маршруты россиян после 2022 года → «пересадка в Турции»",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 669,
@@ -2484,7 +3099,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1873,
-      "catalogId": 164
+      "catalogId": 164,
+      "mechanic": "Идентификация автора цитаты",
+      "areas": "Футбол + спортивные медиа",
+      "solutionChain": "Оценка молодого игрока и шутка о фамилии → стиль и биография эксперта → Андрей Аршавин",
+      "difficulty": 6,
+      "repeatability": "Средняя"
     },
     {
       "postId": 682,
@@ -2504,7 +3124,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1615,
-      "catalogId": 165
+      "catalogId": 165,
+      "mechanic": "Визуальная метафора силуэта",
+      "areas": "Олимпийские игры + дизайн + география",
+      "solutionChain": "Контур города на постере и скрытые горы → форма олимпийского факела",
+      "difficulty": 5,
+      "repeatability": "Низкая"
     },
     {
       "postId": 684,
@@ -2524,7 +3149,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.214,
-      "catalogId": 166
+      "catalogId": 166,
+      "mechanic": "Многозначность + словообразование",
+      "areas": "Иконопись + спорт + язык",
+      "solutionChain": "Обратная перспектива → перспективный спортсмен → перспектив с возрастом меньше",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 716,
@@ -2544,7 +3174,12 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1681,
-      "catalogId": 167
+      "catalogId": 167,
+      "mechanic": "Алфавитная закономерность в разных языках",
+      "areas": "География + футбол + язык",
+      "solutionChain": "Пары стран задают крайние позиции в национальных алфавитах → применение к участникам ЧМ-2026",
+      "difficulty": 7,
+      "repeatability": "Высокая"
     },
     {
       "postId": 717,
@@ -2564,7 +3199,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.2123,
-      "catalogId": 168
+      "catalogId": 168,
+      "mechanic": "Географический омоним",
+      "areas": "Футбол + география",
+      "solutionChain": "Название европейской страны совпадает со штатом и появляется в месте проведения матчей → Georgia",
+      "difficulty": 4,
+      "repeatability": "Высокая"
     },
     {
       "postId": 718,
@@ -2584,7 +3224,12 @@
       "reviewStatus": "Ответ подтверждён реакцией канала",
       "duplicateOfId": "",
       "duplicateScore": 0.1955,
-      "catalogId": 169
+      "catalogId": 169,
+      "mechanic": "Перевод слова + прозвище тренера",
+      "areas": "Видеоигры + футбол + испанский язык",
+      "solutionChain": "Игра LocoRoco → испанское loco «сумасшедший» → прозвище Эль Локо → Марсело Бьельса",
+      "difficulty": 5,
+      "repeatability": "Высокая"
     },
     {
       "postId": 719,
@@ -2604,10 +3249,16 @@
       "reviewStatus": "Распознано — проверить ответ",
       "duplicateOfId": "",
       "duplicateScore": 0.1726,
-      "catalogId": 170
+      "catalogId": 170,
+      "mechanic": "Этимология имени + турнирный мем",
+      "areas": "Футбол + греческий язык + спортивные медиа",
+      "solutionChain": "Имя со значением «бессмертный» → повторяющийся образ ЧМ-2026 → статья спортивного медиа",
+      "difficulty": 7,
+      "repeatability": "Средняя"
     }
   ],
   "uniqueAddedToCatalog": 122,
   "duplicatesSkipped": 8,
-  "finalCatalogCount": 170
+  "finalCatalogCount": 170,
+  "analyzedQuestionCount": 130
 }

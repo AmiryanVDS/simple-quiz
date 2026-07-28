@@ -6,6 +6,33 @@ const source = JSON.parse(
 const archive = JSON.parse(
   await fs.readFile("telegram_archive/questions.json", "utf8"),
 );
+const analysisRows = (
+  await fs.readFile("telegram_archive/question_analysis.tsv", "utf8")
+)
+  .trim()
+  .split("\n")
+  .slice(1)
+  .map((line) => {
+    const [
+      postId,
+      mechanic,
+      areas,
+      solutionChain,
+      difficulty,
+      repeatability,
+    ] = line.split("\t");
+    return {
+      postId: Number(postId),
+      mechanic,
+      areas,
+      solutionChain,
+      difficulty: Number(difficulty),
+      repeatability,
+    };
+  });
+const analysisByPost = new Map(
+  analysisRows.map((analysis) => [analysis.postId, analysis]),
+);
 
 function normalize(text) {
   return String(text || "")
@@ -43,6 +70,11 @@ const existingQuestions = source.sheets["Каталог"].rows.map((row) => ({
   id: row[0],
   question: row[4],
   answer: row[5],
+  mechanic: row[6],
+  areas: row[7],
+  solutionChain: row[8],
+  difficulty: row[9],
+  repeatability: row[10],
 }));
 
 const enriched = archive.questions.map((question) => {
@@ -52,12 +84,25 @@ const enriched = archive.questions.map((question) => {
     if (score > best.score) best = { score, row: existing };
   }
   const duplicate = best.score >= 0.9 ? best.row : null;
+  const analysis = duplicate || analysisByPost.get(question.postId);
+  if (!analysis) {
+    throw new Error(`Нет анализа для Telegram-поста ${question.postId}`);
+  }
   return {
     ...question,
     duplicateOfId: duplicate?.id || "",
     duplicateScore: Number(best.score.toFixed(4)),
     answer: question.answer || duplicate?.answer || "",
     catalogId: "",
+    mechanic: analysis.mechanic,
+    areas: analysis.areas,
+    solutionChain: analysis.solutionChain,
+    difficulty: analysis.difficulty,
+    repeatability: analysis.repeatability,
+    reviewStatus:
+      analysis.mechanic === "Служебная карточка — не вопрос"
+        ? "Служебная карточка — проверить исключение"
+        : question.reviewStatus,
   };
 });
 
@@ -76,6 +121,7 @@ await fs.writeFile(
       uniqueAddedToCatalog: uniqueQuestions.length,
       duplicatesSkipped: enriched.length - uniqueQuestions.length,
       finalCatalogCount: existingQuestions.length + uniqueQuestions.length,
+      analyzedQuestionCount: enriched.length,
       questions: enriched,
     },
     null,
@@ -89,5 +135,6 @@ console.log(
     added: uniqueQuestions.length,
     duplicates: enriched.length - uniqueQuestions.length,
     catalogCount: existingQuestions.length + uniqueQuestions.length,
+    analyzed: enriched.length,
   }),
 );
