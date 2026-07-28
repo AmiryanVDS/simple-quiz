@@ -45,6 +45,7 @@ OCR требует:
 ## Готовые файлы
 
 - `outputs/Simple_Quiz_Intelligence_with_Telegram_offline.html`
+- `outputs/Simple_Quiz_Team_Training.html`
 - `outputs/IMPORT_REPORT.md`
 
 Целевой формат проекта — автономный HTML. Он работает без Excel и подключения

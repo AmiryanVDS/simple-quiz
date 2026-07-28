@@ -151,7 +151,7 @@ const html = `<!doctype html>
     .brand{font-weight:800;white-space:nowrap}.tabs{display:flex;gap:5px;overflow:auto}.tab{border:0;border-radius:8px;padding:8px 11px;background:transparent;color:#cbd5e1;cursor:pointer;white-space:nowrap}.tab.active,.tab:hover{background:#263a57;color:#fff}
     .actions{display:flex;gap:8px;margin-left:auto}.search,.action{border:1px solid #41536c;border-radius:8px;padding:7px 10px;background:#182942;color:#fff}.search{width:230px}.action{cursor:pointer}
     main{max-width:1600px;margin:auto;padding:24px}.hero{display:flex;justify-content:space-between;gap:28px;padding:30px 34px;border-radius:18px;background:var(--navy);color:#fff;box-shadow:var(--shadow)}
-    .eyebrow{margin:0 0 6px;color:#b8c9df;font-size:11px;font-weight:800;letter-spacing:.14em}.hero h1,.sheet-head h1{margin:0;font-size:clamp(27px,4vw,46px);line-height:1.08}.hero p{max-width:780px;color:#dbe7f4}.hero-mark{display:grid;place-items:center;min-width:108px;height:108px;border-radius:24px;background:var(--violet);font-size:28px;font-weight:900}
+    .eyebrow{margin:0 0 6px;color:#b8c9df;font-size:11px;font-weight:800;letter-spacing:.14em}.hero h1,.sheet-head h1{margin:0;font-size:clamp(27px,4vw,46px);line-height:1.08}.hero p{max-width:780px;color:#dbe7f4}.hero-link{display:inline-block;margin-top:5px;padding:9px 13px;border-radius:9px;background:#fff;color:var(--navy);font-weight:750;text-decoration:none}.hero-mark{display:grid;place-items:center;min-width:108px;height:108px;border-radius:24px;background:var(--violet);font-size:28px;font-weight:900}
     .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}.kpi{display:flex;align-items:flex-end;justify-content:space-between;min-height:105px;padding:19px;border-radius:14px;background:#fff;box-shadow:var(--shadow)}.kpi span{max-width:140px;color:var(--muted);font-size:13px}.kpi strong{color:var(--navy);font-size:34px}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{padding:22px;border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:var(--shadow)}.panel.wide{grid-column:1/-1}.panel h2{margin:0 0 15px}.summary{display:grid;gap:10px}.summary-row{display:grid;grid-template-columns:220px 1fr 48px;gap:10px;align-items:center}.track{height:10px;border-radius:99px;background:#e9eef4;overflow:hidden}.fill{height:100%;border-radius:99px;background:var(--blue)}
     .note{margin-top:16px;padding:16px 18px;border-left:5px solid var(--amber);border-radius:10px;background:#fff8df}.sheet-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:4px 0 16px}.sheet-head h1{font-size:34px}.sheet-head p{margin:0;color:var(--muted)}
@@ -185,6 +185,7 @@ const html = `<!doctype html>
           <p class="eyebrow">БАЗА + ПОЛНЫЙ ПУБЛИЧНЫЙ АРХИВ @SIMPLE_QUIZ</p>
           <h1>Simple Quiz Intelligence</h1>
           <p>Вопросы из исходной презентации и Telegram-карточек объединены в одном офлайн-файле. Поиск, сортировка и выгрузка CSV работают без Excel и без подключения к интернету.</p>
+          <a class="hero-link" href="Simple_Quiz_Team_Training.html">Открыть командный тренажёр →</a>
         </div>
         <div class="hero-mark">SQ</div>
       </div>

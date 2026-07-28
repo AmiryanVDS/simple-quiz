@@ -10,7 +10,8 @@
     "extract": "node scripts/build_telegram_questions.mjs",
     "enrich": "node scripts/enrich_telegram_questions.mjs",
     "build:html": "node scripts/build_offline_html.mjs",
-    "build": "npm run extract && npm run enrich && npm run build:html && npm run verify",
+    "build:training": "node scripts/build_team_training_guide.mjs",
+    "build": "npm run extract && npm run enrich && npm run build:html && npm run build:training && npm run verify",
     "refresh:telegram": "npm run archive && npm run ocr && npm run build",
     "verify": "node scripts/verify_project.mjs"
   }
