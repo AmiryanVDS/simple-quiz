@@ -1,0 +1,56 @@
+[
+  {
+    "id": "openfootball-worldcup",
+    "name": "openfootball/worldcup",
+    "url": "https://github.com/openfootball/worldcup",
+    "role": "ЧМ-2026: группы, расписание и матчи",
+    "status": "active",
+    "license": "CC0-1.0",
+    "runtime": "local snapshot"
+  },
+  {
+    "id": "football-datasets",
+    "name": "datasets/football-datasets",
+    "url": "https://github.com/datasets/football-datasets",
+    "role": "Исторические результаты пяти европейских лиг",
+    "status": "active",
+    "license": "PDDL 1.0 for league datasets; World Cup data is CC BY-SA 4.0",
+    "runtime": "local snapshot"
+  },
+  {
+    "id": "statsbomb-open-data",
+    "name": "hudl/open-data",
+    "url": "https://github.com/hudl/open-data",
+    "role": "Будущий режим футбольной аналитики: события, составы и 360-данные",
+    "status": "planned",
+    "license": "Terms in repository LICENSE.pdf; StatsBomb attribution required",
+    "runtime": "not used by Telegram bot"
+  },
+  {
+    "id": "soccerdata",
+    "name": "probberechts/soccerdata",
+    "url": "https://github.com/probberechts/soccerdata",
+    "role": "Будущий офлайн-импорт аналитических показателей",
+    "status": "planned",
+    "license": "Source-specific terms apply to every scraped website",
+    "runtime": "not used by Telegram bot"
+  },
+  {
+    "id": "awesome-football",
+    "name": "openfootball/awesome-football",
+    "url": "https://github.com/openfootball/awesome-football",
+    "role": "Каталог дополнительных футбольных источников",
+    "status": "catalog",
+    "license": "Public domain for the list; linked datasets keep their own licenses",
+    "runtime": "catalog only"
+  },
+  {
+    "id": "opentdb",
+    "name": "Open Trivia DB",
+    "url": "https://opentdb.com/api_config.php",
+    "role": "Общие спортивные вопросы; англоязычные записи ожидают перевода",
+    "status": "stored-not-published",
+    "license": "CC BY-SA 4.0",
+    "runtime": "local snapshot, Russian filter"
+  }
+]
