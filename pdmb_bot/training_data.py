@@ -2,6 +2,7 @@
 
 import json
 import random
+import re
 from pathlib import Path
 
 from question_quality import deduplicate_questions
@@ -189,6 +190,13 @@ def _external_questions() -> list[dict]:
     with EXTERNAL_PATH.open(encoding="utf-8") as questions_file:
         raw_questions = json.load(questions_file)
     questions, _ = deduplicate_questions(raw_questions)
+    # Telegram-тренажёр публикует только русскоязычные формулировки. Имена
+    # команд и спортсменов могут оставаться латиницей, но текст вопроса должен
+    # содержать кириллицу; англоязычный снапшот OpenTDB пока не показываем.
+    questions = [
+        question for question in questions
+        if len(re.findall(r"[А-Яа-яЁё]", question["question"])) >= 4
+    ]
     return questions
 
 
