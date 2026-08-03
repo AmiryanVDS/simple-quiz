@@ -81,17 +81,4 @@ Git-репозиторий:
 `deploy-training-pages.yml`. Бот разворачивается workflow
 `deploy-pdmb-bot.yml` и работает как сервис `pdmb-bot.service`.
 
-Для GitHub Actions нужны секреты:
 
-- `SERVER_HOST` — `87.199.207.170`;
-- `SERVER_PORT` — SSH-порт сервера;
-- `SERVER_USER` — `pdmb` (пользователь создаётся bootstrap-скриптом);
-- `SERVER_SSH_KEY` — приватный deploy-ключ.
-
-Первичная настройка сервера выполняется один раз:
-
-```bash
-sudo bash deploy/bootstrap-pdmb-server.sh
-sudoedit /etc/pdmb-bot.env
-sudo systemctl start pdmb-bot
-```
