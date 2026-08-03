@@ -1,0 +1,19 @@
+[Unit]
+Description=PDMB Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pdmb
+Group=pdmb
+WorkingDirectory=/opt/pdmb-bot/current
+EnvironmentFile=/etc/pdmb-bot.env
+ExecStart=/opt/pdmb-bot/venv/bin/python /opt/pdmb-bot/current/bot.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

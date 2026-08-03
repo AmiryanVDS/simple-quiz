@@ -23,6 +23,36 @@ const football = [
   ["Benfica", "As Águias / «орлы»", "Орёл над щитом, колесо велосипеда и девиз E pluribus unum."],
 ];
 
+const worldCup2026Groups = [
+  ["Группа A", "Мексика · Южная Африка · Республика Корея · Чехия", "Хозяева турнира: Мексика. Запоминайте связку: CONCACAF + CAF + AFC + UEFA."],
+  ["Группа B", "Канада · Босния и Герцеговина · Катар · Швейцария", "Хозяева турнира: Канада. По одной сборной из CONCACAF, UEFA, AFC и ещё одна UEFA."],
+  ["Группа C", "Бразилия · Марокко · Гаити · Шотландия", "Пятикратный чемпион, полуфиналист ЧМ-2022, представитель Карибов и сборная Великобритании."],
+  ["Группа D", "США · Австралия · Парагвай · Турция", "Хозяева турнира: США. CONCACAF + AFC + CONMEBOL + UEFA."],
+  ["Группа E", "Германия · Кюрасао · Кот-д’Ивуар · Эквадор", "Четырёхкратный чемпион и три сборные из разных конфедераций: CONCACAF, CAF и CONMEBOL."],
+  ["Группа F", "Нидерланды · Япония · Швеция · Тунис", "Трижды финалист ЧМ, азиатский лидер, европейская и африканская сборные."],
+  ["Группа G", "Бельгия · Египет · Иран · Новая Зеландия", "UEFA + CAF + AFC + OFC; ориентиры — Де Брёйне, Салах, Тареми и Крис Вуд."],
+  ["Группа H", "Испания · Саудовская Аравия · Уругвай · Кабо-Верде", "Будущий чемпион турнира попал к двукратному чемпиону мира Уругваю, представителям AFC и CAF."],
+  ["Группа I", "Франция · Сенегал · Норвегия · Ирак", "Группа Мбаппе и будущих участников гонки бомбардиров: Хорланда и французского капитана."],
+  ["Группа J", "Аргентина · Австрия · Алжир · Иордания", "Действующий на старте чемпион дошёл до финала; Месси забил восемь голов за турнир."],
+  ["Группа K", "Португалия · Узбекистан · Колумбия · ДР Конго", "Европа, Азия, Южная Америка и Африка — по одной сборной от четырёх конфедераций."],
+  ["Группа L", "Англия · Гана · Панама · Хорватия", "Англия завоевала бронзу; вместе с ней — представители CAF, CONCACAF и финалист ЧМ-2018."],
+];
+
+const worldCup2026Awards = [
+  ["Чемпион мира 2026", "Испания", "Победила Аргентину 1:0 в дополнительное время; решающий гол Феррана Торреса на 106-й минуте."],
+  ["adidas Golden Ball · лучший игрок", "Родри · Испания", "Капитан и центральный полузащитник чемпиона; FIFA отметила его управление темпом, прессингом и владением."],
+  ["FIFA Young Player Award · лучший молодой игрок", "Пау Кубарси · Испания", "Центральный защитник стал лучшим молодым игроком турнира и одним из ключевых игроков чемпионской обороны."],
+  ["adidas Golden Glove · лучший вратарь", "Унаи Симон · Испания", "Семь сухих матчей из восьми и лишь один пропущенный мяч за весь турнир."],
+];
+
+const worldCup2026Scorers = [
+  ["1-е место · 10 голов", "Килиан Мбаппе · Франция", "adidas Golden Boot; также сделал 4 голевые передачи."],
+  ["2-е место · 8 голов", "Лионель Месси · Аргентина", "Дошёл до финала и сделал 4 голевые передачи."],
+  ["3-е место · 7 голов", "Джуд Беллингем · Англия", "Забил 7 мячей и сделал 1 голевую передачу."],
+  ["4-е место · 7 голов", "Эрлинг Холанд · Норвегия", "Забил 7 мячей; уступил Беллингему по дополнительному показателю."],
+  ["5-е место · 6 голов", "Усман Дембеле · Франция", "Забил 6 мячей и сделал 2 голевые передачи."],
+];
+
 const leagues = {
   NBA: `
 ATL|Atlanta Hawks
@@ -213,6 +243,12 @@ const sources = [
   ["adidas: история бренда и Impossible Is Nothing", "https://www.adidas-group.com/en/about/history"],
   ["P&G: олимпийская кампания Thank You, Mom", "https://us.pg.com/blogs/pg-announces-extended-olympic-games-partnership/"],
   ["Coca-Cola: Mean Joe Greene", "https://www.coca-colacompany.com/about-us/history/cokes-enduring-legacy-of-inclusive-advertising"],
+  ["FIFA: состав групп чемпионата мира 2026", "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/fifa-world-cup-2026-hosts-cities-dates-usa-mexico-canada"],
+  ["FIFA: статистика и бомбардиры чемпионата мира 2026", "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/statistics"],
+  ["FIFA: Родри — обладатель Golden Ball", "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/untouchable-rodri-the-master-and-commander-as-spain-prevail"],
+  ["FIFA: Мбаппе — обладатель Golden Boot", "https://www.fifa.com/en/articles/adidas-golden-boot-race-top-scorer"],
+  ["FIFA: Унаи Симон — обладатель Golden Glove", "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/unai-simon-adidas-golden-glove"],
+  ["FIFA: лучший молодой игрок чемпионата мира 2026", "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/young-player"],
 ];
 
 function parseLeague(name, text) {
@@ -230,6 +266,9 @@ const leagueCards = Object.entries(leagues).flatMap(([name, text]) =>
 );
 const trainingData = {
   football,
+  worldCup2026Groups,
+  worldCup2026Awards,
+  worldCup2026Scorers,
   leagueCards,
   campaigns,
   nameBridges,
@@ -237,6 +276,17 @@ const trainingData = {
   popCulture,
   sources,
 };
+
+const worldCup2026CardCount =
+  worldCup2026Groups.length + worldCup2026Awards.length + worldCup2026Scorers.length;
+const totalCardCount =
+  football.length +
+  worldCup2026CardCount +
+  leagueCards.length +
+  campaigns.length +
+  nameBridges.length +
+  mythology.length +
+  popCulture.length;
 
 const embedded = JSON.stringify(trainingData).replaceAll("<", "\\u003c");
 const html = `<!doctype html>
@@ -253,7 +303,7 @@ const html = `<!doctype html>
     .search{margin-left:auto;width:230px;border:1px solid #41536c;border-radius:9px;padding:8px 10px;background:#182942;color:#fff}
     main{max-width:1460px;margin:auto;padding:24px}.hero{display:grid;grid-template-columns:1fr auto;gap:24px;padding:30px 34px;border-radius:20px;background:linear-gradient(135deg,var(--navy),#274f7d);color:#fff;box-shadow:var(--shadow)}
     .eyebrow{margin:0 0 7px;color:#bfd0e5;font-size:11px;font-weight:800;letter-spacing:.15em}.hero h1{margin:0;font-size:clamp(30px,5vw,52px);line-height:1.05}.hero p{max-width:820px;color:#dce8f5}.timer{display:grid;place-items:center;min-width:155px;padding:18px;border-radius:18px;background:#ffffff12}.timer strong{font-size:42px}.timer button{border:0;border-radius:9px;padding:7px 12px;background:var(--amber);cursor:pointer}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{padding:17px;border-radius:14px;background:#fff;box-shadow:var(--shadow)}.stat b{display:block;color:var(--navy);font-size:29px}.stat span{color:var(--muted);font-size:13px}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.stat{padding:17px;border-radius:14px;background:#fff;box-shadow:var(--shadow)}.stat b{display:block;color:var(--navy);font-size:29px}.stat span{color:var(--muted);font-size:13px}
     .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}.plan article{padding:18px;border-left:5px solid var(--blue);border-radius:12px;background:#fff;box-shadow:var(--shadow)}.plan h3{margin:0 0 7px}.plan p{margin:0;color:var(--muted)}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:25px 0 13px}.section-head h2{margin:0;font-size:32px}.section-head p{margin:0;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
     .card{position:relative;padding:0;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:0 7px 20px #1420330d;overflow:hidden}.card[hidden]{display:none}.card details{height:100%}.card summary{min-height:95px;padding:18px 48px 18px 18px;cursor:pointer;font-weight:750;list-style:none}.card summary::-webkit-details-marker{display:none}.card summary small{display:block;margin-top:6px;color:var(--muted);font-weight:500}.answer{padding:15px 18px 18px;border-top:1px solid var(--line);background:#f8fbff}.answer b{color:var(--navy)}.answer p{margin:7px 0 0;color:#435168}
@@ -269,6 +319,7 @@ const html = `<!doctype html>
     <nav class="tabs">
       <button class="tab active" data-section="overview">План</button>
       <button class="tab" data-section="football">Футбол</button>
+      <button class="tab" data-section="worldcup2026">ЧМ-2026</button>
       <button class="tab" data-section="leagues">NBA / NHL / NFL</button>
       <button class="tab" data-section="campaigns">Реклама</button>
       <button class="tab" data-section="names">Имена</button>
@@ -280,19 +331,21 @@ const html = `<!doctype html>
   <main>
     <section id="overview">
       <div class="hero">
-        <div><p class="eyebrow">ПОДГОТОВКА К СЛЕДУЮЩЕМУ КВИЗУ</p><h1>Закрытие областей</h1><p>Офлайн-тренажёр по самым полезным зонам: футбольные символы, 94 команды американских лиг, спортивная реклама, имена-мосты, мифология, песни и кино. Нажимайте на карточку, чтобы открыть ответ, и отмечайте выученное.</p></div>
+        <div><p class="eyebrow">ПОДГОТОВКА К СЛЕДУЮЩЕМУ КВИЗУ</p><h1>Закрытие областей</h1><p>Офлайн-тренажёр по самым полезным зонам: чемпионат мира 2026, футбольные символы, 94 команды американских лиг, спортивная реклама, имена-мосты, мифология, песни и кино. Нажимайте на карточку, чтобы открыть ответ, и отмечайте выученное.</p></div>
         <div class="timer"><span>Таймер вопроса</span><strong id="timer">60</strong><button id="timer-button">Старт</button></div>
       </div>
       <div class="stats">
         <div class="stat"><b>${football.length}</b><span>футбольных эмблем</span></div>
+        <div class="stat"><b>${worldCup2026CardCount}</b><span>карточка по ЧМ-2026</span></div>
         <div class="stat"><b>${leagueCards.length}</b><span>команды трёх лиг</span></div>
         <div class="stat"><b>${campaigns.length}</b><span>рекламных кампаний</span></div>
-        <div class="stat"><b id="progress">0/${football.length + leagueCards.length + campaigns.length + nameBridges.length + mythology.length + popCulture.length}</b><span>карточек выучено</span></div>
+        <div class="stat"><b id="progress">0/${totalCardCount}</b><span>карточек выучено</span></div>
       </div>
       <div class="plan">
         <article><h3>Сессия 1 · 60 минут</h3><p>Футбольные прозвища и эмблемы, затем NBA/NHL/NFL. Отвечать в обе стороны: код → команда и команда → код.</p></article>
         <article><h3>Сессия 2 · 60 минут</h3><p>Реклама, имена-мосты и мифология. После ответа обязательно проговаривать цепочку связи.</p></article>
         <article><h3>Сессия 3 · 60 минут</h3><p>Музыка и кино, затем смешанный прогон карточек с таймером 60 секунд.</p></article>
+        <article><h3>Сессия 4 · 45 минут</h3><p>ЧМ-2026: двенадцать групп, обладатели индивидуальных наград и пятёрка лучших бомбардиров.</p></article>
       </div>
       <div class="sources"><h2>Как заниматься</h2><ol><li>Первый круг: открыть все карточки и отметить знакомые.</li><li>Второй круг: показывать только невыученные и отвечать за 20–30 секунд.</li><li>Третий круг: один участник читает подсказку, остальные строят цепочку вслух.</li><li>Перед игрой повторить карточки без отметки.</li></ol></div>
     </section>
@@ -307,6 +360,7 @@ const html = `<!doctype html>
     const DATA=${embedded};
     const sections={
       football:{title:"20 футбольных прозвищ и эмблем",note:"Сначала назовите прозвище, затем опишите ключевые элементы эмблемы."},
+      worldcup2026:{title:"Чемпионат мира FIFA 2026",note:"12 групп, главные индивидуальные награды и пятёрка лучших бомбардиров по итогам турнира."},
       leagues:{title:"Сокращения NBA, NHL и NFL",note:"94 актуальные команды. Обратите внимание: UTA в NHL — Utah Mammoth."},
       campaigns:{title:"Спортивные рекламные кампании",note:"Запоминайте связку бренд → название → спортсмен → год или турнир."},
       names:{title:"Имена и фамилии-мосты",note:"Тренируйте переход от спортсмена к художнику, герою, слову или топониму."},
@@ -319,6 +373,11 @@ const html = `<!doctype html>
     function card(id,front,answer,note,tag=""){return '<article class="card" data-search="'+escapeHtml([front,answer,note,tag].join(" ").toLowerCase())+'" data-league="'+escapeHtml(tag)+'"><input class="learned" type="checkbox" data-id="'+id+'" aria-label="Выучено"><details><summary>'+front+(tag?'<small>'+escapeHtml(tag)+'</small>':"")+'</summary><div class="answer"><b>'+escapeHtml(answer)+'</b><p>'+escapeHtml(note)+'</p></div></details></article>'}
     function makeCards(name){
       if(name==="football")return DATA.football.map((x,i)=>card("f"+i,escapeHtml(x[0]),x[1],x[2])).join("");
+      if(name==="worldcup2026")return [
+        ...DATA.worldCup2026Groups.map((x,i)=>card("w26g"+i,escapeHtml(x[0]),x[1],x[2],"Группы")),
+        ...DATA.worldCup2026Awards.map((x,i)=>card("w26a"+i,escapeHtml(x[0]),x[1],x[2],"Лучшие игроки")),
+        ...DATA.worldCup2026Scorers.map((x,i)=>card("w26s"+i,escapeHtml(x[0]),x[1],x[2],"Бомбардиры")),
+      ].join("");
       if(name==="leagues")return DATA.leagueCards.map((x,i)=>card("l"+i,'<span class="code">'+escapeHtml(x[0])+"</span>",x[1],"Назовите полное имя команды и лигу.",x[2])).join("");
       if(name==="campaigns")return DATA.campaigns.map((x,i)=>card("a"+i,escapeHtml(x[0]),x[1],x[2])).join("");
       if(name==="names")return DATA.nameBridges.map((x,i)=>card("n"+i,escapeHtml(x[0]),x[1],x[2])).join("");
@@ -328,13 +387,13 @@ const html = `<!doctype html>
     function render(name){
       active=name;document.querySelectorAll(".tab").forEach(tab=>tab.classList.toggle("active",tab.dataset.section===name));overview.hidden=name!=="overview";content.hidden=name==="overview";search.hidden=name==="overview";
       if(name==="overview"){updateProgress();return}
-      document.querySelector("#section-title").textContent=sections[name].title;document.querySelector("#section-note").textContent=sections[name].note;leagueFilter.hidden=name!=="leagues";document.querySelector("#sources").hidden=name!=="campaigns"&&name!=="leagues";
+      document.querySelector("#section-title").textContent=sections[name].title;document.querySelector("#section-note").textContent=sections[name].note;leagueFilter.hidden=name!=="leagues";document.querySelector("#sources").hidden=name!=="campaigns"&&name!=="leagues"&&name!=="worldcup2026";
       cards.innerHTML=makeCards(name);restoreChecks();filterCards();
     }
     function filterCards(){const query=search.value.trim().toLowerCase();let visible=0;cards.querySelectorAll(".card").forEach(item=>{const show=(!query||item.dataset.search.includes(query))&&(active!=="leagues"||league==="ALL"||item.dataset.league===league);item.hidden=!show;if(show)visible++});document.querySelector("#empty").hidden=visible>0}
     function saved(){try{return JSON.parse(localStorage.getItem("simple-quiz-training-progress")||"{}")}catch{return {}}}
     function restoreChecks(){const state=saved();cards.querySelectorAll(".learned").forEach(box=>{box.checked=Boolean(state[box.dataset.id]);box.addEventListener("change",()=>{const next=saved();next[box.dataset.id]=box.checked;localStorage.setItem("simple-quiz-training-progress",JSON.stringify(next));updateProgress()})})}
-    function updateProgress(){const count=Object.values(saved()).filter(Boolean).length;document.querySelector("#progress").textContent=count+"/${football.length + leagueCards.length + campaigns.length + nameBridges.length + mythology.length + popCulture.length}"}
+    function updateProgress(){const count=Object.values(saved()).filter(Boolean).length;document.querySelector("#progress").textContent=count+"/${totalCardCount}"}
     document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>render(tab.dataset.section)));search.addEventListener("input",filterCards);
     leagueFilter.addEventListener("click",event=>{const button=event.target.closest("button");if(!button)return;league=button.dataset.league;leagueFilter.querySelectorAll("button").forEach(item=>item.classList.toggle("active",item===button));filterCards()});
     document.querySelector("#timer-button").addEventListener("click",event=>{if(timerId){clearInterval(timerId);timerId=null;time=60;event.target.textContent="Старт";document.querySelector("#timer").textContent=time;return}time=60;event.target.textContent="Сброс";timerId=setInterval(()=>{time--;document.querySelector("#timer").textContent=time;if(time<=0){clearInterval(timerId);timerId=null;event.target.textContent="Старт"}},1000)});
@@ -349,10 +408,12 @@ await fs.writeFile("Simple_Quiz_Team_Training.html", html);
 console.log(
   JSON.stringify({
     football: football.length,
+    worldCup2026: worldCup2026CardCount,
     leagueTeams: leagueCards.length,
     campaigns: campaigns.length,
     nameBridges: nameBridges.length,
     mythology: mythology.length,
     popCulture: popCulture.length,
+    total: totalCardCount,
   }),
 );

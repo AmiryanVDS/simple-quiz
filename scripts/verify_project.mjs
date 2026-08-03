@@ -123,6 +123,7 @@ if (!trainingDataMatch) {
 const trainingData = JSON.parse(trainingDataMatch[1]);
 const trainingExpected = {
   football: 20,
+  worldCup2026: 21,
   leagueTeams: 94,
   campaigns: 10,
   nameBridges: 16,
@@ -131,6 +132,10 @@ const trainingExpected = {
 };
 const trainingActual = {
   football: trainingData.football.length,
+  worldCup2026:
+    trainingData.worldCup2026Groups.length +
+    trainingData.worldCup2026Awards.length +
+    trainingData.worldCup2026Scorers.length,
   leagueTeams: trainingData.leagueCards.length,
   campaigns: trainingData.campaigns.length,
   nameBridges: trainingData.nameBridges.length,
