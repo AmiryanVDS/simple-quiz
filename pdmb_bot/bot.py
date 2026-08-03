@@ -325,9 +325,9 @@ async def on_startup() -> None:
     asyncio.create_task(weekly_schedule_loop())
     await bot.set_my_commands(
         [
-            types.BotCommand("training", "Открыть командный тренажёр"),
-            types.BotCommand("schedule", "Показать расписание квизов"),
-            types.BotCommand("help", "Справка"),
+            types.BotCommand(command="training", description="Открыть командный тренажёр"),
+            types.BotCommand(command="schedule", description="Показать расписание квизов"),
+            types.BotCommand(command="help", description="Справка"),
         ]
     )
     logging.info("PDMB-бот запущен")
