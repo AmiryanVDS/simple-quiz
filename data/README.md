@@ -16,4 +16,22 @@
 - `questions_enriched.json`;
 - `questions.csv`.
 
+## Внешние источники тренажёра
+
+`pdmb_bot/external_questions.json` — зафиксированный снапшот вопросов, который
+бот загружает локально и не запрашивает во время тренировки:
+
+- футбольные группы и матчи — [openfootball/worldcup](https://github.com/openfootball/worldcup), CC0-1.0;
+- общие спортивные вопросы — [Open Trivia DB](https://opentdb.com/api_config.php), CC BY-SA 4.0.
+
+Каждая запись хранит `source`, `source_url`, `license`, `checked_at` и
+`source_id`. Обновление выполняется командой:
+
+```bash
+python3 tools/import_external_questions.py
+```
+
+Импортёр выполняет структурную проверку, удаляет повторы и не сохраняет
+вопросы без четырёх уникальных вариантов ответа и корректного индекса ответа.
+
 Медиа и сырые страницы не входят в Git и воспроизводятся скриптом архивации.

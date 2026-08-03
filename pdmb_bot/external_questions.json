@@ -1,0 +1,2414 @@
+[
+  {
+    "question": "Which professional wrestler fell from the rafters to his death during a live Pay-Per-View event in 1999?",
+    "options": [
+      "Al Snow",
+      "Chris Benoit",
+      "Lex Luger",
+      "Owen Hart"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Owen Hart.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20professional%20wrestler%20fell%20from%20the%20rafters%20to%20his%20death%20during%20a%20live%20Pay-Per-View%20event%20in%201999%3F"
+  },
+  {
+    "question": "At which race was the 2018 F1 Drivers Championship won?",
+    "options": [
+      "Abu Dhabi",
+      "Belgium",
+      "Mexico",
+      "United States"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Mexico.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:At%20which%20race%20was%20the%202018%20F1%20Drivers%20Championship%20won%3F"
+  },
+  {
+    "question": "Which German sportswear company's logo is the 'Formstripe'?",
+    "options": [
+      "Adidas",
+      "Nike",
+      "Puma",
+      "Reebok"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Puma.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20German%20sportswear%20company%27s%20logo%20is%20the%20%27Formstripe%27%3F"
+  },
+  {
+    "question": "What is the oldest team in Major League Baseball?",
+    "options": [
+      "Atlanta Braves",
+      "Chicago Cubs",
+      "Cincinnati Reds",
+      "St. Louis Cardinals"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Atlanta Braves.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20is%20the%20oldest%20team%20in%20Major%20League%20Baseball%3F"
+  },
+  {
+    "question": "What country hosted the 2014 Winter Olympics?",
+    "options": [
+      "Canada",
+      "Germany",
+      "Russia",
+      "United States"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Russia.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20country%20hosted%20the%202014%20Winter%20Olympics%3F"
+  },
+  {
+    "question": "The F1 season of 1994 is remembered for what tragic event?",
+    "options": [
+      "Death of Ayrton Senna (San Marino)",
+      "Schumacher's Ban (Britain)",
+      "The Showdown (Australia)",
+      "Verstappen on Fire (Germany)"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Death of Ayrton Senna (San Marino).",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:The%20F1%20season%20of%201994%20is%20remembered%20for%20what%20tragic%20event%3F"
+  },
+  {
+    "question": "Which driver has been the Formula 1 world champion for a record 7 times?",
+    "options": [
+      "Ayrton Senna",
+      "Fernando Alonso",
+      "Jim Clark",
+      "Michael Schumacher"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Michael Schumacher.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20driver%20has%20been%20the%20Formula%201%20world%20champion%20for%20a%20record%207%20times%3F"
+  },
+  {
+    "question": "What tool lends it's name to a last-stone advantage in an end in Curling?",
+    "options": [
+      "Drill",
+      "Hammer",
+      "Screwdriver",
+      "Wrench"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Hammer.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20tool%20lends%20it%27s%20name%20to%20a%20last-stone%20advantage%20in%20an%20end%20in%20Curling%3F"
+  },
+  {
+    "question": "What city did the Lakers represent before relocating to Los Angeles?",
+    "options": [
+      "Chicago",
+      "Minneapolis",
+      "Philadelphia",
+      "San Francisco"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Minneapolis.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20city%20did%20the%20Lakers%20represent%20before%20relocating%20to%20Los%20Angeles%3F"
+  },
+  {
+    "question": "Which Formula 1 driver switched teams in the middle of the 2017 season?",
+    "options": [
+      "Carlos Sainz Jr.",
+      "Daniil Kvyat",
+      "Jolyon Palmer",
+      "Rio Haryanto"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Carlos Sainz Jr..",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20Formula%201%20driver%20switched%20teams%20in%20the%20middle%20of%20the%202017%20season%3F"
+  },
+  {
+    "question": "Which player has scored the most goals in the England Premier League (EPL)?",
+    "options": [
+      "Alan Shearer",
+      "Didier Drogba",
+      "Lionel Messi",
+      "Wayne Rooney"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Alan Shearer.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20player%20has%20scored%20the%20most%20goals%20in%20the%20England%20Premier%20League%20%28EPL%29%3F"
+  },
+  {
+    "question": "In Formula 1, the Virtual Safety Car was introduced following the fatal crash of which driver?",
+    "options": [
+      "Ayrton Senna",
+      "Gilles Villeneuve",
+      "Jules Bianchi",
+      "Ronald Ratzenberger"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Jules Bianchi.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:In%20Formula%201%2C%20the%20Virtual%20Safety%20Car%20was%20introduced%20following%20the%20fatal%20crash%20of%20which%20driver%3F"
+  },
+  {
+    "question": "What is the most common type of pitch thrown by pitchers in baseball?",
+    "options": [
+      "Fastball",
+      "Palmball",
+      "Screwball",
+      "Slowball"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Fastball.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20is%20the%20most%20common%20type%20of%20pitch%20thrown%20by%20pitchers%20in%20baseball%3F"
+  },
+  {
+    "question": "Who won the 2018 Monaco Grand Prix?",
+    "options": [
+      "Daniel Ricciardo",
+      "Kimi Raikkonen",
+      "Lewis Hamilton",
+      "Sebastian Vettel"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Daniel Ricciardo.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20won%20the%202018%20Monaco%20Grand%20Prix%3F"
+  },
+  {
+    "question": "Who was the top scorer of the 2014 FIFA World Cup?",
+    "options": [
+      "James Rodríguez",
+      "Lionel Messi",
+      "Neymar",
+      "Thomas Müller"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: James Rodríguez.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20was%20the%20top%20scorer%20of%20the%202014%20FIFA%20World%20Cup%3F"
+  },
+  {
+    "question": "Who was the British professional wrestler Shirley Crabtree better known as?",
+    "options": [
+      "Big Daddy",
+      "Giant Haystacks",
+      "Kendo Nagasaki",
+      "Masambula"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Big Daddy.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20was%20the%20British%20professional%20wrestler%20Shirley%20Crabtree%20better%20known%20as%3F"
+  },
+  {
+    "question": "Who won NFL Super Bowl LI? (51)",
+    "options": [
+      "Broncos",
+      "Eagles",
+      "Falcons",
+      "Patriots"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Patriots.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20won%20NFL%20Super%20Bowl%20LI%3F%20%2851%29"
+  },
+  {
+    "question": "Which male player won the gold medal of table tennis singles in 2016 Olympics Games?",
+    "options": [
+      "Jun Mizutani (Japan)",
+      "Ma Long (China)",
+      "Vladimir Samsonov (Belarus)",
+      "Zhang Jike (China)"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Ma Long (China).",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20male%20player%20won%20the%20gold%20medal%20of%20table%20tennis%20singles%20in%202016%20Olympics%20Games%3F"
+  },
+  {
+    "question": "When was the first official international game played?",
+    "options": [
+      "1863",
+      "1865",
+      "1872",
+      "1880"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: 1872.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:When%20was%20the%20first%20official%20international%20game%20played%3F"
+  },
+  {
+    "question": "In golf, what name is given to a hole score of two under par?",
+    "options": [
+      "Albatross",
+      "Birdie",
+      "Bogey",
+      "Eagle"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Eagle.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:In%20golf%2C%20what%20name%20is%20given%20to%20a%20hole%20score%20of%20two%20under%20par%3F"
+  },
+  {
+    "question": "Which player \"kung-fu kicked\" a Crystal Palace fan in January 1995?",
+    "options": [
+      "Ashley Cole",
+      "David Seamen",
+      "Eric Cantona",
+      "Mark Hughes"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Eric Cantona.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20player%20%22kung-fu%20kicked%22%20a%20Crystal%20Palace%20fan%20in%20January%201995%3F"
+  },
+  {
+    "question": "Which of these European cities was the first to host the modern Summer Olympic Games three times?",
+    "options": [
+      "Athens",
+      "London",
+      "Paris",
+      "Rome"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: London.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20these%20European%20cities%20was%20the%20first%20to%20host%20the%20modern%20Summer%20Olympic%20Games%20three%20times%3F"
+  },
+  {
+    "question": "Which of these English football clubs is based in Liverpool?",
+    "options": [
+      "Arsenal",
+      "Crystal Palace",
+      "Everton",
+      "West Ham United"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Everton.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20these%20English%20football%20clubs%20is%20based%20in%20Liverpool%3F"
+  },
+  {
+    "question": "Who won the premier league title in the 2015-2016 season following a fairy tale run?",
+    "options": [
+      "Leicester City",
+      "Stoke City",
+      "Tottenham Hotspur",
+      "Watford"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Leicester City.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20won%20the%20premier%20league%20title%20in%20the%202015-2016%20season%20following%20a%20fairy%20tale%20run%3F"
+  },
+  {
+    "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+    "options": [
+      "Battersea",
+      "Hammersmith",
+      "Putney",
+      "Vauxhall"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Putney.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:At%20which%20bridge%20does%20the%20annual%20Oxford%20and%20Cambridge%20boat%20race%20start%3F"
+  },
+  {
+    "question": "The UEFA Champions League is an annual club football competition featuring clubs from which continent?",
+    "options": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "South America"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Europe.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:The%20UEFA%20Champions%20League%20is%20an%20annual%20club%20football%20competition%20featuring%20clubs%20from%20which%20continent%3F"
+  },
+  {
+    "question": "Who has played the most tournaments on the Brazilian national soccer team?",
+    "options": [
+      "Cafu",
+      "Kaká",
+      "Roberto Carlos",
+      "Ronaldo"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Cafu.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20has%20played%20the%20most%20tournaments%20on%20the%20Brazilian%20national%20soccer%20team%3F"
+  },
+  {
+    "question": "With which doubles partner did John McEnroe have most success?",
+    "options": [
+      "Mark Woodforde",
+      "Mary Carillo",
+      "Michael Stich",
+      "Peter Fleming"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Peter Fleming.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:With%20which%20doubles%20partner%20did%20John%20McEnroe%20have%20most%20success%3F"
+  },
+  {
+    "question": "What is the nickname of Northampton town's rugby union club?",
+    "options": [
+      "Harlequins",
+      "Saints",
+      "Saracens",
+      "Wasps"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Saints.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:What%20is%20the%20nickname%20of%20Northampton%20town%27s%20rugby%20union%20club%3F"
+  },
+  {
+    "question": "The Rio 2016 Summer Olympics held it's closing ceremony on what date?",
+    "options": [
+      "August 17",
+      "August 19",
+      "August 21",
+      "August 23"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: August 21.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:The%20Rio%202016%20Summer%20Olympics%20held%20it%27s%20closing%20ceremony%20on%20what%20date%3F"
+  },
+  {
+    "question": "In what country were the 2014 Winter Olympics held in the town of Sochi?",
+    "options": [
+      "Canada",
+      "Norway",
+      "Russia",
+      "South Korea"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Russia.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:In%20what%20country%20were%20the%202014%20Winter%20Olympics%20held%20in%20the%20town%20of%20Sochi%3F"
+  },
+  {
+    "question": "Which country hosted the 2018 FIFA World Cup?",
+    "options": [
+      "Germany",
+      "Russia",
+      "Saudi Arabia",
+      "United States"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Russia.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20country%20hosted%20the%202018%20FIFA%20World%20Cup%3F"
+  },
+  {
+    "question": "Which Formula One driver was nicknamed 'The Professor'?",
+    "options": [
+      "Alain Prost",
+      "Ayrton Senna",
+      "Emerson Fittipaldi",
+      "Niki Lauda"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Alain Prost.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20Formula%20One%20driver%20was%20nicknamed%20%27The%20Professor%27%3F"
+  },
+  {
+    "question": "In Canadian football, scoring a rouge is worth how many points?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: 1.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:In%20Canadian%20football%2C%20scoring%20a%20rouge%20is%20worth%20how%20many%20points%3F"
+  },
+  {
+    "question": "Which team has won the most Stanley Cups in the NHL?",
+    "options": [
+      "Chicago Blackhawks",
+      "Detroit Red Wings",
+      "Montreal Canadians",
+      "Toronto Maple Leafs"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Montreal Canadians.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20team%20has%20won%20the%20most%20Stanley%20Cups%20in%20the%20NHL%3F"
+  },
+  {
+    "question": "Which English football team is nicknamed 'The Tigers'?",
+    "options": [
+      "Bristol City",
+      "Cardiff City",
+      "Hull City",
+      "Manchester City"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: Hull City.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20English%20football%20team%20is%20nicknamed%20%27The%20Tigers%27%3F"
+  },
+  {
+    "question": "Who was the first footballer to score 200 goals in the English Premier League?",
+    "options": [
+      "Alan Shearer",
+      "Robbie Fowler",
+      "Thierry Henry",
+      "Wayne Rooney"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Alan Shearer.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20was%20the%20first%20footballer%20to%20score%20200%20goals%20in%20the%20English%20Premier%20League%3F"
+  },
+  {
+    "question": "Which of these NHL teams originally played in Atlanta?",
+    "options": [
+      "Calgary Flames",
+      "Minnesota Wild",
+      "St. Louis Blues",
+      "Vancouver Canucks"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Calgary Flames.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20these%20NHL%20teams%20originally%20played%20in%20Atlanta%3F"
+  },
+  {
+    "question": "Who won the UEFA Champions League in 2017?",
+    "options": [
+      "AS Monaco FC",
+      "Atletico Madrid",
+      "Juventus F.C.",
+      "Real Madrid C.F."
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Real Madrid C.F..",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20won%20the%20UEFA%20Champions%20League%20in%202017%3F"
+  },
+  {
+    "question": "How many games did Arsenal FC go unbeaten during the 2003-2004 season of the English Premier League",
+    "options": [
+      "22",
+      "38",
+      "49",
+      "51"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: 38.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:How%20many%20games%20did%20Arsenal%20FC%20go%20unbeaten%20during%20the%202003-2004%20season%20of%20the%20English%20Premier%20League"
+  },
+  {
+    "question": "Which player holds the NHL record of 2,857 points?",
+    "options": [
+      "Gordie Howe",
+      "Mario Lemieux",
+      "Sidney Crosby",
+      "Wayne Gretzky"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Wayne Gretzky.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20player%20holds%20the%20NHL%20record%20of%202%2C857%20points%3F"
+  },
+  {
+    "question": "Which city did the former NHL team \"The Nordiques\" originiate from?",
+    "options": [
+      "Houston",
+      "Montreal",
+      "New York",
+      "Quebec City"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Quebec City.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20city%20did%20the%20former%20NHL%20team%20%22The%20Nordiques%22%20originiate%20from%3F"
+  },
+  {
+    "question": "Which of the following Grand Slam tennis tournaments occurs LAST?",
+    "options": [
+      "Australian Open",
+      "French Open",
+      "US Open",
+      "Wimbledon"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: US Open.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20the%20following%20Grand%20Slam%20tennis%20tournaments%20occurs%20LAST%3F"
+  },
+  {
+    "question": "Which portuguese island is soccer player Cristiano Ronaldo from?",
+    "options": [
+      "Madeira",
+      "Porto Santo",
+      "Santa Maria",
+      "Terceira"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Madeira.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20portuguese%20island%20is%20soccer%20player%20Cristiano%20Ronaldo%20from%3F"
+  },
+  {
+    "question": "In bowling, what is the term used for getting three consecutive strikes?",
+    "options": [
+      "Birdie",
+      "Eagle",
+      "Flamingo",
+      "Turkey"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Turkey.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:In%20bowling%2C%20what%20is%20the%20term%20used%20for%20getting%20three%20consecutive%20strikes%3F"
+  },
+  {
+    "question": "Which of the following sports is not part of the triathlon?",
+    "options": [
+      "Cycling",
+      "Horse-Riding",
+      "Running",
+      "Swimming"
+    ],
+    "correct": 1,
+    "explanation": "Correct answer: Horse-Riding.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20the%20following%20sports%20is%20not%20part%20of%20the%20triathlon%3F"
+  },
+  {
+    "question": "Which Italian footballer told Neuer where he's putting his shot and dragging it wide, during the match Italy-Germany, UEFA EURO 2016?",
+    "options": [
+      "Barzagli",
+      "Giaccherini",
+      "Insigne",
+      "Pelle"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Pelle.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20Italian%20footballer%20told%20Neuer%20where%20he%27s%20putting%20his%20shot%20and%20dragging%20it%20wide%2C%20during%20the%20match%20Italy-Germany%2C%20UEFA%20EURO%202016%3F"
+  },
+  {
+    "question": "Who was the topscorer for England national football team?",
+    "options": [
+      "David Beckham",
+      "Michael Owen",
+      "Steven Gerrard",
+      "Wayne Rooney"
+    ],
+    "correct": 3,
+    "explanation": "Correct answer: Wayne Rooney.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20was%20the%20topscorer%20for%20England%20national%20football%20team%3F"
+  },
+  {
+    "question": "Which of these jersey numbers has Shaquille O'Neal never worn?",
+    "options": [
+      "32",
+      "33",
+      "35",
+      "36"
+    ],
+    "correct": 2,
+    "explanation": "Correct answer: 35.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Which%20of%20these%20jersey%20numbers%20has%20Shaquille%20O%27Neal%20never%20worn%3F"
+  },
+  {
+    "question": "Who won the 2017 Formula One World Drivers' Championship?",
+    "options": [
+      "Lewis Hamilton",
+      "Max Verstappen",
+      "Nico Rosberg",
+      "Sebastian Vettel"
+    ],
+    "correct": 0,
+    "explanation": "Correct answer: Lewis Hamilton.",
+    "answer_verified": true,
+    "source": "Open Trivia DB",
+    "source_url": "https://opentdb.com/api_config.php",
+    "license": "CC BY-SA 4.0",
+    "checked_at": "2026-08-03",
+    "category": "Sports",
+    "source_id": "opentdb:Who%20won%20the%202017%20Formula%20One%20World%20Drivers%27%20Championship%3F"
+  },
+  {
+    "question": "Какие сборные входят в группу A чемпионата мира 2026?",
+    "options": [
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland",
+      "USA, Paraguay, Australia, Turkey"
+    ],
+    "correct": 0,
+    "explanation": "Группа A: Mexico, South Africa, South Korea, Czech Republic.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-A"
+  },
+  {
+    "question": "Какие сборные входят в группу B чемпионата мира 2026?",
+    "options": [
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Brazil, Morocco, Haiti, Scotland",
+      "USA, Paraguay, Australia, Turkey"
+    ],
+    "correct": 0,
+    "explanation": "Группа B: Canada, Bosnia & Herzegovina, Qatar, Switzerland.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-B"
+  },
+  {
+    "question": "Какие сборные входят в группу C чемпионата мира 2026?",
+    "options": [
+      "Brazil, Morocco, Haiti, Scotland",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "USA, Paraguay, Australia, Turkey"
+    ],
+    "correct": 0,
+    "explanation": "Группа C: Brazil, Morocco, Haiti, Scotland.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-C"
+  },
+  {
+    "question": "Какие сборные входят в группу D чемпионата мира 2026?",
+    "options": [
+      "USA, Paraguay, Australia, Turkey",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа D: USA, Paraguay, Australia, Turkey.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-D"
+  },
+  {
+    "question": "Какие сборные входят в группу E чемпионата мира 2026?",
+    "options": [
+      "Germany, Curaçao, Ivory Coast, Ecuador",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа E: Germany, Curaçao, Ivory Coast, Ecuador.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-E"
+  },
+  {
+    "question": "Какие сборные входят в группу F чемпионата мира 2026?",
+    "options": [
+      "Netherlands, Japan, Sweden, Tunisia",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа F: Netherlands, Japan, Sweden, Tunisia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-F"
+  },
+  {
+    "question": "Какие сборные входят в группу G чемпионата мира 2026?",
+    "options": [
+      "Belgium, Egypt, Iran, New Zealand",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа G: Belgium, Egypt, Iran, New Zealand.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-G"
+  },
+  {
+    "question": "Какие сборные входят в группу H чемпионата мира 2026?",
+    "options": [
+      "Spain, Cape Verde, Saudi Arabia, Uruguay",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа H: Spain, Cape Verde, Saudi Arabia, Uruguay.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-H"
+  },
+  {
+    "question": "Какие сборные входят в группу I чемпионата мира 2026?",
+    "options": [
+      "France, Senegal, Iraq, Norway",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа I: France, Senegal, Iraq, Norway.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-I"
+  },
+  {
+    "question": "Какие сборные входят в группу J чемпионата мира 2026?",
+    "options": [
+      "Argentina, Algeria, Austria, Jordan",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа J: Argentina, Algeria, Austria, Jordan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-J"
+  },
+  {
+    "question": "Какие сборные входят в группу K чемпионата мира 2026?",
+    "options": [
+      "Portugal, DR Congo, Uzbekistan, Colombia",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа K: Portugal, DR Congo, Uzbekistan, Colombia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-K"
+  },
+  {
+    "question": "Какие сборные входят в группу L чемпионата мира 2026?",
+    "options": [
+      "England, Croatia, Ghana, Panama",
+      "Mexico, South Africa, South Korea, Czech Republic",
+      "Canada, Bosnia & Herzegovina, Qatar, Switzerland",
+      "Brazil, Morocco, Haiti, Scotland"
+    ],
+    "correct": 0,
+    "explanation": "Группа L: England, Croatia, Ghana, Panama.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://github.com/openfootball/worldcup",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:group-L"
+  },
+  {
+    "question": "Как завершился матч Mexico — South Africa на ЧМ-2026?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Mexico City: Mexico 2:0 South Africa.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Mexico:South Africa:Mexico City"
+  },
+  {
+    "question": "Как завершился матч South Korea — Czech Republic на ЧМ-2026?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Guadalajara (Zapopan): South Korea 2:1 Czech Republic.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:South Korea:Czech Republic:Guadalajara (Zapopan)"
+  },
+  {
+    "question": "Как завершился матч Czech Republic — South Africa на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Atlanta: Czech Republic 1:1 South Africa.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Czech Republic:South Africa:Atlanta"
+  },
+  {
+    "question": "Как завершился матч Mexico — South Korea на ЧМ-2026?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Guadalajara (Zapopan): Mexico 1:0 South Korea.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Mexico:South Korea:Guadalajara (Zapopan)"
+  },
+  {
+    "question": "Как завершился матч Czech Republic — Mexico на ЧМ-2026?",
+    "options": [
+      "0:3",
+      "3:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Mexico City: Czech Republic 0:3 Mexico.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Czech Republic:Mexico:Mexico City"
+  },
+  {
+    "question": "Как завершился матч South Africa — South Korea на ЧМ-2026?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Monterrey (Guadalupe): South Africa 1:0 South Korea.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:South Africa:South Korea:Monterrey (Guadalupe)"
+  },
+  {
+    "question": "Как завершился матч Canada — Bosnia & Herzegovina на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Toronto: Canada 1:1 Bosnia & Herzegovina.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Canada:Bosnia & Herzegovina:Toronto"
+  },
+  {
+    "question": "Как завершился матч Qatar — Switzerland на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе San Francisco Bay Area (Santa Clara): Qatar 1:1 Switzerland.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Qatar:Switzerland:San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "question": "Как завершился матч Switzerland — Bosnia & Herzegovina на ЧМ-2026?",
+    "options": [
+      "4:1",
+      "1:4",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Los Angeles (Inglewood): Switzerland 4:1 Bosnia & Herzegovina.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Switzerland:Bosnia & Herzegovina:Los Angeles (Inglewood)"
+  },
+  {
+    "question": "Как завершился матч Canada — Qatar на ЧМ-2026?",
+    "options": [
+      "6:0",
+      "0:6",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Vancouver: Canada 6:0 Qatar.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Canada:Qatar:Vancouver"
+  },
+  {
+    "question": "Как завершился матч Switzerland — Canada на ЧМ-2026?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Vancouver: Switzerland 2:1 Canada.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Switzerland:Canada:Vancouver"
+  },
+  {
+    "question": "Как завершился матч Bosnia & Herzegovina — Qatar на ЧМ-2026?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Seattle: Bosnia & Herzegovina 3:1 Qatar.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Bosnia & Herzegovina:Qatar:Seattle"
+  },
+  {
+    "question": "Как завершился матч Brazil — Morocco на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе New York/New Jersey (East Rutherford): Brazil 1:1 Morocco.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Brazil:Morocco:New York/New Jersey (East Rutherford)"
+  },
+  {
+    "question": "Как завершился матч Haiti — Scotland на ЧМ-2026?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Boston (Foxborough): Haiti 0:1 Scotland.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Haiti:Scotland:Boston (Foxborough)"
+  },
+  {
+    "question": "Как завершился матч Scotland — Morocco на ЧМ-2026?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Boston (Foxborough): Scotland 0:1 Morocco.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Scotland:Morocco:Boston (Foxborough)"
+  },
+  {
+    "question": "Как завершился матч Brazil — Haiti на ЧМ-2026?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Philadelphia: Brazil 3:0 Haiti.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Brazil:Haiti:Philadelphia"
+  },
+  {
+    "question": "Как завершился матч Scotland — Brazil на ЧМ-2026?",
+    "options": [
+      "0:3",
+      "3:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Miami (Miami Gardens): Scotland 0:3 Brazil.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Scotland:Brazil:Miami (Miami Gardens)"
+  },
+  {
+    "question": "Как завершился матч Morocco — Haiti на ЧМ-2026?",
+    "options": [
+      "4:2",
+      "2:4",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Atlanta: Morocco 4:2 Haiti.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Morocco:Haiti:Atlanta"
+  },
+  {
+    "question": "Как завершился матч USA — Paraguay на ЧМ-2026?",
+    "options": [
+      "4:1",
+      "1:4",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Los Angeles (Inglewood): USA 4:1 Paraguay.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:USA:Paraguay:Los Angeles (Inglewood)"
+  },
+  {
+    "question": "Как завершился матч Australia — Turkey на ЧМ-2026?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Vancouver: Australia 2:0 Turkey.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Australia:Turkey:Vancouver"
+  },
+  {
+    "question": "Как завершился матч USA — Australia на ЧМ-2026?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Seattle: USA 2:0 Australia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:USA:Australia:Seattle"
+  },
+  {
+    "question": "Как завершился матч Turkey — Paraguay на ЧМ-2026?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе San Francisco Bay Area (Santa Clara): Turkey 0:1 Paraguay.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Turkey:Paraguay:San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "question": "Как завершился матч Turkey — USA на ЧМ-2026?",
+    "options": [
+      "3:2",
+      "2:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Los Angeles (Inglewood): Turkey 3:2 USA.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Turkey:USA:Los Angeles (Inglewood)"
+  },
+  {
+    "question": "Как завершился матч Paraguay — Australia на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе San Francisco Bay Area (Santa Clara): Paraguay 0:0 Australia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Paraguay:Australia:San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "question": "Как завершился матч Germany — Curaçao на ЧМ-2026?",
+    "options": [
+      "7:1",
+      "1:7",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Houston: Germany 7:1 Curaçao.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Germany:Curaçao:Houston"
+  },
+  {
+    "question": "Как завершился матч Ivory Coast — Ecuador на ЧМ-2026?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Philadelphia: Ivory Coast 1:0 Ecuador.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Ivory Coast:Ecuador:Philadelphia"
+  },
+  {
+    "question": "Как завершился матч Germany — Ivory Coast на ЧМ-2026?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Toronto: Germany 2:1 Ivory Coast.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Germany:Ivory Coast:Toronto"
+  },
+  {
+    "question": "Как завершился матч Ecuador — Curaçao на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Kansas City: Ecuador 0:0 Curaçao.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Ecuador:Curaçao:Kansas City"
+  },
+  {
+    "question": "Как завершился матч Curaçao — Ivory Coast на ЧМ-2026?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Philadelphia: Curaçao 0:2 Ivory Coast.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Curaçao:Ivory Coast:Philadelphia"
+  },
+  {
+    "question": "Как завершился матч Ecuador — Germany на ЧМ-2026?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе New York/New Jersey (East Rutherford): Ecuador 2:1 Germany.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Ecuador:Germany:New York/New Jersey (East Rutherford)"
+  },
+  {
+    "question": "Как завершился матч Netherlands — Japan на ЧМ-2026?",
+    "options": [
+      "2:2",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Dallas (Arlington): Netherlands 2:2 Japan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Netherlands:Japan:Dallas (Arlington)"
+  },
+  {
+    "question": "Как завершился матч Sweden — Tunisia на ЧМ-2026?",
+    "options": [
+      "5:1",
+      "1:5",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Monterrey (Guadalupe): Sweden 5:1 Tunisia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Sweden:Tunisia:Monterrey (Guadalupe)"
+  },
+  {
+    "question": "Как завершился матч Netherlands — Sweden на ЧМ-2026?",
+    "options": [
+      "5:1",
+      "1:5",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Houston: Netherlands 5:1 Sweden.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Netherlands:Sweden:Houston"
+  },
+  {
+    "question": "Как завершился матч Tunisia — Japan на ЧМ-2026?",
+    "options": [
+      "0:4",
+      "4:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Monterrey (Guadalupe): Tunisia 0:4 Japan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Tunisia:Japan:Monterrey (Guadalupe)"
+  },
+  {
+    "question": "Как завершился матч Japan — Sweden на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Dallas (Arlington): Japan 1:1 Sweden.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Japan:Sweden:Dallas (Arlington)"
+  },
+  {
+    "question": "Как завершился матч Tunisia — Netherlands на ЧМ-2026?",
+    "options": [
+      "1:3",
+      "3:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Kansas City: Tunisia 1:3 Netherlands.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Tunisia:Netherlands:Kansas City"
+  },
+  {
+    "question": "Как завершился матч Belgium — Egypt на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Seattle: Belgium 1:1 Egypt.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Belgium:Egypt:Seattle"
+  },
+  {
+    "question": "Как завершился матч Iran — New Zealand на ЧМ-2026?",
+    "options": [
+      "2:2",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Los Angeles (Inglewood): Iran 2:2 New Zealand.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Iran:New Zealand:Los Angeles (Inglewood)"
+  },
+  {
+    "question": "Как завершился матч Belgium — Iran на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Los Angeles (Inglewood): Belgium 0:0 Iran.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Belgium:Iran:Los Angeles (Inglewood)"
+  },
+  {
+    "question": "Как завершился матч New Zealand — Egypt на ЧМ-2026?",
+    "options": [
+      "1:3",
+      "3:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Vancouver: New Zealand 1:3 Egypt.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:New Zealand:Egypt:Vancouver"
+  },
+  {
+    "question": "Как завершился матч Egypt — Iran на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Seattle: Egypt 1:1 Iran.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Egypt:Iran:Seattle"
+  },
+  {
+    "question": "Как завершился матч New Zealand — Belgium на ЧМ-2026?",
+    "options": [
+      "1:5",
+      "5:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Vancouver: New Zealand 1:5 Belgium.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:New Zealand:Belgium:Vancouver"
+  },
+  {
+    "question": "Как завершился матч Spain — Cape Verde на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Atlanta: Spain 0:0 Cape Verde.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Spain:Cape Verde:Atlanta"
+  },
+  {
+    "question": "Как завершился матч Saudi Arabia — Uruguay на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Miami (Miami Gardens): Saudi Arabia 1:1 Uruguay.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Saudi Arabia:Uruguay:Miami (Miami Gardens)"
+  },
+  {
+    "question": "Как завершился матч Spain — Saudi Arabia на ЧМ-2026?",
+    "options": [
+      "4:0",
+      "0:4",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Atlanta: Spain 4:0 Saudi Arabia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Spain:Saudi Arabia:Atlanta"
+  },
+  {
+    "question": "Как завершился матч Uruguay — Cape Verde на ЧМ-2026?",
+    "options": [
+      "2:2",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Miami (Miami Gardens): Uruguay 2:2 Cape Verde.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Uruguay:Cape Verde:Miami (Miami Gardens)"
+  },
+  {
+    "question": "Как завершился матч Cape Verde — Saudi Arabia на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Houston: Cape Verde 0:0 Saudi Arabia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Cape Verde:Saudi Arabia:Houston"
+  },
+  {
+    "question": "Как завершился матч Uruguay — Spain на ЧМ-2026?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Guadalajara (Zapopan): Uruguay 0:1 Spain.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Uruguay:Spain:Guadalajara (Zapopan)"
+  },
+  {
+    "question": "Как завершился матч France — Senegal на ЧМ-2026?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе New York/New Jersey (East Rutherford): France 3:1 Senegal.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:France:Senegal:New York/New Jersey (East Rutherford)"
+  },
+  {
+    "question": "Как завершился матч Iraq — Norway на ЧМ-2026?",
+    "options": [
+      "1:4",
+      "4:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Boston (Foxborough): Iraq 1:4 Norway.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Iraq:Norway:Boston (Foxborough)"
+  },
+  {
+    "question": "Как завершился матч France — Iraq на ЧМ-2026?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Philadelphia: France 3:0 Iraq.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:France:Iraq:Philadelphia"
+  },
+  {
+    "question": "Как завершился матч Norway — Senegal на ЧМ-2026?",
+    "options": [
+      "3:2",
+      "2:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе New York/New Jersey (East Rutherford): Norway 3:2 Senegal.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Norway:Senegal:New York/New Jersey (East Rutherford)"
+  },
+  {
+    "question": "Как завершился матч Norway — France на ЧМ-2026?",
+    "options": [
+      "1:4",
+      "4:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Boston (Foxborough): Norway 1:4 France.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Norway:France:Boston (Foxborough)"
+  },
+  {
+    "question": "Как завершился матч Senegal — Iraq на ЧМ-2026?",
+    "options": [
+      "5:0",
+      "0:5",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Toronto: Senegal 5:0 Iraq.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Senegal:Iraq:Toronto"
+  },
+  {
+    "question": "Как завершился матч Argentina — Algeria на ЧМ-2026?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Kansas City: Argentina 3:0 Algeria.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Argentina:Algeria:Kansas City"
+  },
+  {
+    "question": "Как завершился матч Austria — Jordan на ЧМ-2026?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе San Francisco Bay Area (Santa Clara): Austria 3:1 Jordan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Austria:Jordan:San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "question": "Как завершился матч Argentina — Austria на ЧМ-2026?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Dallas (Arlington): Argentina 2:0 Austria.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Argentina:Austria:Dallas (Arlington)"
+  },
+  {
+    "question": "Как завершился матч Jordan — Algeria на ЧМ-2026?",
+    "options": [
+      "1:2",
+      "2:1",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе San Francisco Bay Area (Santa Clara): Jordan 1:2 Algeria.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Jordan:Algeria:San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "question": "Как завершился матч Algeria — Austria на ЧМ-2026?",
+    "options": [
+      "3:3",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Kansas City: Algeria 3:3 Austria.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Algeria:Austria:Kansas City"
+  },
+  {
+    "question": "Как завершился матч Jordan — Argentina на ЧМ-2026?",
+    "options": [
+      "1:3",
+      "3:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Dallas (Arlington): Jordan 1:3 Argentina.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Jordan:Argentina:Dallas (Arlington)"
+  },
+  {
+    "question": "Как завершился матч Portugal — DR Congo на ЧМ-2026?",
+    "options": [
+      "1:1",
+      "0:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Houston: Portugal 1:1 DR Congo.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Portugal:DR Congo:Houston"
+  },
+  {
+    "question": "Как завершился матч Uzbekistan — Colombia на ЧМ-2026?",
+    "options": [
+      "1:3",
+      "3:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Mexico City: Uzbekistan 1:3 Colombia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Uzbekistan:Colombia:Mexico City"
+  },
+  {
+    "question": "Как завершился матч Portugal — Uzbekistan на ЧМ-2026?",
+    "options": [
+      "5:0",
+      "0:5",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Houston: Portugal 5:0 Uzbekistan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Portugal:Uzbekistan:Houston"
+  },
+  {
+    "question": "Как завершился матч Colombia — DR Congo на ЧМ-2026?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Guadalajara (Zapopan): Colombia 1:0 DR Congo.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Colombia:DR Congo:Guadalajara (Zapopan)"
+  },
+  {
+    "question": "Как завершился матч Colombia — Portugal на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Miami (Miami Gardens): Colombia 0:0 Portugal.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Colombia:Portugal:Miami (Miami Gardens)"
+  },
+  {
+    "question": "Как завершился матч DR Congo — Uzbekistan на ЧМ-2026?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Atlanta: DR Congo 3:1 Uzbekistan.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:DR Congo:Uzbekistan:Atlanta"
+  },
+  {
+    "question": "Как завершился матч England — Croatia на ЧМ-2026?",
+    "options": [
+      "4:2",
+      "2:4",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Dallas (Arlington): England 4:2 Croatia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:England:Croatia:Dallas (Arlington)"
+  },
+  {
+    "question": "Как завершился матч Ghana — Panama на ЧМ-2026?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Toronto: Ghana 1:0 Panama.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Ghana:Panama:Toronto"
+  },
+  {
+    "question": "Как завершился матч England — Ghana на ЧМ-2026?",
+    "options": [
+      "0:0",
+      "2:1",
+      "1:2",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Boston (Foxborough): England 0:0 Ghana.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:England:Ghana:Boston (Foxborough)"
+  },
+  {
+    "question": "Как завершился матч Panama — Croatia на ЧМ-2026?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Toronto: Panama 0:1 Croatia.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Panama:Croatia:Toronto"
+  },
+  {
+    "question": "Как завершился матч Panama — England на ЧМ-2026?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе New York/New Jersey (East Rutherford): Panama 0:2 England.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Panama:England:New York/New Jersey (East Rutherford)"
+  },
+  {
+    "question": "Как завершился матч Croatia — Ghana на ЧМ-2026?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "3:1"
+    ],
+    "correct": 0,
+    "explanation": "Матч проходил на стадионе Philadelphia: Croatia 2:1 Ghana.",
+    "answer_verified": true,
+    "source": "openfootball/worldcup",
+    "source_url": "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt",
+    "license": "CC0-1.0 (public domain)",
+    "checked_at": "2026-08-03",
+    "category": "Football / World Cup 2026",
+    "source_id": "openfootball:2026:match:Croatia:Ghana:Philadelphia"
+  }
+]
