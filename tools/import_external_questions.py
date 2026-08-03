@@ -10,6 +10,7 @@ import json
 import re
 import ssl
 import sys
+import csv
 from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlencode
@@ -25,9 +26,18 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pdmb_bot" / "external_questions.json"
 LOCAL_OPENTDB = None
 LOCAL_OPENFOOTBALL = None
+LOCAL_FOOTBALL_DATASETS = None
 CHECKED_AT = date.today().isoformat()
 OPENFOOTBALL_URL = "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt"
 OPENTDB_URL = "https://opentdb.com/api.php?" + urlencode({"amount": 50, "category": 21, "type": "multiple", "encode": "url3986"})
+FOOTBALL_DATASETS_REPO = "https://github.com/datasets/football-datasets"
+FOOTBALL_LEAGUES = {
+    "premier-league": "Премьер-лига Англии",
+    "la-liga": "Ла Лига",
+    "serie-a": "Серия A",
+    "bundesliga": "Бундеслига",
+    "ligue-1": "Лига 1",
+}
 
 
 def fetch(url: str) -> str:
@@ -135,16 +145,56 @@ def import_openfootball() -> list[dict]:
     return questions
 
 
+def import_historical_leagues() -> list[dict]:
+    """Import a compact, checked sample from the latest completed 2024/25 season."""
+    questions = []
+    for league_slug, league_name in FOOTBALL_LEAGUES.items():
+        path = Path(LOCAL_FOOTBALL_DATASETS) / "datasets" / league_slug / "season-2425.csv" if LOCAL_FOOTBALL_DATASETS else None
+        if path:
+            rows = list(csv.DictReader(path.open(encoding="utf-8")))
+        else:
+            url = f"https://raw.githubusercontent.com/datasets/football-datasets/main/datasets/{league_slug}/season-2425.csv"
+            rows = list(csv.DictReader(fetch(url).splitlines()))
+        for row in rows[:12]:
+            home, away = row["HomeTeam"].strip(), row["AwayTeam"].strip()
+            home_score, away_score = row["FTHG"].strip(), row["FTAG"].strip()
+            if not home or not away or not home_score.isdigit() or not away_score.isdigit():
+                continue
+            score = f"{home_score}:{away_score}"
+            options = [score]
+            for distractor in [f"{away_score}:{home_score}", "0:0", "1:0", "2:1", "1:2"]:
+                if distractor not in options:
+                    options.append(distractor)
+                if len(options) == 4:
+                    break
+            questions.append({
+                "question": f"Как завершился матч {home} — {away} в сезоне 2024/25 ({league_name})?",
+                "options": options,
+                "correct": 0,
+                "explanation": f"{row['Date']}: {home} {home_score}:{away_score} {away}.",
+                "answer_verified": True,
+                "source": "datasets/football-datasets",
+                "source_url": f"{FOOTBALL_DATASETS_REPO}/tree/main/datasets/{league_slug}",
+                "license": "Open Data Commons PDDL 1.0",
+                "checked_at": CHECKED_AT,
+                "category": f"Football / {league_name}",
+                "source_id": f"football-datasets:{league_slug}:2024-25:{row['Date']}:{home}:{away}",
+            })
+    return questions
+
+
 def main() -> int:
-    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL
+    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL, LOCAL_FOOTBALL_DATASETS
     if "--opentdb-file" in sys.argv:
         LOCAL_OPENTDB = sys.argv[sys.argv.index("--opentdb-file") + 1]
     if "--openfootball-file" in sys.argv:
         LOCAL_OPENFOOTBALL = sys.argv[sys.argv.index("--openfootball-file") + 1]
+    if "--football-datasets-dir" in sys.argv:
+        LOCAL_FOOTBALL_DATASETS = sys.argv[sys.argv.index("--football-datasets-dir") + 1]
     sys.path.insert(0, str(ROOT / "pdmb_bot"))
     from question_quality import deduplicate_questions
 
-    imported = import_opentdb() + import_openfootball()
+    imported = import_opentdb() + import_openfootball() + import_historical_leagues()
     questions, report = deduplicate_questions(imported)
     if report["invalid"] or not questions:
         raise SystemExit(f"Quality check failed: {report}")

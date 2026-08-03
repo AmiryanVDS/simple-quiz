@@ -2410,5 +2410,1085 @@
     "checked_at": "2026-08-03",
     "category": "Football / World Cup 2026",
     "source_id": "openfootball:2026:match:Croatia:Ghana:Philadelphia"
+  },
+  {
+    "question": "Как завершился матч Man United — Fulham в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-16: Man United 1:0 Fulham.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-16:Man United:Fulham"
+  },
+  {
+    "question": "Как завершился матч Ipswich — Liverpool в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Ipswich 0:2 Liverpool.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:Ipswich:Liverpool"
+  },
+  {
+    "question": "Как завершился матч Arsenal — Wolves в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Arsenal 2:0 Wolves.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:Arsenal:Wolves"
+  },
+  {
+    "question": "Как завершился матч Everton — Brighton в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "0:3",
+      "3:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Everton 0:3 Brighton.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:Everton:Brighton"
+  },
+  {
+    "question": "Как завершился матч Newcastle — Southampton в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Newcastle 1:0 Southampton.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:Newcastle:Southampton"
+  },
+  {
+    "question": "Как завершился матч Nott'm Forest — Bournemouth в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Nott'm Forest 1:1 Bournemouth.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:Nott'm Forest:Bournemouth"
+  },
+  {
+    "question": "Как завершился матч West Ham — Aston Villa в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "1:2",
+      "2:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: West Ham 1:2 Aston Villa.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-17:West Ham:Aston Villa"
+  },
+  {
+    "question": "Как завершился матч Brentford — Crystal Palace в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Brentford 2:1 Crystal Palace.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-18:Brentford:Crystal Palace"
+  },
+  {
+    "question": "Как завершился матч Chelsea — Man City в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Chelsea 0:2 Man City.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-18:Chelsea:Man City"
+  },
+  {
+    "question": "Как завершился матч Leicester — Tottenham в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-19: Leicester 1:1 Tottenham.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-19:Leicester:Tottenham"
+  },
+  {
+    "question": "Как завершился матч Brighton — Man United в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Brighton 2:1 Man United.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-24:Brighton:Man United"
+  },
+  {
+    "question": "Как завершился матч Crystal Palace — West Ham в сезоне 2024/25 (Премьер-лига Англии)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Crystal Palace 0:2 West Ham.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/premier-league",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Премьер-лига Англии",
+    "source_id": "football-datasets:premier-league:2024-25:2024-08-24:Crystal Palace:West Ham"
+  },
+  {
+    "question": "Как завершился матч Ath Bilbao — Getafe в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-15: Ath Bilbao 1:1 Getafe.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-15:Ath Bilbao:Getafe"
+  },
+  {
+    "question": "Как завершился матч Betis — Girona в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-15: Betis 1:1 Girona.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-15:Betis:Girona"
+  },
+  {
+    "question": "Как завершился матч Celta — Alaves в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-16: Celta 2:1 Alaves.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-16:Celta:Alaves"
+  },
+  {
+    "question": "Как завершился матч Las Palmas — Sevilla в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "2:2",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-16: Las Palmas 2:2 Sevilla.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-16:Las Palmas:Sevilla"
+  },
+  {
+    "question": "Как завершился матч Osasuna — Leganes в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Osasuna 1:1 Leganes.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-17:Osasuna:Leganes"
+  },
+  {
+    "question": "Как завершился матч Valencia — Barcelona в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:2",
+      "2:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Valencia 1:2 Barcelona.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-17:Valencia:Barcelona"
+  },
+  {
+    "question": "Как завершился матч Sociedad — Vallecano в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:2",
+      "2:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Sociedad 1:2 Vallecano.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-18:Sociedad:Vallecano"
+  },
+  {
+    "question": "Как завершился матч Mallorca — Real Madrid в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Mallorca 1:1 Real Madrid.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-18:Mallorca:Real Madrid"
+  },
+  {
+    "question": "Как завершился матч Valladolid — Espanol в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-19: Valladolid 1:0 Espanol.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-19:Valladolid:Espanol"
+  },
+  {
+    "question": "Как завершился матч Villarreal — Ath Madrid в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "2:2",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-19: Villarreal 2:2 Ath Madrid.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-19:Villarreal:Ath Madrid"
+  },
+  {
+    "question": "Как завершился матч Celta — Valencia в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-23: Celta 3:1 Valencia.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-23:Celta:Valencia"
+  },
+  {
+    "question": "Как завершился матч Sevilla — Villarreal в сезоне 2024/25 (Ла Лига)?",
+    "options": [
+      "1:2",
+      "2:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-23: Sevilla 1:2 Villarreal.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/la-liga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Ла Лига",
+    "source_id": "football-datasets:la-liga:2024-25:2024-08-23:Sevilla:Villarreal"
+  },
+  {
+    "question": "Как завершился матч Genoa — Inter в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "2:2",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Genoa 2:2 Inter.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-17:Genoa:Inter"
+  },
+  {
+    "question": "Как завершился матч Parma — Fiorentina в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Parma 1:1 Fiorentina.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-17:Parma:Fiorentina"
+  },
+  {
+    "question": "Как завершился матч Empoli — Monza в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "0:0",
+      "1:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Empoli 0:0 Monza.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-17:Empoli:Monza"
+  },
+  {
+    "question": "Как завершился матч Milan — Torino в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "2:2",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Milan 2:2 Torino.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-17:Milan:Torino"
+  },
+  {
+    "question": "Как завершился матч Bologna — Udinese в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Bologna 1:1 Udinese.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-18:Bologna:Udinese"
+  },
+  {
+    "question": "Как завершился матч Verona — Napoli в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Verona 3:0 Napoli.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-18:Verona:Napoli"
+  },
+  {
+    "question": "Как завершился матч Cagliari — Roma в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "0:0",
+      "1:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Cagliari 0:0 Roma.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-18:Cagliari:Roma"
+  },
+  {
+    "question": "Как завершился матч Lazio — Venezia в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Lazio 3:1 Venezia.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-18:Lazio:Venezia"
+  },
+  {
+    "question": "Как завершился матч Lecce — Atalanta в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "0:4",
+      "4:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-19: Lecce 0:4 Atalanta.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-19:Lecce:Atalanta"
+  },
+  {
+    "question": "Как завершился матч Juventus — Como в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-19: Juventus 3:0 Como.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-19:Juventus:Como"
+  },
+  {
+    "question": "Как завершился матч Parma — Milan в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Parma 2:1 Milan.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-24:Parma:Milan"
+  },
+  {
+    "question": "Как завершился матч Udinese — Lazio в сезоне 2024/25 (Серия A)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Udinese 2:1 Lazio.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/serie-a",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Серия A",
+    "source_id": "football-datasets:serie-a:2024-25:2024-08-24:Udinese:Lazio"
+  },
+  {
+    "question": "Как завершился матч M'gladbach — Leverkusen в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "2:3",
+      "3:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-23: M'gladbach 2:3 Leverkusen.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-23:M'gladbach:Leverkusen"
+  },
+  {
+    "question": "Как завершился матч Augsburg — Werder Bremen в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "2:2",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Augsburg 2:2 Werder Bremen.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:Augsburg:Werder Bremen"
+  },
+  {
+    "question": "Как завершился матч Freiburg — Stuttgart в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Freiburg 3:1 Stuttgart.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:Freiburg:Stuttgart"
+  },
+  {
+    "question": "Как завершился матч Hoffenheim — Holstein Kiel в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "3:2",
+      "2:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Hoffenheim 3:2 Holstein Kiel.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:Hoffenheim:Holstein Kiel"
+  },
+  {
+    "question": "Как завершился матч Mainz — Union Berlin в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Mainz 1:1 Union Berlin.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:Mainz:Union Berlin"
+  },
+  {
+    "question": "Как завершился матч RB Leipzig — Bochum в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: RB Leipzig 1:0 Bochum.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:RB Leipzig:Bochum"
+  },
+  {
+    "question": "Как завершился матч Dortmund — Ein Frankfurt в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Dortmund 2:0 Ein Frankfurt.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-24:Dortmund:Ein Frankfurt"
+  },
+  {
+    "question": "Как завершился матч Wolfsburg — Bayern Munich в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "2:3",
+      "3:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-25: Wolfsburg 2:3 Bayern Munich.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-25:Wolfsburg:Bayern Munich"
+  },
+  {
+    "question": "Как завершился матч St Pauli — Heidenheim в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-25: St Pauli 0:2 Heidenheim.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-25:St Pauli:Heidenheim"
+  },
+  {
+    "question": "Как завершился матч Union Berlin — St Pauli в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-30: Union Berlin 1:0 St Pauli.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-30:Union Berlin:St Pauli"
+  },
+  {
+    "question": "Как завершился матч Bochum — M'gladbach в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-31: Bochum 0:2 M'gladbach.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-31:Bochum:M'gladbach"
+  },
+  {
+    "question": "Как завершился матч Ein Frankfurt — Hoffenheim в сезоне 2024/25 (Бундеслига)?",
+    "options": [
+      "3:1",
+      "1:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-31: Ein Frankfurt 3:1 Hoffenheim.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/bundesliga",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Бундеслига",
+    "source_id": "football-datasets:bundesliga:2024-25:2024-08-31:Ein Frankfurt:Hoffenheim"
+  },
+  {
+    "question": "Как завершился матч Le Havre — Paris SG в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "1:4",
+      "4:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-16: Le Havre 1:4 Paris SG.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-16:Le Havre:Paris SG"
+  },
+  {
+    "question": "Как завершился матч Brest — Marseille в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "1:5",
+      "5:1",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Brest 1:5 Marseille.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-17:Brest:Marseille"
+  },
+  {
+    "question": "Как завершился матч Reims — Lille в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Reims 0:2 Lille.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-17:Reims:Lille"
+  },
+  {
+    "question": "Как завершился матч Monaco — St Etienne в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "1:0",
+      "0:1",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-17: Monaco 1:0 St Etienne.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-17:Monaco:St Etienne"
+  },
+  {
+    "question": "Как завершился матч Auxerre — Nice в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "2:1",
+      "1:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Auxerre 2:1 Nice.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-18:Auxerre:Nice"
+  },
+  {
+    "question": "Как завершился матч Angers — Lens в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "0:1",
+      "1:0",
+      "0:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Angers 0:1 Lens.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-18:Angers:Lens"
+  },
+  {
+    "question": "Как завершился матч Montpellier — Strasbourg в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "1:1",
+      "0:0",
+      "1:0",
+      "2:1"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Montpellier 1:1 Strasbourg.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-18:Montpellier:Strasbourg"
+  },
+  {
+    "question": "Как завершился матч Toulouse — Nantes в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "0:0",
+      "1:0",
+      "2:1",
+      "1:2"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Toulouse 0:0 Nantes.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-18:Toulouse:Nantes"
+  },
+  {
+    "question": "Как завершился матч Rennes — Lyon в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "3:0",
+      "0:3",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-18: Rennes 3:0 Lyon.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-18:Rennes:Lyon"
+  },
+  {
+    "question": "Как завершился матч Paris SG — Montpellier в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "6:0",
+      "0:6",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-23: Paris SG 6:0 Montpellier.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-23:Paris SG:Montpellier"
+  },
+  {
+    "question": "Как завершился матч Lyon — Monaco в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "0:2",
+      "2:0",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Lyon 0:2 Monaco.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-24:Lyon:Monaco"
+  },
+  {
+    "question": "Как завершился матч Lille — Angers в сезоне 2024/25 (Лига 1)?",
+    "options": [
+      "2:0",
+      "0:2",
+      "0:0",
+      "1:0"
+    ],
+    "correct": 0,
+    "explanation": "2024-08-24: Lille 2:0 Angers.",
+    "answer_verified": true,
+    "source": "datasets/football-datasets",
+    "source_url": "https://github.com/datasets/football-datasets/tree/main/datasets/ligue-1",
+    "license": "Open Data Commons PDDL 1.0",
+    "checked_at": "2026-08-03",
+    "category": "Football / Лига 1",
+    "source_id": "football-datasets:ligue-1:2024-25:2024-08-24:Lille:Angers"
   }
 ]
