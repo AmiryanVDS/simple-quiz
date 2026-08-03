@@ -44,10 +44,11 @@ jobs:
         run: |
           ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" '
             set -e
+            sudo systemctl stop pdmb-bot
             install -d /opt/pdmb-bot/current
-            find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -delete
+            find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
             tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
             /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
-            sudo systemctl restart pdmb-bot
+            sudo systemctl start pdmb-bot
             sudo systemctl is-active --quiet pdmb-bot
           '
