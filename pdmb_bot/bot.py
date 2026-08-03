@@ -8,12 +8,14 @@ from zoneinfo import ZoneInfo
 
 import requests
 import urllib3
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command, CommandStart
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+
+from training_data import WORLD_CUP_2026_QUESTIONS
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,17 +46,50 @@ except ValueError as error:
 
 bot = Bot(token=BOT_TOKEN)
 dispatcher = Dispatcher()
+training_sessions: dict[int, dict[str, int]] = {}
 
 
 def training_keyboard() -> InlineKeyboardMarkup:
     keyboard = InlineKeyboardBuilder()
     keyboard.add(
         InlineKeyboardButton(
+            text="🧠 Тренировка в Telegram",
+            callback_data="training:start",
+        ),
+        InlineKeyboardButton(
             text="⚽ Открыть командный тренажёр",
             url=TRAINING_URL,
         )
     )
     return keyboard.as_markup()
+
+
+def question_keyboard(question: dict) -> InlineKeyboardMarkup:
+    keyboard = InlineKeyboardBuilder()
+    for index, option in enumerate(question["options"]):
+        keyboard.add(
+            InlineKeyboardButton(
+                text=f"{index + 1}. {option}",
+                callback_data=f"training:answer:{index}",
+            )
+        )
+    keyboard.adjust(1)
+    return keyboard.as_markup()
+
+
+def question_text(number: int, total: int, question: dict) -> str:
+    return f"🧠 <b>Вопрос {number}/{total}</b>\n\n{question['question']}"
+
+
+async def send_training_question(chat_id: int, user_id: int) -> None:
+    session = training_sessions[user_id]
+    question = WORLD_CUP_2026_QUESTIONS[session["index"]]
+    await bot.send_message(
+        chat_id=chat_id,
+        text=question_text(session["index"] + 1, len(WORLD_CUP_2026_QUESTIONS), question),
+        parse_mode="HTML",
+        reply_markup=question_keyboard(question),
+    )
 
 
 def parse_quiz_schedule() -> str:
@@ -205,10 +240,62 @@ async def handle_start(message: types.Message) -> None:
 @dispatcher.message(Command("training", "trainer"))
 async def handle_training(message: types.Message) -> None:
     await message.answer(
-        "Командный тренажёр «Симпл Квиз»: группы ЧМ-2026, футбол, "
-        "американские лиги, реклама, мифология, музыка и кино.",
+        "Командный тренажёр «Симпл Квиз». Выберите формат:\n\n"
+        "🧠 тренировка прямо в Telegram с подсчётом результата;\n"
+        "⚽ HTML-версия с карточками по всем разделам.",
         reply_markup=training_keyboard(),
     )
+
+
+@dispatcher.callback_query(F.data == "training:start")
+async def handle_training_start(callback: CallbackQuery) -> None:
+    user_id = callback.from_user.id
+    training_sessions[user_id] = {"index": 0, "score": 0}
+    await callback.answer("Тренировка началась")
+    await callback.message.answer(
+        "🧠 <b>ЧМ-2026: тренировка в Telegram</b>\n"
+        "Выберите правильный ответ. В конце бот покажет результат.",
+        parse_mode="HTML",
+    )
+    await send_training_question(callback.message.chat.id, user_id)
+
+
+@dispatcher.callback_query(F.data.startswith("training:answer:"))
+async def handle_training_answer(callback: CallbackQuery) -> None:
+    user_id = callback.from_user.id
+    session = training_sessions.get(user_id)
+    if not session:
+        await callback.answer("Запустите новую тренировку командой /training", show_alert=True)
+        return
+
+    selected = int(callback.data.rsplit(":", 1)[1])
+    question = WORLD_CUP_2026_QUESTIONS[session["index"]]
+    correct = selected == question["correct"]
+    if correct:
+        session["score"] += 1
+
+    result = "✅ Правильно!" if correct else f"❌ Неверно. Правильный ответ: {question['options'][question['correct']]}"
+    await callback.answer("Правильно!" if correct else "Неверно")
+    await callback.message.edit_text(
+        f"{result}\n\n💡 {question['explanation']}",
+        parse_mode="HTML",
+    )
+
+    session["index"] += 1
+    if session["index"] >= len(WORLD_CUP_2026_QUESTIONS):
+        score = session["score"]
+        total = len(WORLD_CUP_2026_QUESTIONS)
+        training_sessions.pop(user_id, None)
+        await callback.message.answer(
+            f"🏁 <b>Тренировка завершена</b>\n\n"
+            f"Результат: <b>{score}/{total}</b>\n"
+            f"HTML-версия доступна по кнопке ниже.",
+            parse_mode="HTML",
+            reply_markup=training_keyboard(),
+        )
+        return
+
+    await send_training_question(callback.message.chat.id, user_id)
 
 
 @dispatcher.message(Command("schedule"))
