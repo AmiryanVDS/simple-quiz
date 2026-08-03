@@ -4,8 +4,17 @@ import json
 import random
 from pathlib import Path
 
+from question_quality import deduplicate_questions
+
 
 CATALOG_PATH = Path(__file__).with_name("training_catalog.json")
+EXTERNAL_PATH = Path(__file__).with_name("external_questions.json")
+CATALOG_SOURCE = {
+    "source": "Simple Quiz trainer catalog",
+    "source_url": "https://github.com/AmiryanVDS/simple-quiz",
+    "license": "Project-authored trainer data",
+    "checked_at": "2026-08-03",
+}
 
 
 def _catalog() -> dict[str, list[list[str]]]:
@@ -13,7 +22,7 @@ def _catalog() -> dict[str, list[list[str]]]:
         return json.load(catalog_file)
 
 
-def _mcq(prompt: str, correct: str, explanation: str, pool: list[str]) -> dict:
+def _mcq(prompt: str, correct: str, explanation: str, pool: list[str], source_id: str = "catalog") -> dict:
     candidates = list(dict.fromkeys(value for value in pool if value != correct))
     if len(candidates) < 3:
         return {}
@@ -24,6 +33,9 @@ def _mcq(prompt: str, correct: str, explanation: str, pool: list[str]) -> dict:
         "options": options,
         "correct": options.index(correct),
         "explanation": explanation,
+        "answer_verified": True,
+        **CATALOG_SOURCE,
+        "source_id": f"catalog:{source_id}",
     }
 
 
@@ -171,9 +183,22 @@ def _build_buckets(catalog: dict[str, list[list[str]]]) -> list[list[dict]]:
     return [[question for question in bucket if question] for bucket in buckets]
 
 
+def _external_questions() -> list[dict]:
+    if not EXTERNAL_PATH.exists():
+        return []
+    with EXTERNAL_PATH.open(encoding="utf-8") as questions_file:
+        raw_questions = json.load(questions_file)
+    questions, _ = deduplicate_questions(raw_questions)
+    return questions
+
+
 def build_training_questions(count: int = 12) -> list[dict]:
     """Return a fresh mixed set, preferring all major trainer sections."""
     buckets = _build_buckets(_catalog())
+    external = _external_questions()
+    if external:
+        for source in sorted({question["source"] for question in external}):
+            buckets.append([question for question in external if question["source"] == source])
     random.shuffle(buckets)
     questions: list[dict] = []
     for bucket in buckets:

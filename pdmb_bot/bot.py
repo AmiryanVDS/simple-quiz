@@ -282,9 +282,14 @@ async def handle_training_answer(callback: CallbackQuery) -> None:
 
     correct_answer = html.escape(question["options"][question["correct"]])
     result = "✅ Правильно!" if correct else f"❌ Неверно. Правильный ответ: {correct_answer}"
+    source_note = (
+        f"\n\n📚 Источник: {html.escape(question.get('source', 'не указан'))}"
+        f"\nЛицензия: {html.escape(question.get('license', 'не указана'))}"
+        f"\nПроверено: {html.escape(question.get('checked_at', 'не указано'))}"
+    )
     await callback.answer("Правильно!" if correct else "Неверно")
     await callback.message.edit_text(
-        f"{result}\n\n💡 {html.escape(question['explanation'])}",
+        f"{result}\n\n💡 {html.escape(question['explanation'])}{source_note}",
         parse_mode="HTML",
     )
 
