@@ -1,81 +1,187 @@
-"""Questions for the Telegram-native training mode."""
+"""Randomized Telegram questions generated from the full HTML trainer catalog."""
 
-WORLD_CUP_2026_QUESTIONS = [
-    {
-        "question": "Какие страны входят в группу A ЧМ-2026?",
-        "options": [
-            "Мексика, ЮАР, Республика Корея, Чехия",
-            "Канада, Катар, Швейцария, Босния и Герцеговина",
-            "Бразилия, Марокко, Гаити, Шотландия",
-            "США, Австралия, Парагвай, Турция",
-        ],
-        "correct": 0,
-        "explanation": "В группе A — Мексика, Южная Африка, Республика Корея и Чехия.",
-    },
-    {
-        "question": "Какая сборная находится в группе J?",
-        "options": ["Португалия", "Аргентина", "Франция", "Испания"],
-        "correct": 1,
-        "explanation": "Группа J: Аргентина, Австрия, Алжир и Иордания.",
-    },
-    {
-        "question": "Какая сборная принимает матчи турнира как одна из хозяек?",
-        "options": ["Бразилия", "Мексика", "Франция", "Германия"],
-        "correct": 1,
-        "explanation": "Хозяева ЧМ-2026 — Канада, Мексика и США.",
-    },
-    {
-        "question": "Кто получил adidas Golden Ball как лучший игрок турнира?",
-        "options": ["Родри", "Килиан Мбаппе", "Лионель Месси", "Джуд Беллингем"],
-        "correct": 0,
-        "explanation": "Награда лучшему игроку досталась Родри из Испании.",
-    },
-    {
-        "question": "Кто стал лучшим молодым игроком ЧМ-2026?",
-        "options": ["Пау Кубарси", "Эрлинг Холанд", "Ламин Ямаль", "Джамал Мусиала"],
-        "correct": 0,
-        "explanation": "FIFA Young Player Award получил защитник Испании Пау Кубарси.",
-    },
-    {
-        "question": "Кто выиграл adidas Golden Glove?",
-        "options": ["Унаи Симон", "Тибо Куртуа", "Эмилиано Мартинес", "Мануэль Нойер"],
-        "correct": 0,
-        "explanation": "Лучшим вратарём турнира признан Унаи Симон.",
-    },
-    {
-        "question": "Кто стал лучшим бомбардиром ЧМ-2026?",
-        "options": ["Лионель Месси", "Килиан Мбаппе", "Джуд Беллингем", "Эрлинг Холанд"],
-        "correct": 1,
-        "explanation": "Килиан Мбаппе забил 10 голов и получил adidas Golden Boot.",
-    },
-    {
-        "question": "Сколько голов забил Лионель Месси на турнире?",
-        "options": ["6", "7", "8", "10"],
-        "correct": 2,
-        "explanation": "Месси занял второе место в списке бомбардиров с 8 голами.",
-    },
-    {
-        "question": "Кто занял третье место в гонке бомбардиров?",
-        "options": ["Усман Дембеле", "Джуд Беллингем", "Эрлинг Холанд", "Родри"],
-        "correct": 1,
-        "explanation": "Джуд Беллингем забил 7 голов и занял третье место.",
-    },
-    {
-        "question": "Какая сборная находится в группе L?",
-        "options": ["Англия", "Италия", "Норвегия", "Португалия"],
-        "correct": 0,
-        "explanation": "Группа L: Англия, Гана, Панама и Хорватия.",
-    },
-    {
-        "question": "Какая сборная находится в группе I вместе с Францией?",
-        "options": ["Сенегал", "Египет", "Гана", "Марокко"],
-        "correct": 0,
-        "explanation": "Группа I: Франция, Сенегал, Норвегия и Ирак.",
-    },
-    {
-        "question": "Кто занял четвёртое место в списке бомбардиров?",
-        "options": ["Эрлинг Холанд", "Усман Дембеле", "Джуд Беллингем", "Лионель Месси"],
-        "correct": 0,
-        "explanation": "Эрлинг Холанд забил 7 голов и уступил Беллингему по дополнительному показателю.",
-    },
-]
+import json
+import random
+from pathlib import Path
+
+
+CATALOG_PATH = Path(__file__).with_name("training_catalog.json")
+
+
+def _catalog() -> dict[str, list[list[str]]]:
+    with CATALOG_PATH.open(encoding="utf-8") as catalog_file:
+        return json.load(catalog_file)
+
+
+def _mcq(prompt: str, correct: str, explanation: str, pool: list[str]) -> dict:
+    candidates = list(dict.fromkeys(value for value in pool if value != correct))
+    if len(candidates) < 3:
+        return {}
+    options = random.sample(candidates, 3) + [correct]
+    random.shuffle(options)
+    return {
+        "question": prompt,
+        "options": options,
+        "correct": options.index(correct),
+        "explanation": explanation,
+    }
+
+
+def _build_buckets(catalog: dict[str, list[list[str]]]) -> list[list[dict]]:
+    buckets: list[list[dict]] = []
+
+    football = catalog["football"]
+    buckets.append(
+        [
+            _mcq(
+                f"Какое прозвище связано с клубом {team}?",
+                nickname,
+                clue,
+                [row[1] for row in football],
+            )
+            for team, nickname, clue in football
+        ]
+    )
+    buckets.append(
+        [
+            _mcq(
+                f"Какой клуб связан с прозвищем «{nickname}»?",
+                team,
+                clue,
+                [row[0] for row in football],
+            )
+            for team, nickname, clue in football
+        ]
+    )
+
+    groups = catalog["worldCup2026Groups"]
+    buckets.append(
+        [
+            _mcq(
+                f"Какие сборные входят в {group}?",
+                teams,
+                clue,
+                [row[1] for row in groups],
+            )
+            for group, teams, clue in groups
+        ]
+    )
+
+    awards = catalog["worldCup2026Awards"]
+    buckets.append(
+        [
+            _mcq(
+                f"Кто указан как обладатель награды «{award}»?",
+                winner,
+                clue,
+                [row[1] for row in awards],
+            )
+            for award, winner, clue in awards
+        ]
+    )
+
+    scorers = catalog["worldCup2026Scorers"]
+    buckets.append(
+        [
+            _mcq(
+                f"Кто занял позицию «{place}» в списке бомбардиров?",
+                player,
+                clue,
+                [row[1] for row in scorers],
+            )
+            for place, player, clue in scorers
+        ]
+    )
+
+    leagues = catalog["leagueCards"]
+    buckets.append(
+        [
+            _mcq(
+                f"Какой клуб обозначается кодом {code} в {league}?",
+                team,
+                f"{team} — команда лиги {league}, код {code}.",
+                [row[1] for row in leagues],
+            )
+            for code, team, league in leagues
+        ]
+    )
+    buckets.append(
+        [
+            _mcq(
+                f"К какой лиге относится команда {team}?",
+                league,
+                f"{team} выступает в {league}.",
+                [row[2] for row in leagues],
+            )
+            for code, team, league in leagues
+        ]
+    )
+
+    campaigns = catalog["campaigns"]
+    buckets.append(
+        [
+            _mcq(
+                f"Какой бренд или проект связан с кампанией «{name}»?",
+                brand,
+                clue,
+                [row[1] for row in campaigns],
+            )
+            for name, brand, clue in campaigns
+        ]
+    )
+
+    names = catalog["nameBridges"]
+    buckets.append(
+        [
+            _mcq(
+                f"С какой фигурой, словом или областью связан мост «{person}»?",
+                bridge,
+                clue,
+                [row[1] for row in names],
+            )
+            for person, bridge, clue in names
+        ]
+    )
+
+    mythology = catalog["mythology"]
+    buckets.append(
+        [
+            _mcq(
+                f"Что обозначает образ «{figure}»?",
+                description,
+                f"Традиция: {tradition}.",
+                [row[1] for row in mythology],
+            )
+            for figure, description, tradition in mythology
+        ]
+    )
+
+    pop_culture = catalog["popCulture"]
+    buckets.append(
+        [
+            _mcq(
+                f"Кто или что связано с «{title}»?",
+                creator,
+                clue,
+                [row[1] for row in pop_culture],
+            )
+            for title, creator, clue in pop_culture
+        ]
+    )
+    return [[question for question in bucket if question] for bucket in buckets]
+
+
+def build_training_questions(count: int = 12) -> list[dict]:
+    """Return a fresh mixed set, preferring all major trainer sections."""
+    buckets = _build_buckets(_catalog())
+    random.shuffle(buckets)
+    questions: list[dict] = []
+    for bucket in buckets:
+        if bucket and len(questions) < count:
+            questions.append(random.choice(bucket))
+
+    remaining = [question for bucket in buckets for question in bucket if question not in questions]
+    random.shuffle(remaining)
+    questions.extend(remaining[: max(0, count - len(questions))])
+    random.shuffle(questions)
+    return questions[:count]
