@@ -16,3 +16,6 @@ outputs/pre_edit_preview/
 *.log
 __pycache__/
 *.pyc
+
+# Секреты Telegram-бота
+pdmb_bot/.env

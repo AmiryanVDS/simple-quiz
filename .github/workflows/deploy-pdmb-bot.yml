@@ -1,0 +1,53 @@
+name: Deploy PDMB bot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - pdmb_bot/**
+      - deploy/pdmb-bot.service
+      - .github/workflows/deploy-pdmb-bot.yml
+  workflow_dispatch:
+
+concurrency:
+  group: pdmb-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SERVER_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "$SERVER_PORT" -H "$SERVER_HOST" >> ~/.ssh/known_hosts
+      - name: Upload bot
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+        run: |
+          tar -C pdmb_bot -czf /tmp/pdmb-bot.tgz .
+          scp -P "$SERVER_PORT" /tmp/pdmb-bot.tgz "$SERVER_USER@$SERVER_HOST:/tmp/pdmb-bot.tgz"
+      - name: Install and restart
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+        run: |
+          ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" '
+            set -e
+            install -d /opt/pdmb-bot/current
+            find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -delete
+            tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
+            /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
+            sudo systemctl restart pdmb-bot
+            sudo systemctl is-active --quiet pdmb-bot
+          '
