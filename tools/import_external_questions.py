@@ -26,9 +26,11 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pdmb_bot" / "external_questions.json"
 LOCAL_OPENTDB = None
 LOCAL_OPENFOOTBALL = None
+LOCAL_OPENFOOTBALL_1994 = None
 LOCAL_FOOTBALL_DATASETS = None
 CHECKED_AT = date.today().isoformat()
 OPENFOOTBALL_URL = "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt"
+OPENFOOTBALL_1994_URL = "https://raw.githubusercontent.com/openfootball/worldcup/master/1994--usa/cup.txt"
 OPENTDB_URL = "https://opentdb.com/api.php?" + urlencode({"amount": 50, "category": 21, "type": "multiple", "encode": "url3986"})
 FOOTBALL_DATASETS_REPO = "https://github.com/datasets/football-datasets"
 FOOTBALL_LEAGUES = {
@@ -45,6 +47,8 @@ def fetch(url: str) -> str:
         return Path(LOCAL_OPENTDB).read_text(encoding="utf-8")
     if url == OPENFOOTBALL_URL and LOCAL_OPENFOOTBALL:
         return Path(LOCAL_OPENFOOTBALL).read_text(encoding="utf-8")
+    if url == OPENFOOTBALL_1994_URL and LOCAL_OPENFOOTBALL_1994:
+        return Path(LOCAL_OPENFOOTBALL_1994).read_text(encoding="utf-8")
     request = Request(url, headers={"User-Agent": "simple-quiz-importer/1.0"})
     with urlopen(request, timeout=30, context=SSL_CONTEXT) as response:
         return response.read().decode("utf-8")
@@ -183,18 +187,59 @@ def import_historical_leagues() -> list[dict]:
     return questions
 
 
+def import_channel_inspired() -> list[dict]:
+    """Create original questions around the channel's World Cup 1994 theme."""
+    text = fetch(OPENFOOTBALL_1994_URL)
+    pattern = re.compile(
+        r"^\s+([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .&'’()-]+?)\s+(\d+)-(\d+)\s+"
+        r"([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .&'’()-]+?)\s+@\s+(.+)$"
+    )
+    questions = []
+    for line in text.splitlines():
+        match = pattern.match(line)
+        if not match:
+            continue
+        home, home_score, away_score, away, venue = [value.strip() for value in match.groups()]
+        score = f"{home_score}:{away_score}"
+        options = [score]
+        for distractor in [f"{away_score}:{home_score}", "0:0", "1:0", "2:1", "1:2"]:
+            if distractor not in options:
+                options.append(distractor)
+            if len(options) == 4:
+                break
+        questions.append({
+            "question": f"В тематическом раунде ЧМ-1994: какой счёт был в матче {home} — {away}?",
+            "options": options,
+            "correct": 0,
+            "explanation": f"ЧМ-1994, групповой этап, {venue}: {home} {home_score}:{away_score} {away}.",
+            "answer_verified": True,
+            "source": "openfootball/worldcup",
+            "source_url": OPENFOOTBALL_1994_URL,
+            "license": "CC0-1.0 (public domain)",
+            "checked_at": CHECKED_AT,
+            "category": "Football / World Cup 1994 / channel-inspired",
+            "source_id": f"openfootball:1994:channel-inspired:{home}:{away}:{venue}",
+            "inspired_by": "С двух ног — футбольная Своя игра (тематическая подборка)",
+        })
+        if len(questions) == 12:
+            break
+    return questions
+
+
 def main() -> int:
-    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL, LOCAL_FOOTBALL_DATASETS
+    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL, LOCAL_OPENFOOTBALL_1994, LOCAL_FOOTBALL_DATASETS
     if "--opentdb-file" in sys.argv:
         LOCAL_OPENTDB = sys.argv[sys.argv.index("--opentdb-file") + 1]
     if "--openfootball-file" in sys.argv:
         LOCAL_OPENFOOTBALL = sys.argv[sys.argv.index("--openfootball-file") + 1]
+    if "--openfootball-1994-file" in sys.argv:
+        LOCAL_OPENFOOTBALL_1994 = sys.argv[sys.argv.index("--openfootball-1994-file") + 1]
     if "--football-datasets-dir" in sys.argv:
         LOCAL_FOOTBALL_DATASETS = sys.argv[sys.argv.index("--football-datasets-dir") + 1]
     sys.path.insert(0, str(ROOT / "pdmb_bot"))
     from question_quality import deduplicate_questions
 
-    imported = import_opentdb() + import_openfootball() + import_historical_leagues()
+    imported = import_opentdb() + import_openfootball() + import_historical_leagues() + import_channel_inspired()
     questions, report = deduplicate_questions(imported)
     if report["invalid"] or not questions:
         raise SystemExit(f"Quality check failed: {report}")
