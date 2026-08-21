@@ -9,6 +9,15 @@
     "runtime": "local snapshot"
   },
   {
+    "id": "openfootball-champions-league",
+    "name": "openfootball/champions-league",
+    "url": "https://github.com/openfootball/champions-league",
+    "role": "Лига чемпионов: матчи сезонов 2011/12–2025/26",
+    "status": "active",
+    "license": "CC0-1.0",
+    "runtime": "local snapshot"
+  },
+  {
     "id": "football-datasets",
     "name": "datasets/football-datasets",
     "url": "https://github.com/datasets/football-datasets",
