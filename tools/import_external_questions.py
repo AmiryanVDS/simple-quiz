@@ -28,9 +28,12 @@ LOCAL_OPENTDB = None
 LOCAL_OPENFOOTBALL = None
 LOCAL_OPENFOOTBALL_1994 = None
 LOCAL_FOOTBALL_DATASETS = None
+LOCAL_CHAMPIONS_LEAGUE = None
+LOCAL_BASE = None
 CHECKED_AT = date.today().isoformat()
 OPENFOOTBALL_URL = "https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup.txt"
 OPENFOOTBALL_1994_URL = "https://raw.githubusercontent.com/openfootball/worldcup/master/1994--usa/cup.txt"
+CHAMPIONS_LEAGUE_REPO = "https://github.com/openfootball/champions-league"
 OPENTDB_URL = "https://opentdb.com/api.php?" + urlencode({"amount": 50, "category": 21, "type": "multiple", "encode": "url3986"})
 FOOTBALL_DATASETS_REPO = "https://github.com/datasets/football-datasets"
 FOOTBALL_LEAGUES = {
@@ -226,8 +229,53 @@ def import_channel_inspired() -> list[dict]:
     return questions
 
 
+def import_champions_league() -> list[dict]:
+    """Import Champions League match facts from every checked-in season file."""
+    if not LOCAL_CHAMPIONS_LEAGUE:
+        return []
+    pattern = re.compile(
+        r"^\s+(?:\d{1,2}:\d{2}\s+)?(.+?)\s+v\s+(.+?)\s+(\d+[-–]\d+)"
+    )
+    questions = []
+    for path in sorted(Path(LOCAL_CHAMPIONS_LEAGUE).glob("*/cl.txt")):
+        season = path.parent.name
+        for line in path.read_text(encoding="utf-8").splitlines():
+            match = pattern.match(line)
+            if not match:
+                continue
+            home, away, score = [value.strip() for value in match.groups()]
+            home = re.sub(r"\s*\([A-Z]{3}\)$", "", home)
+            away = re.sub(r"\s*\([A-Z]{3}\)$", "", away)
+            if not home or not away:
+                continue
+            score = score.replace("–", "-")
+            home_score, away_score = score.split("-", 1)
+            options = [score]
+            for distractor in [f"{away_score}-{home_score}", "0-0", "1-0", "2-1", "1-2"]:
+                if distractor not in options:
+                    options.append(distractor)
+                if len(options) == 4:
+                    break
+            questions.append({
+                "question": f"Как завершился матч {home} — {away} в Лиге чемпионов сезона {season}?",
+                "options": options,
+                "correct": 0,
+                "explanation": f"Лига чемпионов {season}: {home} {score} {away}.",
+                "answer_verified": True,
+                "source": "openfootball/champions-league",
+                "source_url": f"{CHAMPIONS_LEAGUE_REPO}/blob/master/{season}/cl.txt",
+                "license": "CC0-1.0 (public domain)",
+                "checked_at": CHECKED_AT,
+                "category": "Football / UEFA Champions League",
+                "source_id": f"champions-league:{season}:{home}:{away}:{score}",
+            })
+    return questions
+
+
 def main() -> int:
-    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL, LOCAL_OPENFOOTBALL_1994, LOCAL_FOOTBALL_DATASETS
+    global LOCAL_OPENTDB, LOCAL_OPENFOOTBALL, LOCAL_OPENFOOTBALL_1994, LOCAL_FOOTBALL_DATASETS, LOCAL_CHAMPIONS_LEAGUE, LOCAL_BASE
+    if "--base-file" in sys.argv:
+        LOCAL_BASE = sys.argv[sys.argv.index("--base-file") + 1]
     if "--opentdb-file" in sys.argv:
         LOCAL_OPENTDB = sys.argv[sys.argv.index("--opentdb-file") + 1]
     if "--openfootball-file" in sys.argv:
@@ -236,10 +284,14 @@ def main() -> int:
         LOCAL_OPENFOOTBALL_1994 = sys.argv[sys.argv.index("--openfootball-1994-file") + 1]
     if "--football-datasets-dir" in sys.argv:
         LOCAL_FOOTBALL_DATASETS = sys.argv[sys.argv.index("--football-datasets-dir") + 1]
+    if "--champions-league-dir" in sys.argv:
+        LOCAL_CHAMPIONS_LEAGUE = sys.argv[sys.argv.index("--champions-league-dir") + 1]
     sys.path.insert(0, str(ROOT / "pdmb_bot"))
     from question_quality import deduplicate_questions
 
-    imported = import_opentdb() + import_openfootball() + import_historical_leagues() + import_channel_inspired()
+    imported = (json.loads(Path(LOCAL_BASE).read_text(encoding="utf-8")) if LOCAL_BASE else
+                import_opentdb() + import_openfootball() + import_historical_leagues() + import_channel_inspired())
+    imported += import_champions_league()
     questions, report = deduplicate_questions(imported)
     if report["invalid"] or not questions:
         raise SystemExit(f"Quality check failed: {report}")
