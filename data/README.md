@@ -34,9 +34,18 @@ python3 tools/import_external_questions.py
 Импортёр выполняет структурную проверку, удаляет повторы и не сохраняет
 вопросы без четырёх уникальных вариантов ответа и корректного индекса ответа.
 
+Для обновления Лиги чемпионов передайте локальный клон репозитория:
+
+```bash
+git clone --depth 1 https://github.com/openfootball/champions-league.git /tmp/openfootball-champions-league
+python3 tools/import_external_questions.py \
+  --base-file pdmb_bot/external_questions.json \
+  --champions-league-dir /tmp/openfootball-champions-league
+```
+
 Полный реестр источников и их статусы находится в
 `data/football_sources.json`. В Telegram сейчас публикуются русскоязычные
-вопросы из openfootball, включая оригинальную тематическую подборку по ЧМ-1994
+вопросы из openfootball, включая матчи Лиги чемпионов и оригинальную тематическую подборку по ЧМ-1994
 «в стиле футбольной Своей игры», и исторические результаты пяти лиг из
 `datasets/football-datasets`. Формулировки выпусков канала «С двух ног» не
 копируются. SoccerData и StatsBomb сохранены как отдельный
