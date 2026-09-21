@@ -2,6 +2,7 @@
 
 import asyncio
 import html
+import json
 import logging
 import os
 from datetime import date, datetime, timedelta
@@ -51,6 +52,7 @@ except ValueError as error:
 bot = Bot(token=BOT_TOKEN)
 dispatcher = Dispatcher()
 training_sessions: dict[int, dict] = {}
+POLL_STATE_FILE = os.path.join(BASE_DIR, "weekly_poll_state.json")
 
 WEEKDAY_MAP = {
     "ПН": "понедельник",
@@ -76,6 +78,49 @@ MONTH_MAP = {
     "ноя": 11, "ноябрь": 11, "ноября": 11,
     "дек": 12, "декабрь": 12, "декабря": 12,
 }
+
+
+DATE_WEEKDAY_SHORT = {
+    0: "ПН",
+    1: "ВТ",
+    2: "СР",
+    3: "ЧТ",
+    4: "ПТ",
+    5: "СБ",
+    6: "ВС",
+}
+
+
+def load_poll_state() -> dict:
+    if not os.path.exists(POLL_STATE_FILE):
+        return {"polls": {}}
+    try:
+        with open(POLL_STATE_FILE, "r", encoding="utf-8") as file:
+            data = json.load(file)
+            return data if isinstance(data, dict) else {"polls": {}}
+    except Exception:
+        logging.exception("Не удалось прочитать weekly_poll_state.json")
+        return {"polls": {}}
+
+
+def save_poll_state(state: dict) -> None:
+    try:
+        with open(POLL_STATE_FILE, "w", encoding="utf-8") as file:
+            json.dump(state, file, ensure_ascii=False, indent=2)
+    except Exception:
+        logging.exception("Не удалось сохранить weekly_poll_state.json")
+
+
+def display_user_name(user: types.User) -> str:
+    name = user.full_name.strip() if user.full_name else ""
+    if user.username:
+        return f"{name} (@{user.username})" if name else f"@{user.username}"
+    return name or f"ID {user.id}"
+
+
+def poll_period(reference: date | None = None) -> tuple[date, date]:
+    week_start, week_end = poll_period(reference)
+    return week_start, week_end
 
 
 async def training_deep_link() -> str:
@@ -348,7 +393,11 @@ def weekly_events(events: list[dict], reference: date | None = None) -> list[dic
 
 
 def poll_option_text(event: dict) -> str:
-    option = f"{event['event_date'].strftime('%d.%m')} {event['time']} — {event['name']}"
+    weekday = DATE_WEEKDAY_SHORT[event["event_date"].weekday()]
+    option = (
+        f"{event['event_date'].strftime('%d.%m')} ({weekday}) "
+        f"{event['time']} — {event['name']}"
+    )
     if len(option) > 100:
         return option[:97].rstrip() + "..."
     return option
@@ -364,6 +413,8 @@ async def send_weekly_poll(
         logging.info("На период до следующего понедельника нет событий для опроса")
         return False
 
+    week_start, week_end = poll_period(reference)
+
     # Telegram допускает максимум 12 вариантов. Оставляем два места:
     # для собственного варианта и для ответа «не иду».
     chunks = [
@@ -371,6 +422,7 @@ async def send_weekly_poll(
         for index in range(0, len(selected_events), 10)
     ]
     total_parts = len(chunks)
+    state = load_poll_state()
 
     for part_number, chunk in enumerate(chunks, start=1):
         options = [poll_option_text(event) for event in chunk]
@@ -385,7 +437,7 @@ async def send_weekly_poll(
         if total_parts > 1:
             question += f" Часть {part_number}/{total_parts}"
 
-        await bot.send_poll(
+        sent_poll = await bot.send_poll(
             chat_id=chat_id,
             question=question,
             options=options,
@@ -393,10 +445,95 @@ async def send_weekly_poll(
             allows_multiple_answers=True,
         )
 
+        state.setdefault("polls", {})[sent_poll.poll.id] = {
+            "chat_id": chat_id,
+            "message_id": sent_poll.message_id,
+            "week_start": week_start.isoformat(),
+            "week_end": week_end.isoformat(),
+            "part_number": part_number,
+            "total_parts": total_parts,
+            "options": options,
+            "answers": {},
+        }
+
+    save_poll_state(state)
+
     logging.info(
         "Опрос по посещению отправлен в чат %s: %s событий",
         chat_id,
         len(selected_events),
+    )
+    return True
+
+
+def build_weekly_summary(
+    chat_id: int,
+    week_start: date,
+    week_end: date,
+) -> str | None:
+    state = load_poll_state()
+    matching_polls = [
+        poll
+        for poll in state.get("polls", {}).values()
+        if poll.get("chat_id") == chat_id
+        and poll.get("week_start") == week_start.isoformat()
+        and poll.get("week_end") == week_end.isoformat()
+    ]
+
+    if not matching_polls:
+        return None
+
+    matching_polls.sort(key=lambda poll: poll.get("part_number", 1))
+    lines = [
+        "📊 <b>Итог голосования по квизам</b>",
+        f"Период: {week_start.strftime('%d.%m')} — {week_end.strftime('%d.%m')}",
+        "",
+    ]
+
+    has_votes = False
+    for poll in matching_polls:
+        options = poll.get("options", [])
+        answers = poll.get("answers", {})
+        voters_by_option: dict[int, list[str]] = {
+            index: [] for index in range(len(options))
+        }
+
+        for answer in answers.values():
+            user_name = answer.get("name", "Участник")
+            for option_id in answer.get("option_ids", []):
+                if option_id in voters_by_option:
+                    voters_by_option[option_id].append(user_name)
+
+        for option_id, option_text in enumerate(options):
+            voters = sorted(set(voters_by_option.get(option_id, [])))
+            if not voters:
+                continue
+            has_votes = True
+            lines.append(f"<b>{html.escape(option_text)}</b> — {len(voters)}")
+            lines.append(", ".join(html.escape(name) for name in voters))
+            lines.append("")
+
+    if not has_votes:
+        lines.append("Пока никто не проголосовал.")
+
+    return "\n".join(lines).rstrip()
+
+
+async def send_previous_week_summary(chat_id: int = CHAT_ID) -> bool:
+    today = datetime.now(MOSCOW_TZ).date()
+    current_monday = today - timedelta(days=today.weekday())
+    previous_start = current_monday - timedelta(days=7)
+    previous_end = current_monday
+
+    summary = build_weekly_summary(chat_id, previous_start, previous_end)
+    if not summary:
+        logging.info("Нет сохранённого опроса для автоматического итога")
+        return False
+
+    await bot.send_message(
+        chat_id=chat_id,
+        text=summary,
+        parse_mode="HTML",
     )
     return True
 
@@ -573,6 +710,25 @@ async def handle_training_answer(callback: CallbackQuery) -> None:
     await send_training_question(callback.message.chat.id, user_id)
 
 
+@dispatcher.poll_answer()
+async def handle_poll_answer(poll_answer: types.PollAnswer) -> None:
+    state = load_poll_state()
+    poll = state.get("polls", {}).get(poll_answer.poll_id)
+    if not poll:
+        return
+
+    user = poll_answer.user
+    if user is None:
+        return
+
+    poll.setdefault("answers", {})[str(user.id)] = {
+        "name": display_user_name(user),
+        "option_ids": list(poll_answer.option_ids),
+        "updated_at": datetime.now(MOSCOW_TZ).isoformat(),
+    }
+    save_poll_state(state)
+
+
 @dispatcher.message(Command("schedule"))
 async def handle_schedule(message: types.Message) -> None:
     await send_quiz_schedule(
@@ -604,9 +760,24 @@ async def handle_weekpoll(message: types.Message) -> None:
 
 
 async def weekly_schedule_loop() -> None:
+    last_summary_date = None
     last_sent_date = None
+
     while True:
         now = datetime.now(MOSCOW_TZ)
+
+        if (
+            now.weekday() == 0
+            and now.hour == 9
+            and now.minute == 50
+            and last_summary_date != now.date()
+        ):
+            try:
+                await send_previous_week_summary()
+                last_summary_date = now.date()
+            except Exception:
+                logging.exception("Не удалось отправить автоматический итог голосования")
+
         if (
             now.weekday() == 0
             and now.hour == 10
@@ -618,6 +789,7 @@ async def weekly_schedule_loop() -> None:
                 last_sent_date = now.date()
             except Exception:
                 logging.exception("Не удалось выполнить еженедельную рассылку")
+
         await asyncio.sleep(30)
 
 
