@@ -39,7 +39,7 @@ MOSCOW_TZ = ZoneInfo("Europe/Moscow")
 SPORT_URL = "https://findquiz.ru/category/sport"
 QUIZ_EVENTS_URL = os.getenv(
     "QUIZ_EVENTS_URL",
-    "https://quiz-bot-yf88.onrender.com/events",
+    "https://raw.githubusercontent.com/AmiryanVDS/quiz-bot/main/events.json",
 )
 
 if not BOT_TOKEN:
