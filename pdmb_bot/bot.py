@@ -37,6 +37,10 @@ CHAT_ID_RAW = os.getenv("CHAT_ID")
 TRAINING_URL = os.getenv("TRAINING_URL")
 MOSCOW_TZ = ZoneInfo("Europe/Moscow")
 SPORT_URL = "https://findquiz.ru/category/sport"
+QUIZ_EVENTS_URL = os.getenv(
+    "QUIZ_EVENTS_URL",
+    "https://quiz-bot-yf88.onrender.com/events",
+)
 
 if not BOT_TOKEN:
     raise ValueError("Не найдена переменная BOT_TOKEN")
@@ -420,30 +424,103 @@ def _fetch_quiz_events_once() -> list[dict]:
 
 
 
+def _events_from_api_payload(payload: dict) -> list[dict]:
+    if not payload.get("ok"):
+        raise RuntimeError(payload.get("error") or "Источник расписания вернул ошибку")
+
+    events = []
+    for raw in payload.get("events", []):
+        raw_date = raw.get("event_date")
+        event_date = date.fromisoformat(raw_date) if raw_date else None
+
+        weekday_short = (raw.get("weekday") or "").upper()
+        weekday = WEEKDAY_MAP.get(weekday_short, weekday_short.lower())
+
+        day = raw.get("day") or (
+            event_date.strftime("%d") if event_date else "?"
+        )
+        month = raw.get("month") or "???"
+        time_text = raw.get("time") or "20:00"
+
+        formatted_date = (
+            f"{day} {month}, {weekday}, {time_text}"
+            if weekday
+            else f"{day} {month}, {time_text}"
+        )
+
+        events.append(
+            {
+                "name": raw.get("name") or "Без названия",
+                "org": raw.get("org") or "Не указан",
+                "day": day,
+                "month": month,
+                "weekday": weekday,
+                "time": time_text,
+                "formatted_date": formatted_date,
+                "event_date": event_date,
+                "location": raw.get("location") or "Место не указано",
+                "price": raw.get("price") or "Цена не указана",
+                "event_url": raw.get("event_url"),
+            }
+        )
+
+    if not events:
+        raise RuntimeError("Источник расписания вернул пустой список")
+    return events
+
+
+def _fetch_quiz_events_from_api() -> list[dict]:
+    response = requests.get(
+        QUIZ_EVENTS_URL,
+        headers={"User-Agent": "PDMB-Quiz-Bot/1.0"},
+        timeout=45,
+    )
+    response.raise_for_status()
+    return _events_from_api_payload(response.json())
+
+
 def fetch_quiz_events() -> list[dict]:
+    """
+    Основной источник — Render API старого quiz-bot, который уже имеет
+    рабочий доступ к FindQuiz. Прямой FindQuiz оставлен как резерв.
+    Последний успешный результат кэшируется локально на VDS.
+    """
     last_error: Exception | None = None
 
     for attempt in range(1, 4):
         try:
-            events = _fetch_quiz_events_once()
+            events = _fetch_quiz_events_from_api()
             save_events_cache(events)
-            if attempt > 1:
-                logging.info("FindQuiz ответил с попытки %s", attempt)
+            logging.info(
+                "Расписание получено через quiz-bot API: %s событий",
+                len(events),
+            )
             return events
         except Exception as error:
             last_error = error
             logging.warning(
-                "Не удалось получить FindQuiz, попытка %s/3: %s",
+                "Не удалось получить расписание через API, попытка %s/3: %s",
                 attempt,
                 error,
             )
             if attempt < 3:
-                time.sleep(4 * attempt)
+                time.sleep(3 * attempt)
+
+    # Резерв: прямой запрос с VDS. Сейчас FindQuiz может блокировать/таймаутить
+    # этот IP, но оставляем путь на случай восстановления доступности.
+    try:
+        events = _fetch_quiz_events_once()
+        save_events_cache(events)
+        logging.info("Расписание получено напрямую с FindQuiz")
+        return events
+    except Exception as error:
+        last_error = error
+        logging.warning("Прямой FindQuiz тоже недоступен: %s", error)
 
     cached = load_events_cache()
     if cached:
         logging.warning(
-            "FindQuiz недоступен, использую последнее сохранённое расписание: %s событий",
+            "Использую последнее сохранённое расписание: %s событий",
             len(cached),
         )
         return cached
@@ -683,43 +760,39 @@ async def send_quiz_schedule(
 
 async def send_weekly_package() -> None:
     today = datetime.now(MOSCOW_TZ).date().isoformat()
+    state = load_poll_state()
+
+    if state.get("last_poll_date") == today:
+        return
+
     events = await asyncio.to_thread(fetch_quiz_events)
 
-    state = load_poll_state()
-    if state.get("last_schedule_date") != today:
-        await send_quiz_schedule(chat_id=CHAT_ID, private=False, events=events)
-        state = load_poll_state()
-        state["last_schedule_date"] = today
-        save_poll_state(state)
+    try:
+        created = await send_weekly_poll(events, chat_id=CHAT_ID)
+    except Exception as error:
+        logging.exception("Автоматический опрос создать не удалось")
+        await bot.send_message(
+            chat_id=CHAT_ID,
+            text=(
+                "⚠️ Не удалось автоматически создать недельный опрос. "
+                f"Ошибка: {html.escape(str(error))}"
+            ),
+            parse_mode="HTML",
+        )
+        raise
+
+    if not created:
+        await bot.send_message(
+            chat_id=CHAT_ID,
+            text=(
+                "ℹ️ До следующего понедельника включительно "
+                "квизов для опроса не найдено."
+            ),
+        )
 
     state = load_poll_state()
-    if state.get("last_poll_date") != today:
-        try:
-            created = await send_weekly_poll(events, chat_id=CHAT_ID)
-        except Exception as error:
-            logging.exception("Расписание отправлено, но опрос создать не удалось")
-            await bot.send_message(
-                chat_id=CHAT_ID,
-                text=(
-                    "⚠️ Расписание опубликовано, но автоматический опрос не создался. "
-                    f"Ошибка: {html.escape(str(error))}"
-                ),
-                parse_mode="HTML",
-            )
-            raise
-
-        if not created:
-            await bot.send_message(
-                chat_id=CHAT_ID,
-                text=(
-                    "ℹ️ Расписание опубликовано, но в период до следующего "
-                    "понедельника включительно квизов для опроса не найдено."
-                ),
-            )
-
-        state = load_poll_state()
-        state["last_poll_date"] = today
-        save_poll_state(state)
+    state["last_poll_date"] = today
+    save_poll_state(state)
 
 
 @dispatcher.message(CommandStart())
@@ -934,16 +1007,15 @@ async def weekly_schedule_loop() -> None:
                 except Exception:
                     logging.exception("Не удалось отправить автоматический итог голосования")
 
-        if now.weekday() == 0 and (now.hour, now.minute) >= (10, 0):
+        # Старый quiz-bot публикует расписание в 10:00.
+        # Опрос создаём следом и догоняем его после перезапуска, если нужно.
+        if now.weekday() == 0 and (now.hour, now.minute) >= (10, 1):
             state = load_poll_state()
-            if (
-                state.get("last_schedule_date") != today.isoformat()
-                or state.get("last_poll_date") != today.isoformat()
-            ):
+            if state.get("last_poll_date") != today.isoformat():
                 try:
                     await send_weekly_package()
                 except Exception:
-                    logging.exception("Не удалось выполнить еженедельную рассылку")
+                    logging.exception("Не удалось выполнить еженедельный опрос")
 
         await asyncio.sleep(30)
 
