@@ -51,4 +51,7 @@ jobs:
             /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
             sudo systemctl start pdmb-bot
             sudo systemctl is-active --quiet pdmb-bot
+            sleep 8
+            echo "===== pdmb-bot journal ====="
+            journalctl -u pdmb-bot --since "2 minutes ago" --no-pager -n 120
           '
