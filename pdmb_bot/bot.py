@@ -760,12 +760,25 @@ async def send_quiz_schedule(
 
 async def send_weekly_package() -> None:
     today = datetime.now(MOSCOW_TZ).date().isoformat()
-    state = load_poll_state()
+    events = await asyncio.to_thread(fetch_quiz_events)
 
+    # Сначала расписание, затем опрос. Состояния раздельные:
+    # если Telegram принял расписание, но опрос временно упал,
+    # повторная попытка не продублирует расписание.
+    state = load_poll_state()
+    if state.get("last_schedule_date") != today:
+        await send_quiz_schedule(
+            chat_id=CHAT_ID,
+            private=False,
+            events=events,
+        )
+        state = load_poll_state()
+        state["last_schedule_date"] = today
+        save_poll_state(state)
+
+    state = load_poll_state()
     if state.get("last_poll_date") == today:
         return
-
-    events = await asyncio.to_thread(fetch_quiz_events)
 
     try:
         created = await send_weekly_poll(events, chat_id=CHAT_ID)
@@ -774,7 +787,7 @@ async def send_weekly_package() -> None:
         await bot.send_message(
             chat_id=CHAT_ID,
             text=(
-                "⚠️ Не удалось автоматически создать недельный опрос. "
+                "⚠️ Расписание опубликовано, но недельный опрос создать не удалось. "
                 f"Ошибка: {html.escape(str(error))}"
             ),
             parse_mode="HTML",
@@ -785,8 +798,8 @@ async def send_weekly_package() -> None:
         await bot.send_message(
             chat_id=CHAT_ID,
             text=(
-                "ℹ️ До следующего понедельника включительно "
-                "квизов для опроса не найдено."
+                "ℹ️ Расписание опубликовано, но до следующего понедельника "
+                "включительно квизов для опроса не найдено."
             ),
         )
 
@@ -1007,15 +1020,18 @@ async def weekly_schedule_loop() -> None:
                 except Exception:
                     logging.exception("Не удалось отправить автоматический итог голосования")
 
-        # Старый quiz-bot публикует расписание в 10:00.
-        # Опрос создаём следом и догоняем его после перезапуска, если нужно.
-        if now.weekday() == 0 and (now.hour, now.minute) >= (10, 1):
+        # В 10:00 публикуем расписание и сразу следом опрос.
+        # Если бот перезапустится позже, он догонит пропущенную рассылку.
+        if now.weekday() == 0 and (now.hour, now.minute) >= (10, 0):
             state = load_poll_state()
-            if state.get("last_poll_date") != today.isoformat():
+            if (
+                state.get("last_schedule_date") != today.isoformat()
+                or state.get("last_poll_date") != today.isoformat()
+            ):
                 try:
                     await send_weekly_package()
                 except Exception:
-                    logging.exception("Не удалось выполнить еженедельный опрос")
+                    logging.exception("Не удалось выполнить еженедельную рассылку")
 
         await asyncio.sleep(30)
 
