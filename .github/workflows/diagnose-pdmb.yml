@@ -33,6 +33,13 @@ jobs:
             echo "===== state ====="
             ls -la /opt/pdmb-bot/state || true
             cat /opt/pdmb-bot/state/weekly_poll_state.json 2>/dev/null || true
+            echo "===== connectivity ====="
+            echo "-- http --"
+            curl -I -L --max-time 12 http://findquiz.ru/category/sport || true
+            echo "-- https ipv4 --"
+            curl -4 -I -L --max-time 12 https://findquiz.ru/category/sport || true
+            echo "-- https www ipv4 --"
+            curl -4 -I -L --max-time 12 https://www.findquiz.ru/category/sport || true
             echo "===== journal ====="
             journalctl -u pdmb-bot --since "10 minutes ago" --no-pager -n 250
           '
