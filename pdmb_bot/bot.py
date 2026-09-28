@@ -5,6 +5,7 @@ import html
 import json
 import logging
 import os
+import time
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -60,6 +61,7 @@ DEFAULT_STATE_DIR = (
 STATE_DIR = os.getenv("PDMB_STATE_DIR", DEFAULT_STATE_DIR)
 os.makedirs(STATE_DIR, exist_ok=True)
 POLL_STATE_FILE = os.path.join(STATE_DIR, "weekly_poll_state.json")
+EVENTS_CACHE_FILE = os.path.join(STATE_DIR, "quiz_events_cache.json")
 
 WEEKDAY_MAP = {
     "ПН": "понедельник",
@@ -121,6 +123,48 @@ def save_poll_state(state: dict) -> None:
             json.dump(state, file, ensure_ascii=False, indent=2)
     except Exception:
         logging.exception("Не удалось сохранить weekly_poll_state.json")
+
+
+def save_events_cache(events: list[dict]) -> None:
+    serializable = []
+    for event in events:
+        item = dict(event)
+        event_date = item.get("event_date")
+        item["event_date"] = event_date.isoformat() if event_date else None
+        serializable.append(item)
+
+    try:
+        with open(EVENTS_CACHE_FILE, "w", encoding="utf-8") as file:
+            json.dump(
+                {
+                    "saved_at": datetime.now(MOSCOW_TZ).isoformat(),
+                    "events": serializable,
+                },
+                file,
+                ensure_ascii=False,
+                indent=2,
+            )
+    except Exception:
+        logging.exception("Не удалось сохранить кэш расписания")
+
+
+def load_events_cache() -> list[dict]:
+    if not os.path.exists(EVENTS_CACHE_FILE):
+        return []
+
+    try:
+        with open(EVENTS_CACHE_FILE, "r", encoding="utf-8") as file:
+            data = json.load(file)
+        result = []
+        for event in data.get("events", []):
+            item = dict(event)
+            raw_date = item.get("event_date")
+            item["event_date"] = date.fromisoformat(raw_date) if raw_date else None
+            result.append(item)
+        return result
+    except Exception:
+        logging.exception("Не удалось прочитать кэш расписания")
+        return []
 
 
 def display_user_name(user: types.User) -> str:
@@ -266,7 +310,7 @@ def resolve_event_date(
     return candidate
 
 
-def fetch_quiz_events() -> list[dict]:
+def _fetch_quiz_events_once() -> list[dict]:
     response = requests.get(
         SPORT_URL,
         headers=request_headers(),
@@ -370,7 +414,42 @@ def fetch_quiz_events() -> list[dict]:
             }
         )
 
+    if not events:
+        raise RuntimeError("FindQuiz вернул пустое расписание")
     return events
+
+
+
+def fetch_quiz_events() -> list[dict]:
+    last_error: Exception | None = None
+
+    for attempt in range(1, 4):
+        try:
+            events = _fetch_quiz_events_once()
+            save_events_cache(events)
+            if attempt > 1:
+                logging.info("FindQuiz ответил с попытки %s", attempt)
+            return events
+        except Exception as error:
+            last_error = error
+            logging.warning(
+                "Не удалось получить FindQuiz, попытка %s/3: %s",
+                attempt,
+                error,
+            )
+            if attempt < 3:
+                time.sleep(4 * attempt)
+
+    cached = load_events_cache()
+    if cached:
+        logging.warning(
+            "FindQuiz недоступен, использую последнее сохранённое расписание: %s событий",
+            len(cached),
+        )
+        return cached
+
+    assert last_error is not None
+    raise last_error
 
 
 def format_quiz_schedule(events: list[dict]) -> str:
