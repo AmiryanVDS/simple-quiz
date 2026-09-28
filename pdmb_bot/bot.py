@@ -107,7 +107,12 @@ def load_poll_state() -> dict:
             return data if isinstance(data, dict) else {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "last_summary_date": None}
     except Exception:
         logging.exception("Не удалось прочитать weekly_poll_state.json")
-        return {"polls": {}}
+        return {
+            "polls": {},
+            "last_schedule_date": None,
+            "last_poll_date": None,
+            "last_summary_date": None,
+        }
 
 
 def save_poll_state(state: dict) -> None:
@@ -126,7 +131,9 @@ def display_user_name(user: types.User) -> str:
 
 
 def poll_period(reference: date | None = None) -> tuple[date, date]:
-    week_start, week_end = poll_period(reference)
+    reference = reference or datetime.now(MOSCOW_TZ).date()
+    week_start = reference - timedelta(days=reference.weekday())
+    week_end = week_start + timedelta(days=7)
     return week_start, week_end
 
 
