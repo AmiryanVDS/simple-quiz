@@ -46,6 +46,7 @@ jobs:
             set -e
             sudo systemctl stop pdmb-bot
             install -d /opt/pdmb-bot/current
+            install -d -o pdmb -g pdmb /opt/pdmb-bot/state
             find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
             tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
             /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
