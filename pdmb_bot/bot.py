@@ -765,30 +765,25 @@ async def weekly_schedule_loop() -> None:
 
     while True:
         now = datetime.now(MOSCOW_TZ)
+        today = now.date()
 
-        if (
-            now.weekday() == 0
-            and now.hour == 9
-            and now.minute == 50
-            and last_summary_date != now.date()
-        ):
-            try:
-                await send_previous_week_summary()
-                last_summary_date = now.date()
-            except Exception:
-                logging.exception("Не удалось отправить автоматический итог голосования")
+        # Не привязываемся к одной конкретной минуте.
+        # Если бот/хостинг проснулся или перезапустился позже, он догонит рассылку.
+        if now.weekday() == 0 and last_summary_date != today:
+            if (now.hour, now.minute) >= (9, 50):
+                try:
+                    await send_previous_week_summary()
+                    last_summary_date = today
+                except Exception:
+                    logging.exception("Не удалось отправить автоматический итог голосования")
 
-        if (
-            now.weekday() == 0
-            and now.hour == 10
-            and now.minute == 0
-            and last_sent_date != now.date()
-        ):
-            try:
-                await send_weekly_package()
-                last_sent_date = now.date()
-            except Exception:
-                logging.exception("Не удалось выполнить еженедельную рассылку")
+        if now.weekday() == 0 and last_sent_date != today:
+            if (now.hour, now.minute) >= (10, 0):
+                try:
+                    await send_weekly_package()
+                    last_sent_date = today
+                except Exception:
+                    logging.exception("Не удалось выполнить еженедельную рассылку")
 
         await asyncio.sleep(30)
 
