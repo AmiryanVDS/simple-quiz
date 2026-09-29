@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 from training_data import build_training_questions
+from poll_summary import build_game_day_summaries
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -106,27 +107,29 @@ DATE_WEEKDAY_SHORT = {
 
 def load_poll_state() -> dict:
     if not os.path.exists(POLL_STATE_FILE):
-        return {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "last_summary_date": None}
+        return {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "sent_game_summaries": {}}
     try:
         with open(POLL_STATE_FILE, "r", encoding="utf-8") as file:
             data = json.load(file)
-            return data if isinstance(data, dict) else {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "last_summary_date": None}
+            return data if isinstance(data, dict) else {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "sent_game_summaries": {}}
     except Exception:
         logging.exception("Не удалось прочитать weekly_poll_state.json")
         return {
             "polls": {},
             "last_schedule_date": None,
             "last_poll_date": None,
-            "last_summary_date": None,
+            "sent_game_summaries": {},
         }
 
 
 def save_poll_state(state: dict) -> None:
     try:
-        with open(POLL_STATE_FILE, "w", encoding="utf-8") as file:
+        with open(POLL_STATE_FILE + ".tmp", "w", encoding="utf-8") as file:
             json.dump(state, file, ensure_ascii=False, indent=2)
+        os.replace(POLL_STATE_FILE + ".tmp", POLL_STATE_FILE)
     except Exception:
         logging.exception("Не удалось сохранить weekly_poll_state.json")
+        raise
 
 
 def save_events_cache(events: list[dict]) -> None:
@@ -609,8 +612,6 @@ async def send_weekly_poll(
         for index in range(0, len(selected_events), 11)
     ]
     total_parts = len(chunks)
-    state = load_poll_state()
-
     for part_number, chunk in enumerate(chunks, start=1):
         option_texts = [poll_option_text(event) for event in chunk]
         option_texts.append(
@@ -635,6 +636,7 @@ async def send_weekly_poll(
         if sent_poll.poll is None:
             raise RuntimeError("Telegram вернул сообщение без poll")
 
+        state = load_poll_state()
         state.setdefault("polls", {})[sent_poll.poll.id] = {
             "chat_id": chat_id,
             "message_id": sent_poll.message_id,
@@ -643,10 +645,17 @@ async def send_weekly_poll(
             "part_number": part_number,
             "total_parts": total_parts,
             "options": option_texts,
+            "events": {
+                str(index): {
+                    "event_date": event["event_date"].isoformat(),
+                    "name": event["name"],
+                    "time": event["time"],
+                }
+                for index, event in enumerate(chunk)
+            },
             "answers": {},
         }
-
-    save_poll_state(state)
+        save_poll_state(state)
 
     logging.info(
         "Опрос по посещению отправлен в чат %s: %s событий",
@@ -656,76 +665,38 @@ async def send_weekly_poll(
     return True
 
 
-def build_weekly_summary(
-    chat_id: int,
-    week_start: date,
-    week_end: date,
-) -> str | None:
-    state = load_poll_state()
-    matching_polls = [
-        poll
-        for poll in state.get("polls", {}).values()
-        if poll.get("chat_id") == chat_id
-        and poll.get("week_start") == week_start.isoformat()
-        and poll.get("week_end") == week_end.isoformat()
-    ]
+async def send_game_day_summaries(
+    chat_id: int = CHAT_ID,
+    now: datetime | None = None,
+) -> int:
+    now = now or datetime.now(MOSCOW_TZ)
+    if (now.hour, now.minute) < (17, 0):
+        return 0
 
-    if not matching_polls:
-        return None
-
-    matching_polls.sort(key=lambda poll: poll.get("part_number", 1))
-    lines = [
-        "📊 <b>Итог голосования по квизам</b>",
-        f"Период: {week_start.strftime('%d.%m')} — {week_end.strftime('%d.%m')}",
-        "",
-    ]
-
-    has_votes = False
-    for poll in matching_polls:
-        options = poll.get("options", [])
-        answers = poll.get("answers", {})
-        voters_by_option: dict[int, list[str]] = {
-            index: [] for index in range(len(options))
-        }
-
-        for answer in answers.values():
-            user_name = answer.get("name", "Участник")
-            for option_id in answer.get("option_ids", []):
-                if option_id in voters_by_option:
-                    voters_by_option[option_id].append(user_name)
-
-        for option_id, option_text in enumerate(options):
-            voters = sorted(set(voters_by_option.get(option_id, [])))
-            if not voters:
-                continue
-            has_votes = True
-            lines.append(f"<b>{html.escape(option_text)}</b> — {len(voters)}")
-            lines.append(", ".join(html.escape(name) for name in voters))
-            lines.append("")
-
-    if not has_votes:
-        lines.append("Пока никто не проголосовал.")
-
-    return "\n".join(lines).rstrip()
-
-
-async def send_previous_week_summary(chat_id: int = CHAT_ID) -> bool:
-    today = datetime.now(MOSCOW_TZ).date()
-    current_monday = today - timedelta(days=today.weekday())
-    previous_start = current_monday - timedelta(days=7)
-    previous_end = current_monday
-
-    summary = build_weekly_summary(chat_id, previous_start, previous_end)
-    if not summary:
-        logging.info("Нет сохранённого опроса для автоматического итога")
-        return False
-
-    await bot.send_message(
-        chat_id=chat_id,
-        text=summary,
-        parse_mode="HTML",
-    )
-    return True
+    summaries = build_game_day_summaries(load_poll_state(), chat_id, now.date())
+    sent_count = 0
+    for summary in summaries:
+        state = load_poll_state()
+        if summary["key"] in state.get("sent_game_summaries", {}):
+            continue
+        try:
+            message = await bot.send_message(
+                chat_id=chat_id,
+                text=summary["text"],
+                parse_mode="HTML",
+            )
+            # Poll answers may have arrived while Telegram was sending the message.
+            state = load_poll_state()
+            state.setdefault("sent_game_summaries", {})[summary["key"]] = {
+                "event_date": summary["event_date"],
+                "message_id": message.message_id,
+                "sent_at": now.isoformat(),
+            }
+            save_poll_state(state)
+            sent_count += 1
+        except Exception:
+            logging.exception("Не удалось отправить итог по квизу в день игры")
+    return sent_count
 
 
 async def send_quiz_schedule(
@@ -1004,35 +975,31 @@ async def handle_weekpoll(message: types.Message) -> None:
         await message.answer("❌ Не удалось создать опрос по расписанию.")
 
 
+async def run_scheduled_tasks(now: datetime) -> None:
+    # В понедельник сначала публикуем расписание и опрос.
+    if now.weekday() == 0 and (now.hour, now.minute) >= (10, 0):
+        state = load_poll_state()
+        today = now.date().isoformat()
+        if (
+            state.get("last_schedule_date") != today
+            or state.get("last_poll_date") != today
+        ):
+            try:
+                await send_weekly_package()
+            except Exception:
+                logging.exception("Не удалось выполнить еженедельную рассылку")
+
+    # В 17:00 МСК отправляем итоги только по играм сегодняшней даты.
+    # Недельного итога в следующий понедельник больше нет.
+    await send_game_day_summaries(now=now)
+
+
 async def weekly_schedule_loop() -> None:
     while True:
-        now = datetime.now(MOSCOW_TZ)
-        today = now.date()
-        state = load_poll_state()
-
-        if now.weekday() == 0 and (now.hour, now.minute) >= (9, 50):
-            if state.get("last_summary_date") != today.isoformat():
-                try:
-                    await send_previous_week_summary()
-                    state = load_poll_state()
-                    state["last_summary_date"] = today.isoformat()
-                    save_poll_state(state)
-                except Exception:
-                    logging.exception("Не удалось отправить автоматический итог голосования")
-
-        # В 10:00 публикуем расписание и сразу следом опрос.
-        # Если бот перезапустится позже, он догонит пропущенную рассылку.
-        if now.weekday() == 0 and (now.hour, now.minute) >= (10, 0):
-            state = load_poll_state()
-            if (
-                state.get("last_schedule_date") != today.isoformat()
-                or state.get("last_poll_date") != today.isoformat()
-            ):
-                try:
-                    await send_weekly_package()
-                except Exception:
-                    logging.exception("Не удалось выполнить еженедельную рассылку")
-
+        try:
+            await run_scheduled_tasks(datetime.now(MOSCOW_TZ))
+        except Exception:
+            logging.exception("Ошибка проверки запланированных сообщений")
         await asyncio.sleep(30)
 
 
