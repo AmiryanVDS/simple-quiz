@@ -196,6 +196,48 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(stored["option_ids"], options)
         self.sender.assert_not_awaited()
 
+    async def test_team_reminder_replies_to_poll_and_mentions_only_nonvoter(self):
+        roster = [{"name": "Иван", "user_id": 1}, {"name": "Анна", "user_id": 2}]
+        bot_module.save_poll_state({"polls": {"p": poll(
+            message_id=123, answers={"1": answer("Иван", [0])},
+        )}})
+        with patch.object(bot_module, "TEAM_ROSTER", roster):
+            await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW))
+        sent = self.sender.await_args.kwargs
+        self.assertEqual(sent["reply_parameters"].message_id, 123)
+        self.assertTrue(sent["reply_parameters"].allow_sending_without_reply)
+        self.assertIn('<a href="tg://user?id=2">Анна</a>', sent["text"])
+        self.assertNotIn("tg://user?id=1", sent["text"])
+
+    async def test_team_message_and_poll_answer_save_user_binding(self):
+        roster = [{"name": "Иван"}, {"name": "Анна"}]
+        ivan = bot_module.types.User(id=1, is_bot=False, first_name="Иван")
+        anna = bot_module.types.User(id=2, is_bot=False, first_name="Анна", username="anna")
+        with patch.object(bot_module, "TEAM_ROSTER", roster):
+            await bot_module.handle_team_message(SimpleNamespace(from_user=ivan))
+            await bot_module.handle_poll_answer(bot_module.types.PollAnswer(
+                poll_id="p", user=anna, option_ids=[0], option_persistent_ids=["option-0"],
+            ))
+        state = bot_module.load_poll_state()
+        self.assertEqual(state["team_users"][str(CHAT)]["1"]["roster_name"], "Иван")
+        self.assertEqual(state["team_users"][str(CHAT)]["2"]["username"], "anna")
+        self.assertEqual(state["polls"]["p"]["answers"]["2"]["full_name"], "Анна")
+        self.sender.assert_not_awaited()
+
+    async def test_startup_persists_legacy_binding_across_rename(self):
+        bot_module.save_poll_state({"polls": {"p": poll(answers={"1": answer("Иван ⚽", [0])})}})
+        with (
+            patch.object(bot_module, "TEAM_ROSTER", [{"name": "Иван"}]),
+            patch.object(bot_module, "bot", SimpleNamespace(set_my_commands=AsyncMock())),
+            patch.object(bot_module.asyncio, "create_task", side_effect=lambda coroutine: coroutine.close()),
+        ):
+            await bot_module.on_startup()
+            renamed = bot_module.types.User(id=1, is_bot=False, first_name="Новое имя")
+            await bot_module.handle_team_message(SimpleNamespace(from_user=renamed))
+        state = bot_module.load_poll_state()
+        self.assertEqual(state["team_users"][str(CHAT)]["1"]["roster_name"], "Иван")
+        self.assertEqual(state["team_users"][str(CHAT)]["1"]["full_name"], "Новое имя")
+
     async def test_multipart_poll_saves_dates_without_losing_existing_votes(self):
         events = [{"name": f"Квиз {i}", "time": "20:00", "event_date": TODAY} for i in range(12)]
         calls = 0

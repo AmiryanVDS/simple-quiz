@@ -22,10 +22,13 @@ from dotenv import load_dotenv
 
 from training_data import build_training_questions
 from poll_summary import build_game_day_summaries
+from team_members import remember_team_user, resolve_team_members
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
+with open(os.path.join(BASE_DIR, "team_roster.json"), encoding="utf-8") as roster_file:
+    TEAM_ROSTER = json.load(roster_file)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -673,17 +676,27 @@ async def send_game_day_summaries(
     if (now.hour, now.minute) < (17, 0):
         return 0
 
-    summaries = build_game_day_summaries(load_poll_state(), chat_id, now.date())
+    state = load_poll_state()
+    team = resolve_team_members(state, chat_id, TEAM_ROSTER)
+    summaries = build_game_day_summaries(state, chat_id, now.date(), team=team)
     sent_count = 0
     for summary in summaries:
         state = load_poll_state()
         if summary["key"] in state.get("sent_game_summaries", {}):
             continue
         try:
+            reply = (
+                types.ReplyParameters(
+                    message_id=summary["poll_message_id"],
+                    allow_sending_without_reply=True,
+                )
+                if summary["poll_message_id"] else None
+            )
             message = await bot.send_message(
                 chat_id=chat_id,
                 text=summary["text"],
                 parse_mode="HTML",
+                reply_parameters=reply,
             )
             # Poll answers may have arrived while Telegram was sending the message.
             state = load_poll_state()
@@ -939,9 +952,16 @@ async def handle_poll_answer(poll_answer: types.PollAnswer) -> None:
 
     poll.setdefault("answers", {})[str(user.id)] = {
         "name": display_user_name(user),
+        "full_name": user.full_name,
+        "username": user.username,
         "option_ids": list(poll_answer.option_ids),
         "updated_at": datetime.now(MOSCOW_TZ).isoformat(),
     }
+    if poll.get("chat_id") == CHAT_ID:
+        remember_team_user(
+            state, CHAT_ID, user, TEAM_ROSTER,
+            datetime.now(MOSCOW_TZ).isoformat(),
+        )
     save_poll_state(state)
 
 
@@ -975,6 +995,19 @@ async def handle_weekpoll(message: types.Message) -> None:
         await message.answer("❌ Не удалось создать опрос по расписанию.")
 
 
+@dispatcher.message(F.chat.id == CHAT_ID)
+async def handle_team_message(message: types.Message) -> None:
+    user = message.from_user
+    if user is None:
+        return
+    state = load_poll_state()
+    if remember_team_user(
+        state, CHAT_ID, user, TEAM_ROSTER,
+        datetime.now(MOSCOW_TZ).isoformat(),
+    ):
+        save_poll_state(state)
+
+
 async def run_scheduled_tasks(now: datetime) -> None:
     # В понедельник сначала публикуем расписание и опрос.
     if now.weekday() == 0 and (now.hour, now.minute) >= (10, 0):
@@ -1004,6 +1037,17 @@ async def weekly_schedule_loop() -> None:
 
 
 async def on_startup() -> None:
+    state = load_poll_state()
+    members = resolve_team_members(state, CHAT_ID, TEAM_ROSTER)
+    known = state.setdefault("team_users", {}).setdefault(str(CHAT_ID), {})
+    for member in members:
+        if member.get("user_id"):
+            known.setdefault(str(member["user_id"]), {}).update({"roster_name": member["name"]})
+    save_poll_state(state)
+    logging.info(
+        "Состав команды: %s участников, Telegram ID известны для %s",
+        len(members), sum(bool(member.get("user_id")) for member in members),
+    )
     asyncio.create_task(weekly_schedule_loop())
     await bot.set_my_commands(
         [
