@@ -41,7 +41,12 @@ def poll_events(poll: dict):
         yield option_id, option_text, event_date
 
 
-def build_game_day_summaries(state: dict, chat_id: int, today: date) -> list[dict]:
+def build_game_day_summaries(
+    state: dict,
+    chat_id: int,
+    today: date,
+    team: list[dict] | None = None,
+) -> list[dict]:
     """Merge copies of a game and use each Telegram user's latest response."""
     games = {}
     for poll in state.get("polls", {}).values():
@@ -53,7 +58,8 @@ def build_game_day_summaries(state: dict, chat_id: int, today: date) -> list[dic
             # The option text also identifies legacy games without stored metadata.
             identity = json.dumps([chat_id, event_date.isoformat(), option_text], ensure_ascii=False)
             key = hashlib.sha256(identity.encode("utf-8")).hexdigest()
-            game = games.setdefault(key, {"option_text": option_text, "answers": {}})
+            game = games.setdefault(key, {"option_text": option_text, "answers": {}, "message_id": 0})
+            game["message_id"] = max(game["message_id"], poll.get("message_id", 0))
             for user_id, answer in poll.get("answers", {}).items():
                 previous = game["answers"].get(user_id)
                 if previous and previous["updated_at"] > answer.get("updated_at", ""):
@@ -85,9 +91,34 @@ def build_game_day_summaries(state: dict, chat_id: int, today: date) -> list[dic
             "",
             f"❌ <b>Не идут — {len(not_going)}</b>",
             ", ".join(html.escape(name) for name in not_going) or "Пока нет таких ответов.",
-            "",
-            "Учитываются ответы в опросе. Те, кто не ответил или отменил голос, "
-            "не считаются отказавшимися.",
         ]
-        result.append({"key": key, "event_date": today.isoformat(), "text": "\n".join(lines)})
+        if team is not None:
+            unanswered = [
+                member for member in team
+                if not game["answers"].get(str(member.get("user_id")), {}).get("answered")
+            ]
+            mentions = [
+                f'<a href="tg://user?id={int(member["user_id"])}">{html.escape(member["name"])}</a>'
+                if member.get("user_id") else html.escape(member["name"])
+                for member in unanswered
+            ]
+            lines.extend([
+                "",
+                f"⏳ <b>Не проголосовали — {len(unanswered)}</b>",
+                ", ".join(mentions) or "Все участники команды ответили.",
+            ])
+            if unanswered:
+                lines.extend(["", "Пожалуйста, ответьте в опросе: выберите игры или вариант «Не иду»."])
+        else:
+            lines.extend([
+                "",
+                "Учитываются ответы в опросе. Те, кто не ответил или отменил голос, "
+                "не считаются отказавшимися.",
+            ])
+        result.append({
+            "key": key,
+            "event_date": today.isoformat(),
+            "text": "\n".join(lines),
+            "poll_message_id": game["message_id"],
+        })
     return result
