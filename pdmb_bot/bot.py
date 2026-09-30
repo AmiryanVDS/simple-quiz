@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 from training_data import build_training_questions
-from poll_summary import build_game_day_summaries
+from poll_summary import build_game_day_reminder, build_game_day_summaries
 from team_members import remember_team_user, resolve_team_members
 
 
@@ -712,6 +712,52 @@ async def send_game_day_summaries(
     return sent_count
 
 
+async def send_game_day_reminder(
+    chat_id: int = CHAT_ID,
+    now: datetime | None = None,
+) -> bool:
+    now = now or datetime.now(MOSCOW_TZ)
+    # В понедельник утреннее напоминание заменяют расписание и опрос.
+    if now.weekday() == 0 or not (10 <= now.hour < 17):
+        return False
+
+    today = now.date().isoformat()
+    reminder_key = f"{chat_id}:{today}"
+    state = load_poll_state()
+    if reminder_key in state.get("sent_game_reminders", {}):
+        return False
+    reminder = build_game_day_reminder(state, chat_id, now.date())
+    if reminder is None:
+        return False
+
+    try:
+        reply = (
+            types.ReplyParameters(
+                message_id=reminder["poll_message_id"],
+                allow_sending_without_reply=True,
+            )
+            if reminder["poll_message_id"] else None
+        )
+        message = await bot.send_message(
+            chat_id=chat_id,
+            text=reminder["text"],
+            parse_mode="HTML",
+            reply_parameters=reply,
+        )
+        state = load_poll_state()
+        state.setdefault("sent_game_reminders", {})[reminder_key] = {
+            "event_date": today,
+            "message_id": message.message_id,
+            "sent_at": now.isoformat(),
+        }
+        save_poll_state(state)
+        logging.info("Утреннее напоминание о квизах отправлено в чат %s", chat_id)
+        return True
+    except Exception:
+        logging.exception("Не удалось отправить напоминание о сегодняшнем квизе")
+        return False
+
+
 async def send_quiz_schedule(
     chat_id: int = CHAT_ID,
     private: bool = False,
@@ -1021,6 +1067,9 @@ async def run_scheduled_tasks(now: datetime) -> None:
                 await send_weekly_package()
             except Exception:
                 logging.exception("Не удалось выполнить еженедельную рассылку")
+
+    # Одно напоминание в день: при позднем запуске досылаем до 17:00.
+    await send_game_day_reminder(now=now)
 
     # В 17:00 МСК отправляем итоги только по играм сегодняшней даты.
     # Недельного итога в следующий понедельник больше нет.

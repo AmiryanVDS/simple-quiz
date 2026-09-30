@@ -41,6 +41,38 @@ def poll_events(poll: dict):
         yield option_id, option_text, event_date
 
 
+def build_game_day_reminder(state: dict, chat_id: int, today: date) -> dict | None:
+    """Build one reminder for all today's games already present in weekly polls."""
+    games: dict[str, int] = {}
+    for poll in state.get("polls", {}).values():
+        if poll.get("chat_id") != chat_id:
+            continue
+        message_id = poll.get("message_id") or 0
+        for _, option_text, event_date in poll_events(poll):
+            if event_date == today:
+                games[option_text] = max(games.get(option_text, 0), message_id)
+
+    if not games:
+        return None
+
+    private_chat_id = str(chat_id)[4:] if str(chat_id).startswith("-100") else None
+    lines = ["🔔 <b>Сегодня квизы</b>" if len(games) > 1 else "🔔 <b>Сегодня квиз</b>", ""]
+    for option_text, message_id in sorted(games.items()):
+        title = html.escape(option_text)
+        if private_chat_id and message_id:
+            title = f'<a href="https://t.me/c/{private_chat_id}/{message_id}">{title}</a>'
+        lines.append(f"• {title}")
+    lines.extend([
+        "",
+        "Проверьте свой ответ в недельном опросе до 17:00 МСК, "
+        "чтобы ваш выбор попал в итог.",
+    ])
+    return {
+        "text": "\n".join(lines),
+        "poll_message_id": next((message_id for message_id in games.values() if message_id), 0),
+    }
+
+
 def build_game_day_summaries(
     state: dict,
     chat_id: int,

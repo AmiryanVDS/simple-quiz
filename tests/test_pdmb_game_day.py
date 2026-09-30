@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pdmb_bot"))
-from poll_summary import build_game_day_summaries
+from poll_summary import build_game_day_reminder, build_game_day_summaries
 
 IMPORT_STATE = tempfile.TemporaryDirectory()
 with patch.dict(os.environ, {
@@ -120,6 +120,41 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("Не идут — 0", text)
 
 
+class ReminderSummaryTests(unittest.TestCase):
+    def test_one_message_links_each_game_to_its_poll(self):
+        first = poll(
+            options=["30.09 (СР) 20:00 — Видеоигры", "❌ Не иду"],
+            message_id=123,
+        )
+        second = poll(
+            options=["30.09 (СР) 20:00 — Спортивный квиз", "❌ Не иду"],
+            message_id=456,
+        )
+        duplicate = poll(
+            options=["30.09 (СР) 20:00 — Видеоигры", "❌ Не иду"],
+            message_id=100,
+        )
+        state = {"polls": {"first": first, "second": second, "old": duplicate}}
+        reminder = build_game_day_reminder(state, CHAT, TODAY)
+        self.assertEqual(reminder["poll_message_id"], 123)
+        self.assertIn("Сегодня квизы", reminder["text"])
+        self.assertEqual(reminder["text"].count("Видеоигры"), 1)
+        self.assertIn('href="https://t.me/c/123/123"', reminder["text"])
+        self.assertIn('href="https://t.me/c/123/456"', reminder["text"])
+        self.assertIn("до 17:00 МСК", reminder["text"])
+
+    def test_only_today_and_correct_chat(self):
+        state = {"polls": {
+            "p": poll(message_id=123),
+            "other": poll(message_id=999, chat_id=42),
+        }}
+        reminder = build_game_day_reminder(state, CHAT, TODAY)
+        self.assertIn("Сегодня квиз", reminder["text"])
+        self.assertNotIn("Футбол", reminder["text"])
+        self.assertNotIn("/999", reminder["text"])
+        self.assertIsNone(build_game_day_reminder(state, CHAT, date(2026, 10, 1)))
+
+
 class DeliveryTests(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -143,6 +178,57 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         record = next(iter(bot_module.load_poll_state()["sent_game_summaries"].values()))
         self.assertEqual(record["event_date"], "2026-09-30")
         self.assertEqual(record["message_id"], 77)
+
+    async def test_morning_reminder_catches_up_once_before_summary(self):
+        state = bot_module.load_poll_state()
+        state["polls"]["p"]["message_id"] = 123
+        bot_module.save_poll_state(state)
+        self.assertFalse(await bot_module.send_game_day_reminder(
+            now=datetime(2026, 9, 30, 9, 59, tzinfo=MOSCOW)))
+        self.assertTrue(await bot_module.send_game_day_reminder(
+            now=datetime(2026, 9, 30, 12, 30, tzinfo=MOSCOW)))
+        self.assertFalse(await bot_module.send_game_day_reminder(
+            now=datetime(2026, 9, 30, 16, 59, tzinfo=MOSCOW)))
+        self.assertEqual(self.sender.await_count, 1)
+        self.assertEqual(self.sender.await_args.kwargs["reply_parameters"].message_id, 123)
+        saved = bot_module.load_poll_state()
+        self.assertIn(f"{CHAT}:2026-09-30", saved["sent_game_reminders"])
+        self.assertNotIn("sent_game_summaries", saved)
+
+    async def test_morning_reminder_skips_monday_and_after_1700(self):
+        for when in (
+            datetime(2026, 10, 5, 10, 0, tzinfo=MOSCOW),
+            datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW),
+        ):
+            self.assertFalse(await bot_module.send_game_day_reminder(now=when))
+        self.sender.assert_not_awaited()
+
+    async def test_no_morning_game_can_be_sent_if_poll_arrives_later(self):
+        bot_module.save_poll_state({"polls": {}})
+        now = datetime(2026, 9, 30, 12, 0, tzinfo=MOSCOW)
+        self.assertFalse(await bot_module.send_game_day_reminder(now=now))
+        self.assertNotIn("sent_game_reminders", bot_module.load_poll_state())
+        bot_module.save_poll_state({"polls": {"p": poll(message_id=123)}})
+        self.assertTrue(await bot_module.send_game_day_reminder(now=now))
+
+    async def test_failed_morning_send_retries_and_preserves_concurrent_vote(self):
+        async def failed(**kwargs):
+            raise RuntimeError("Telegram temporarily unavailable")
+        self.sender.side_effect = failed
+        now = datetime(2026, 9, 30, 10, 0, tzinfo=MOSCOW)
+        with self.assertLogs(level="ERROR"):
+            self.assertFalse(await bot_module.send_game_day_reminder(now=now))
+        self.assertNotIn("sent_game_reminders", bot_module.load_poll_state())
+
+        async def succeeded(**kwargs):
+            state = bot_module.load_poll_state()
+            state["polls"]["p"]["answers"]["5"] = answer("Поздний", [0])
+            bot_module.save_poll_state(state)
+            return SimpleNamespace(message_id=77)
+        self.sender.side_effect = succeeded
+        self.assertTrue(await bot_module.send_game_day_reminder(now=now))
+        self.assertIn("5", bot_module.load_poll_state()["polls"]["p"]["answers"])
+        self.assertEqual(self.sender.await_count, 2)
 
     async def test_no_game_does_not_mark_day_done(self):
         bot_module.save_poll_state({"polls": {}})
