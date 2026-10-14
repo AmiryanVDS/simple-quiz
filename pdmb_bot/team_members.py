@@ -4,6 +4,31 @@ import re
 import unicodedata
 
 
+def apply_private_ids(roster: list[dict], ids_by_name: dict) -> list[dict]:
+    """Add private Telegram IDs to the public roster without changing it."""
+    if not isinstance(ids_by_name, dict):
+        raise ValueError("Private team IDs must be a name-to-ID object")
+    names = {member["name"] for member in roster}
+    if set(ids_by_name) - names:
+        raise ValueError("Private team IDs contain unknown roster names")
+
+    members = [dict(member) for member in roster]
+    used_ids = set()
+    for member in members:
+        user_id = ids_by_name.get(member["name"], member.get("user_id"))
+        if user_id is None:
+            continue
+        if isinstance(user_id, bool) or not isinstance(user_id, int) or user_id <= 0:
+            raise ValueError("Private team IDs must be positive integers")
+        if member.get("user_id") and member["user_id"] != user_id:
+            raise ValueError("Private team ID conflicts with the public roster")
+        if user_id in used_ids:
+            raise ValueError("Private team IDs must be unique")
+        used_ids.add(user_id)
+        member["user_id"] = user_id
+    return members
+
+
 def normalized_name(value: str) -> str:
     value = re.sub(r"\s*\(@[^)]+\)\s*$", "", value)
     value = unicodedata.normalize("NFKC", value).casefold().replace("ё", "е")
