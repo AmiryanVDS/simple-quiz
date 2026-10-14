@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from datetime import date
@@ -13,6 +14,7 @@ from team_members import normalized_name, remember_team_user, resolve_team_membe
 CHAT = -100123
 TODAY = date(2026, 9, 30)
 TEAM = [{"name": "Иван", "user_id": 1}, {"name": "Пётр", "user_id": 2}, {"name": "Анна", "user_id": 3}]
+ROSTER = json.loads((Path(__file__).resolve().parents[1] / "pdmb_bot" / "team_roster.json").read_text())
 
 
 def state_with_answers(answers):
@@ -74,6 +76,58 @@ class NonvoterTests(unittest.TestCase):
 
 
 class MemberBindingTests(unittest.TestCase):
+    def test_actual_poll_names_map_to_seven_roster_members_without_overlap(self):
+        names = [
+            "Armen Khachatryan (@armen_test)",
+            "Kostya",
+            "Maxim Derbenev (@maxim_test)",
+            "Ruslan",
+            "david (@david_test)",
+            "Василий Амирян (@vasily_test)",
+            "Тимур",
+        ]
+        state = state_with_answers({
+            str(index): profile(name, [1]) for index, name in enumerate(names, start=1)
+        })
+        team = resolve_team_members(state, CHAT, ROSTER)
+        self.assertEqual(sum(bool(member.get("user_id")) for member in team), 7)
+        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
+        self.assertIn("Не идут — 7", summary)
+        self.assertIn("Не проголосовали — 1", summary)
+        self.assertIn("Али Алекперов", summary)
+        self.assertNotIn("@david_test", summary)
+        self.assertNotIn("Kostya", summary)
+        for member in team:
+            if member["name"] != "Али Алекперов":
+                self.assertEqual(summary.count(member["name"]), 1)
+
+    def test_username_beats_conflicting_display_name(self):
+        state = state_with_answers({"7": {
+            **profile("Kostya (@david_test)", [1]),
+            "full_name": "Kostya", "username": "david_test",
+        }})
+        roster = [{"name": "Давид Маргиев", "usernames": ["david_test"]},
+                  {"name": "Костя", "aliases": ["Kostya"]}]
+        team = resolve_team_members(state, CHAT, roster)
+        by_name = {member["name"]: member.get("user_id") for member in team}
+        self.assertEqual(by_name["Давид Маргиев"], 7)
+        self.assertIsNone(by_name["Костя"])
+
+    def test_ambiguous_alias_does_not_guess_id(self):
+        state = state_with_answers({"7": profile("Ruslan", [1]), "8": profile("Ruslan", [1])})
+        team = resolve_team_members(state, CHAT, ROSTER)
+        ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
+        self.assertNotIn("user_id", ruslan)
+
+    def test_new_message_with_alias_or_username_saves_canonical_name(self):
+        state = {"polls": {}}
+        user = SimpleNamespace(id=7, is_bot=False, full_name="Kostya", username=None)
+        self.assertTrue(remember_team_user(state, CHAT, user, ROSTER, "2026-10-14T12:00:00+03:00"))
+        self.assertEqual(state["team_users"][str(CHAT)]["7"]["roster_name"], "Костя")
+        user = SimpleNamespace(id=8, is_bot=False, full_name="david", username="david_test")
+        self.assertTrue(remember_team_user(state, CHAT, user, ROSTER, "2026-10-14T12:00:00+03:00"))
+        self.assertEqual(state["team_users"][str(CHAT)]["8"]["roster_name"], "Давид Маргиев")
+
     def test_exact_legacy_names_ignore_emojis_username_and_yo(self):
         self.assertEqual(normalized_name("Пётр Петров ⚽ (@petr)"), "петр петров")
         state = state_with_answers({"7": profile("Пётр Петров ⚽ (@petr)", [0])})
