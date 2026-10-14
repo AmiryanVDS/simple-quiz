@@ -31,8 +31,16 @@ def profile_names(profile: dict) -> set[str]:
         return {normalized_name(profile["roster_name"])}
     return {
         normalized_name(name)
-        for name in (profile.get("full_name"), profile.get("name"))
+        for observation in [profile, *profile.get("_observations", [])]
+        for name in (observation.get("full_name"), observation.get("name"))
         if name
+    }
+
+
+def profile_usernames(profile: dict) -> set[str]:
+    return {
+        username for observation in [profile, *profile.get("_observations", [])]
+        if (username := profile_username(observation))
     }
 
 
@@ -41,21 +49,27 @@ def matching_ids(member: dict, profiles: dict, by_username: bool) -> list[str]:
         usernames = {normalized_username(value) for value in member.get("usernames", [])}
         usernames.discard("")
         return [user_id for user_id, profile in profiles.items()
-                if profile_username(profile) in usernames] if usernames else []
+                if usernames & profile_usernames(profile)] if usernames else []
     names = member_names(member)
     return [user_id for user_id, profile in profiles.items()
             if names & profile_names(profile)]
 
 
 def resolve_team_members(state: dict, chat_id: int, roster: list[dict]) -> list[dict]:
-    profiles = dict(state.get("team_users", {}).get(str(chat_id), {}))
+    profiles = {
+        user_id: {**profile, "_observations": []}
+        for user_id, profile in state.get("team_users", {}).get(str(chat_id), {}).items()
+    }
     for poll in state.get("polls", {}).values():
         if poll.get("chat_id") != chat_id:
             continue
         for user_id, answer in poll.get("answers", {}).items():
             previous = profiles.get(user_id, {})
+            observations = [*previous.get("_observations", []), answer]
             if answer.get("updated_at", "") >= previous.get("updated_at", ""):
-                profiles[user_id] = {**previous, **answer}
+                profiles[user_id] = {**previous, **answer, "_observations": observations}
+            else:
+                previous["_observations"] = observations
 
     members = [dict(member) for member in roster]
     used_ids = {int(member["user_id"]) for member in members if member.get("user_id")}

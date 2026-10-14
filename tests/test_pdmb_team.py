@@ -119,6 +119,40 @@ class MemberBindingTests(unittest.TestCase):
         ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
         self.assertNotIn("user_id", ruslan)
 
+    def test_older_poll_name_survives_later_telegram_rename(self):
+        state = state_with_answers({"7": {
+            **profile("Новое имя", [1]),
+            "updated_at": "2026-10-14T12:00:00+03:00",
+        }})
+        state["polls"]["older"] = {
+            "chat_id": CHAT,
+            "week_start": "2026-09-21", "week_end": "2026-09-28",
+            "options": ["23.09 (СР) 20:00 — Спорт"],
+            "answers": {"7": {
+                **profile("Ruslan", [0]),
+                "updated_at": "2026-09-23T12:00:00+03:00",
+            }},
+        }
+        team = resolve_team_members(state, CHAT, ROSTER)
+        ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
+        self.assertEqual(ruslan["user_id"], 7)
+        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
+        self.assertIn("Руслан Исмаилов", summary)
+        self.assertNotIn("Новое имя", summary)
+        self.assertNotIn("Не проголосовали — 8", summary)
+
+    def test_shared_historical_alias_remains_ambiguous(self):
+        state = state_with_answers({"7": profile("Ruslan", [1])})
+        state["polls"]["older"] = {
+            "chat_id": CHAT,
+            "week_start": "2026-09-21", "week_end": "2026-09-28",
+            "options": ["23.09 (СР) 20:00 — Спорт"],
+            "answers": {"8": profile("Ruslan", [0])},
+        }
+        team = resolve_team_members(state, CHAT, ROSTER)
+        ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
+        self.assertNotIn("user_id", ruslan)
+
     def test_new_message_with_alias_or_username_saves_canonical_name(self):
         state = {"polls": {}}
         user = SimpleNamespace(id=7, is_bot=False, full_name="Kostya", username=None)
