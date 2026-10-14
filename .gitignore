@@ -19,3 +19,4 @@ __pycache__/
 
 # Секреты Telegram-бота
 pdmb_bot/.env
+pdmb_bot/private_team_ids.json

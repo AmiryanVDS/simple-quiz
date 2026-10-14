@@ -4,6 +4,31 @@ import re
 import unicodedata
 
 
+def apply_private_ids(roster: list[dict], ids_by_name: dict) -> list[dict]:
+    """Add private Telegram IDs to the public roster without changing it."""
+    if not isinstance(ids_by_name, dict):
+        raise ValueError("Private team IDs must be a name-to-ID object")
+    names = {member["name"] for member in roster}
+    if set(ids_by_name) - names:
+        raise ValueError("Private team IDs contain unknown roster names")
+
+    members = [dict(member) for member in roster]
+    used_ids = set()
+    for member in members:
+        user_id = ids_by_name.get(member["name"], member.get("user_id"))
+        if user_id is None:
+            continue
+        if isinstance(user_id, bool) or not isinstance(user_id, int) or user_id <= 0:
+            raise ValueError("Private team IDs must be positive integers")
+        if member.get("user_id") and member["user_id"] != user_id:
+            raise ValueError("Private team ID conflicts with the public roster")
+        if user_id in used_ids:
+            raise ValueError("Private team IDs must be unique")
+        used_ids.add(user_id)
+        member["user_id"] = user_id
+    return members
+
+
 def normalized_name(value: str) -> str:
     value = re.sub(r"\s*\(@[^)]+\)\s*$", "", value)
     value = unicodedata.normalize("NFKC", value).casefold().replace("ё", "е")
@@ -31,8 +56,16 @@ def profile_names(profile: dict) -> set[str]:
         return {normalized_name(profile["roster_name"])}
     return {
         normalized_name(name)
-        for name in (profile.get("full_name"), profile.get("name"))
+        for observation in [profile, *profile.get("_observations", [])]
+        for name in (observation.get("full_name"), observation.get("name"))
         if name
+    }
+
+
+def profile_usernames(profile: dict) -> set[str]:
+    return {
+        username for observation in [profile, *profile.get("_observations", [])]
+        if (username := profile_username(observation))
     }
 
 
@@ -41,21 +74,27 @@ def matching_ids(member: dict, profiles: dict, by_username: bool) -> list[str]:
         usernames = {normalized_username(value) for value in member.get("usernames", [])}
         usernames.discard("")
         return [user_id for user_id, profile in profiles.items()
-                if profile_username(profile) in usernames] if usernames else []
+                if usernames & profile_usernames(profile)] if usernames else []
     names = member_names(member)
     return [user_id for user_id, profile in profiles.items()
             if names & profile_names(profile)]
 
 
 def resolve_team_members(state: dict, chat_id: int, roster: list[dict]) -> list[dict]:
-    profiles = dict(state.get("team_users", {}).get(str(chat_id), {}))
+    profiles = {
+        user_id: {**profile, "_observations": []}
+        for user_id, profile in state.get("team_users", {}).get(str(chat_id), {}).items()
+    }
     for poll in state.get("polls", {}).values():
         if poll.get("chat_id") != chat_id:
             continue
         for user_id, answer in poll.get("answers", {}).items():
             previous = profiles.get(user_id, {})
+            observations = [*previous.get("_observations", []), answer]
             if answer.get("updated_at", "") >= previous.get("updated_at", ""):
-                profiles[user_id] = {**previous, **answer}
+                profiles[user_id] = {**previous, **answer, "_observations": observations}
+            else:
+                previous["_observations"] = observations
 
     members = [dict(member) for member in roster]
     used_ids = {int(member["user_id"]) for member in members if member.get("user_id")}

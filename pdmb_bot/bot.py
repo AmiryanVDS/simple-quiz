@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 
 from training_data import build_training_questions
 from poll_summary import build_game_day_reminder, build_game_day_summaries
-from team_members import remember_team_user, resolve_team_members
+from team_members import apply_private_ids, remember_team_user, resolve_team_members
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -68,6 +68,10 @@ DEFAULT_STATE_DIR = (
 )
 STATE_DIR = os.getenv("PDMB_STATE_DIR", DEFAULT_STATE_DIR)
 os.makedirs(STATE_DIR, exist_ok=True)
+PRIVATE_TEAM_IDS_FILE = os.path.join(STATE_DIR, "private_team_ids.json")
+if os.path.exists(PRIVATE_TEAM_IDS_FILE):
+    with open(PRIVATE_TEAM_IDS_FILE, encoding="utf-8") as ids_file:
+        TEAM_ROSTER = apply_private_ids(TEAM_ROSTER, json.load(ids_file))
 POLL_STATE_FILE = os.path.join(STATE_DIR, "weekly_poll_state.json")
 EVENTS_CACHE_FILE = os.path.join(STATE_DIR, "quiz_events_cache.json")
 
@@ -1097,6 +1101,17 @@ async def on_startup() -> None:
         "Состав команды: %s участников, Telegram ID известны для %s",
         len(members), sum(bool(member.get("user_id")) for member in members),
     )
+    now = datetime.now(MOSCOW_TZ)
+    if (now.hour, now.minute) >= (17, 0):
+        try:
+            summaries = build_game_day_summaries(state, CHAT_ID, now.date(), team=members)
+            sent = state.get("sent_game_summaries", {})
+            logging.info(
+                "Итоги сегодняшних квизов: %s всего, %s уже отмечены отправленными",
+                len(summaries), sum(summary["key"] in sent for summary in summaries),
+            )
+        except Exception:
+            logging.exception("Не удалось проверить состояние сегодняшних итогов")
     asyncio.create_task(weekly_schedule_loop())
     await bot.set_my_commands(
         [

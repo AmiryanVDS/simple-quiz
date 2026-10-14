@@ -8,7 +8,7 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pdmb_bot"))
 from poll_summary import build_game_day_summaries
-from team_members import normalized_name, remember_team_user, resolve_team_members
+from team_members import apply_private_ids, normalized_name, remember_team_user, resolve_team_members
 
 
 CHAT = -100123
@@ -76,6 +76,27 @@ class NonvoterTests(unittest.TestCase):
 
 
 class MemberBindingTests(unittest.TestCase):
+    def test_private_ids_bind_members_without_exposing_ids_in_public_roster(self):
+        roster = [{"name": "Иван"}, {"name": "Анна"}]
+        members = apply_private_ids(roster, {"Иван": 7, "Анна": 8})
+        state = state_with_answers({"7": profile("Другое имя", [0])})
+        team = resolve_team_members(state, CHAT, members)
+        self.assertEqual([member["user_id"] for member in team], [7, 8])
+        self.assertNotIn("user_id", roster[0])
+        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
+        self.assertIn("Идут — 1", summary)
+        self.assertIn("Не проголосовали — 1", summary)
+        self.assertIn('tg://user?id=8', summary)
+
+    def test_private_ids_reject_duplicate_or_unknown_bindings(self):
+        roster = [{"name": "Иван"}, {"name": "Анна"}]
+        with self.assertRaises(ValueError):
+            apply_private_ids(roster, {"Иван": 7, "Анна": 7})
+        with self.assertRaises(ValueError):
+            apply_private_ids(roster, {"Пётр": 9})
+        with self.assertRaises(ValueError):
+            apply_private_ids(roster, {"Иван": True})
+
     def test_actual_poll_names_map_to_seven_roster_members_without_overlap(self):
         names = [
             "Armen Khachatryan (@armen_test)",
@@ -115,6 +136,40 @@ class MemberBindingTests(unittest.TestCase):
 
     def test_ambiguous_alias_does_not_guess_id(self):
         state = state_with_answers({"7": profile("Ruslan", [1]), "8": profile("Ruslan", [1])})
+        team = resolve_team_members(state, CHAT, ROSTER)
+        ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
+        self.assertNotIn("user_id", ruslan)
+
+    def test_older_poll_name_survives_later_telegram_rename(self):
+        state = state_with_answers({"7": {
+            **profile("Новое имя", [1]),
+            "updated_at": "2026-10-14T12:00:00+03:00",
+        }})
+        state["polls"]["older"] = {
+            "chat_id": CHAT,
+            "week_start": "2026-09-21", "week_end": "2026-09-28",
+            "options": ["23.09 (СР) 20:00 — Спорт"],
+            "answers": {"7": {
+                **profile("Ruslan", [0]),
+                "updated_at": "2026-09-23T12:00:00+03:00",
+            }},
+        }
+        team = resolve_team_members(state, CHAT, ROSTER)
+        ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
+        self.assertEqual(ruslan["user_id"], 7)
+        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
+        self.assertIn("Руслан Исмаилов", summary)
+        self.assertNotIn("Новое имя", summary)
+        self.assertNotIn("Не проголосовали — 8", summary)
+
+    def test_shared_historical_alias_remains_ambiguous(self):
+        state = state_with_answers({"7": profile("Ruslan", [1])})
+        state["polls"]["older"] = {
+            "chat_id": CHAT,
+            "week_start": "2026-09-21", "week_end": "2026-09-28",
+            "options": ["23.09 (СР) 20:00 — Спорт"],
+            "answers": {"8": profile("Ruslan", [0])},
+        }
         team = resolve_team_members(state, CHAT, ROSTER)
         ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
         self.assertNotIn("user_id", ruslan)

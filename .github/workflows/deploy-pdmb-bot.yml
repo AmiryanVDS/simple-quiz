@@ -18,6 +18,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare private team IDs
+        env:
+          PDMB_TEAM_IDS_JSON: ${{ secrets.PDMB_TEAM_IDS_JSON }}
+        run: |
+          if [ -n "$PDMB_TEAM_IDS_JSON" ]; then
+            python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from pdmb_bot.team_members import apply_private_ids
+
+          roster = json.loads(Path('pdmb_bot/team_roster.json').read_text(encoding='utf-8'))
+          private_ids = json.loads(os.environ['PDMB_TEAM_IDS_JSON'])
+          apply_private_ids(roster, private_ids)
+          destination = Path('/tmp/pdmb-team-ids.json')
+          destination.write_text(json.dumps(private_ids, ensure_ascii=False), encoding='utf-8')
+          destination.chmod(0o600)
+          print('Private team IDs validated')
+          PY
+          fi
       - name: Configure SSH
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -36,6 +56,9 @@ jobs:
         run: |
           tar -C pdmb_bot -czf /tmp/pdmb-bot.tgz .
           scp -P "$SERVER_PORT" /tmp/pdmb-bot.tgz "$SERVER_USER@$SERVER_HOST:/tmp/pdmb-bot.tgz"
+          if [ -f /tmp/pdmb-team-ids.json ]; then
+            scp -P "$SERVER_PORT" /tmp/pdmb-team-ids.json "$SERVER_USER@$SERVER_HOST:/tmp/pdmb-team-ids.json"
+          fi
       - name: Install and restart
         env:
           SERVER_HOST: ${{ vars.SERVER_HOST }}
@@ -47,6 +70,10 @@ jobs:
             sudo systemctl stop pdmb-bot
             install -d /opt/pdmb-bot/current
             install -d -o pdmb -g pdmb /opt/pdmb-bot/state
+            if [ -f /tmp/pdmb-team-ids.json ]; then
+              sudo install -o pdmb -g pdmb -m 600 /tmp/pdmb-team-ids.json /opt/pdmb-bot/state/private_team_ids.json
+              rm -f /tmp/pdmb-team-ids.json
+            fi
             find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
             tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
             /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
