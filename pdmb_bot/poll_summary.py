@@ -105,13 +105,19 @@ def build_game_day_summaries(
                 }
 
     result = []
+    team_names = {
+        str(member["user_id"]): member["name"]
+        for member in (team or []) if member.get("user_id")
+    }
     for key, game in sorted(games.items(), key=lambda item: item[1]["option_text"]):
         going = sorted(
-            answer["name"] for answer in game["answers"].values()
+            team_names.get(user_id, answer["name"])
+            for user_id, answer in game["answers"].items()
             if answer["answered"] and answer["going"]
         )
         not_going = sorted(
-            answer["name"] for answer in game["answers"].values()
+            team_names.get(user_id, answer["name"])
+            for user_id, answer in game["answers"].items()
             if answer["answered"] and not answer["going"]
         )
         lines = [
