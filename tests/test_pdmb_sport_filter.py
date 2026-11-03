@@ -17,10 +17,12 @@ class SportFilterTests(unittest.TestCase):
             {"name": "Игра #1021.2", "org": "Squiz"},
             {"name": "РОК И ВИДЕОИГРЫ", "org": "Теория большого квиза"},
             {"name": "КМС (ПОВТОР)", "org": "BUBO-КВИЗ"},
+            {"name": "Квиз Плюс — КЧАУ", "org": "Квиз Плюс", "source_channel": "quizplusmsk"},
+            {"name": "Ответная игра", "org": "Ответная игра", "source_channel": "simple_quiz"},
         ]
         self.assertEqual(
             [event["name"] for event in filter_sport_quizzes(events)],
-            ["Классический тур", "Лига Крокозавра", "Футбол (ПОВТОР)", "Спорт"],
+            ["Классический тур", "Лига Крокозавра", "Футбол (ПОВТОР)", "Спорт", "Квиз Плюс — КЧАУ", "Ответная игра"],
         )
 
     def test_normalization_and_word_boundary(self):

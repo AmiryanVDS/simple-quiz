@@ -357,9 +357,12 @@ class EventSourceFilteringTests(unittest.TestCase):
             {"name": "Игра #1021.2", "org": "Squiz", "event_date": "2026-11-03"},
             {"name": "РОК И ВИДЕОИГРЫ", "org": "Теория большого квиза", "event_date": "2026-11-03"},
             {"name": "Классический тур", "org": "Футбольный квиз Удар головой", "event_date": "2026-11-11"},
+            {"name": "Квиз Плюс — КЧАУ", "org": "Квиз Плюс", "event_date": "2026-11-09",
+             "source_channel": "quizplusmsk", "event_url": "https://t.me/quizplusmsk/5280"},
         ]}
         events = bot_module._events_from_api_payload(payload)
-        self.assertEqual([event["name"] for event in events], ["Классический тур"])
+        self.assertEqual([event["name"] for event in events], ["Классический тур", "Квиз Плюс — КЧАУ"])
+        self.assertIn("https://t.me/quizplusmsk/5280", bot_module.format_quiz_schedule(events))
 
     def test_direct_findquiz_parser_drops_general_games(self):
         page = """

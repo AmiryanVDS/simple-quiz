@@ -1,4 +1,4 @@
-"""Keep sports-themed games from FindQuiz's broad Sport category."""
+"""Keep sports games from FindQuiz and the two selected quiz channels."""
 
 import re
 import unicodedata
@@ -10,6 +10,7 @@ SPORT_ORGANIZERS = {
     "футбольный квиз удар головой",
     "проспорт",
 }
+SPORT_CHANNELS = {"simple_quiz", "quizplusmsk"}
 
 SPORT_TITLE = re.compile(
     r"\b(?:спорт\w*|футбол\w*|хокке\w*|баскетбол\w*|волейбол\w*|"
@@ -26,7 +27,8 @@ def normalized(value: str | None) -> str:
 def is_sport_quiz(event: dict) -> bool:
     """Accept a dedicated sports organizer or an explicit sports topic."""
     return (
-        normalized(event.get("org")) in SPORT_ORGANIZERS
+        event.get("source_channel") in SPORT_CHANNELS
+        or normalized(event.get("org")) in SPORT_ORGANIZERS
         or bool(SPORT_TITLE.search(normalized(event.get("name"))))
     )
 
