@@ -8,6 +8,12 @@ on:
       - deploy/pdmb-bot.service
       - .github/workflows/deploy-pdmb-bot.yml
   workflow_dispatch:
+    inputs:
+      send_schedule:
+        description: Send the filtered schedule to the team chat after deployment
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: pdmb-production
@@ -82,3 +88,25 @@ jobs:
             echo "===== pdmb-bot journal ====="
             journalctl -u pdmb-bot --since "2 minutes ago" --no-pager -n 120
           '
+      - name: Send schedule on request
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.send_schedule }}
+        env:
+          SERVER_USER: ${{ vars.SERVER_USER }}
+          SERVER_PORT: ${{ vars.SERVER_PORT }}
+        run: |
+          ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" 'cd /opt/pdmb-bot/current && /opt/pdmb-bot/venv/bin/python -' <<'PY'
+          import asyncio
+          from dotenv import load_dotenv
+
+          load_dotenv('/etc/pdmb-bot.env')
+          import bot as pdmb
+
+          async def main():
+              try:
+                  events = await pdmb.send_quiz_schedule(chat_id=pdmb.CHAT_ID)
+                  print(f'Sent filtered schedule with {len(events)} events')
+              finally:
+                  await pdmb.bot.session.close()
+
+          asyncio.run(main())
+          PY
