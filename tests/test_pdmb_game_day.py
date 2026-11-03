@@ -1,4 +1,5 @@
 import copy
+import json
 import os
 import sys
 import tempfile
@@ -348,6 +349,44 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
             with self.assertLogs(level="ERROR"), self.assertRaises(OSError):
                 bot_module.save_poll_state({"polls": {}})
         self.assertEqual(bot_module.load_poll_state(), before)
+
+
+class EventSourceFilteringTests(unittest.TestCase):
+    def test_github_feed_drops_general_games(self):
+        payload = {"ok": True, "events": [
+            {"name": "Игра #1021.2", "org": "Squiz", "event_date": "2026-11-03"},
+            {"name": "РОК И ВИДЕОИГРЫ", "org": "Теория большого квиза", "event_date": "2026-11-03"},
+            {"name": "Классический тур", "org": "Футбольный квиз Удар головой", "event_date": "2026-11-11"},
+        ]}
+        events = bot_module._events_from_api_payload(payload)
+        self.assertEqual([event["name"] for event in events], ["Классический тур"])
+
+    def test_direct_findquiz_parser_drops_general_games(self):
+        page = """
+        <li class="top"><h2 class="title">Игра #1021.2</h2><span class="org">Squiz</span></li>
+        <li class="top"><h2 class="title">Футбол</h2><span class="org">Смузи</span></li>
+        """
+        response = SimpleNamespace(text=page, raise_for_status=lambda: None)
+        with patch.object(bot_module.requests, "get", return_value=response):
+            events = bot_module._fetch_quiz_events_once()
+        self.assertEqual([event["name"] for event in events], ["Футбол"])
+
+    def test_old_unfiltered_cache_is_filtered_on_read(self):
+        with tempfile.TemporaryDirectory() as directory:
+            cache_path = Path(directory) / "events.json"
+            cache_path.write_text(json.dumps({"events": [
+                {"name": "КМС", "org": "BUBO-КВИЗ", "event_date": "2026-09-30"},
+                {"name": "Классический тур", "org": "Футбольный квиз Удар головой",
+                 "event_date": "2026-09-30"},
+            ]}, ensure_ascii=False), encoding="utf-8")
+            with patch.object(bot_module, "EVENTS_CACHE_FILE", str(cache_path)):
+                events = bot_module.load_events_cache()
+                bot_module.save_events_cache(events + [
+                    {"name": "Игра #1021.2", "org": "Squiz", "event_date": TODAY},
+                ])
+                stored = json.loads(cache_path.read_text(encoding="utf-8"))["events"]
+        self.assertEqual([event["name"] for event in events], ["Классический тур"])
+        self.assertEqual([event["name"] for event in stored], ["Классический тур"])
 
 
 if __name__ == "__main__":
