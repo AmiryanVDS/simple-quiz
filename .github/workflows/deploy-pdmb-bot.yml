@@ -72,7 +72,7 @@ jobs:
         run: |
           ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" '
             set -e
-            sudo systemctl stop pdmb-bot
+            trap "sudo systemctl start pdmb-bot || true" EXIT
             install -d /opt/pdmb-bot/current
             install -d -o pdmb -g pdmb /opt/pdmb-bot/state
             if [ -f /tmp/pdmb-team-ids.json ]; then
@@ -81,9 +81,13 @@ jobs:
             fi
             find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
             tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
-            /opt/pdmb-bot/venv/bin/pip install -r /opt/pdmb-bot/current/requirements.txt
-            sudo systemctl start pdmb-bot
+            if ! /opt/pdmb-bot/venv/bin/python -m pip --version >/dev/null 2>&1; then
+              /opt/pdmb-bot/venv/bin/python -m ensurepip --upgrade
+            fi
+            /opt/pdmb-bot/venv/bin/python -m pip install -r /opt/pdmb-bot/current/requirements.txt
+            sudo systemctl restart pdmb-bot
             sudo systemctl is-active --quiet pdmb-bot
+            trap - EXIT
             sleep 25
             echo "===== pdmb-bot journal ====="
             journalctl -u pdmb-bot --since "2 minutes ago" --no-pager -n 120
