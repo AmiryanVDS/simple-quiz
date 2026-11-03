@@ -14,6 +14,11 @@ on:
         required: false
         type: boolean
         default: false
+      send_poll:
+        description: Send a poll for games not yet polled this week
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: pdmb-production
@@ -29,8 +34,9 @@ jobs:
       - name: Prepare private team IDs
         env:
           PDMB_TEAM_IDS_JSON: ${{ secrets.PDMB_TEAM_IDS_JSON }}
+          PDMB_EXTRA_TEAM_IDS_JSON: ${{ secrets.PDMB_EXTRA_TEAM_IDS_JSON }}
         run: |
-          if [ -n "$PDMB_TEAM_IDS_JSON" ]; then
+          if [ -n "$PDMB_TEAM_IDS_JSON" ] || [ -n "$PDMB_EXTRA_TEAM_IDS_JSON" ]; then
             python3 - <<'PY'
           import json
           import os
@@ -38,7 +44,11 @@ jobs:
           from pdmb_bot.team_members import apply_private_ids
 
           roster = json.loads(Path('pdmb_bot/team_roster.json').read_text(encoding='utf-8'))
-          private_ids = json.loads(os.environ['PDMB_TEAM_IDS_JSON'])
+          private_ids = json.loads(os.environ.get('PDMB_TEAM_IDS_JSON') or '{}')
+          extra_ids = json.loads(os.environ.get('PDMB_EXTRA_TEAM_IDS_JSON') or '{}')
+          if set(private_ids) & set(extra_ids):
+              raise ValueError('Team ID secret entries overlap')
+          private_ids.update(extra_ids)
           apply_private_ids(roster, private_ids)
           destination = Path('/tmp/pdmb-team-ids.json')
           destination.write_text(json.dumps(private_ids, ensure_ascii=False), encoding='utf-8')
@@ -79,6 +89,7 @@ jobs:
               sudo install -o pdmb -g pdmb -m 600 /tmp/pdmb-team-ids.json /opt/pdmb-bot/state/private_team_ids.json
               rm -f /tmp/pdmb-team-ids.json
             fi
+            sudo chown -R pdmb:pdmb /opt/pdmb-bot/state
             find /opt/pdmb-bot/current -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
             tar -xzf /tmp/pdmb-bot.tgz -C /opt/pdmb-bot/current
             if ! /opt/pdmb-bot/venv/bin/python -m pip --version >/dev/null 2>&1; then
@@ -100,15 +111,50 @@ jobs:
         run: |
           ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" 'cd /opt/pdmb-bot/current && /opt/pdmb-bot/venv/bin/python -' <<'PY'
           import asyncio
+          import os
+          import pwd
           from dotenv import load_dotenv
 
           load_dotenv('/etc/pdmb-bot.env')
+          user = pwd.getpwnam('pdmb')
+          os.setgroups([])
+          os.setgid(user.pw_gid)
+          os.setuid(user.pw_uid)
           import bot as pdmb
 
           async def main():
               try:
                   events = await pdmb.send_quiz_schedule(chat_id=pdmb.CHAT_ID)
                   print(f'Sent filtered schedule with {len(events)} events')
+              finally:
+                  await pdmb.bot.session.close()
+
+          asyncio.run(main())
+          PY
+      - name: Send poll on request
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.send_poll }}
+        env:
+          SERVER_USER: ${{ vars.SERVER_USER }}
+          SERVER_PORT: ${{ vars.SERVER_PORT }}
+        run: |
+          ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" 'cd /opt/pdmb-bot/current && /opt/pdmb-bot/venv/bin/python -' <<'PY'
+          import asyncio
+          import os
+          import pwd
+          from dotenv import load_dotenv
+
+          load_dotenv('/etc/pdmb-bot.env')
+          user = pwd.getpwnam('pdmb')
+          os.setgroups([])
+          os.setgid(user.pw_gid)
+          os.setuid(user.pw_uid)
+          import bot as pdmb
+
+          async def main():
+              try:
+                  events = await asyncio.to_thread(pdmb.fetch_quiz_events)
+                  created = await pdmb.send_weekly_poll(events, chat_id=pdmb.CHAT_ID)
+                  print('Poll sent' if created else 'No unpolled games in the current week')
               finally:
                   await pdmb.bot.session.close()
 

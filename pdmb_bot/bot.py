@@ -605,14 +605,33 @@ def poll_option_text(event: dict) -> str:
     return option
 
 
+def unpolled_weekly_events(
+    events: list[dict], state: dict, chat_id: int, reference: date | None = None,
+) -> list[dict]:
+    already_polled = {
+        (item.get("event_date"), item.get("time"), item.get("name"))
+        for poll in state.get("polls", {}).values()
+        if poll.get("chat_id") == chat_id
+        for item in poll.get("events", {}).values()
+        if isinstance(item, dict)
+    }
+    return [
+        event for event in weekly_events(events, reference=reference)
+        if (event["event_date"].isoformat(), event["time"], event["name"])
+        not in already_polled
+    ]
+
+
 async def send_weekly_poll(
     events: list[dict],
     chat_id: int = CHAT_ID,
     reference: date | None = None,
 ) -> bool:
-    selected_events = weekly_events(events, reference=reference)
+    selected_events = unpolled_weekly_events(
+        events, load_poll_state(), chat_id, reference=reference,
+    )
     if not selected_events:
-        logging.info("На период до следующего понедельника нет событий для опроса")
+        logging.info("На период до следующего понедельника нет новых событий для опроса")
         return False
 
     week_start, week_end = poll_period(reference)
@@ -835,12 +854,16 @@ async def send_weekly_package() -> None:
         raise
 
     if not created:
+        message = (
+            "ℹ️ Расписание опубликовано, но игры до следующего понедельника "
+            "уже включены в предыдущий опрос."
+            if weekly_events(events)
+            else "ℹ️ Расписание опубликовано, но до следующего понедельника "
+            "включительно квизов для опроса не найдено."
+        )
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=(
-                "ℹ️ Расписание опубликовано, но до следующего понедельника "
-                "включительно квизов для опроса не найдено."
-            ),
+            text=message,
         )
 
     state = load_poll_state()
