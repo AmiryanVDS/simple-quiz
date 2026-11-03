@@ -76,6 +76,14 @@ class NonvoterTests(unittest.TestCase):
 
 
 class MemberBindingTests(unittest.TestCase):
+    def test_new_member_has_username_and_can_receive_private_id(self):
+        member = next(item for item in ROSTER if item["name"] == "Никита Соколовский")
+        self.assertEqual(member["usernames"], ["bxhdsgys"])
+        self.assertEqual(
+            apply_private_ids([member], {"Никита Соколовский": 999})[0]["user_id"],
+            999,
+        )
+
     def test_private_ids_bind_members_without_exposing_ids_in_public_roster(self):
         roster = [{"name": "Иван"}, {"name": "Анна"}]
         members = apply_private_ids(roster, {"Иван": 7, "Анна": 8})
@@ -114,12 +122,13 @@ class MemberBindingTests(unittest.TestCase):
         self.assertEqual(sum(bool(member.get("user_id")) for member in team), 7)
         summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
         self.assertIn("Не идут — 7", summary)
-        self.assertIn("Не проголосовали — 1", summary)
+        self.assertIn(f"Не проголосовали — {len(ROSTER) - 7}", summary)
         self.assertIn("Али Алекперов", summary)
+        self.assertIn("Никита Соколовский", summary)
         self.assertNotIn("@david_test", summary)
         self.assertNotIn("Kostya", summary)
         for member in team:
-            if member["name"] != "Али Алекперов":
+            if member["name"] not in {"Али Алекперов", "Никита Соколовский"}:
                 self.assertEqual(summary.count(member["name"]), 1)
 
     def test_username_beats_conflicting_display_name(self):
@@ -160,7 +169,7 @@ class MemberBindingTests(unittest.TestCase):
         summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
         self.assertIn("Руслан Исмаилов", summary)
         self.assertNotIn("Новое имя", summary)
-        self.assertNotIn("Не проголосовали — 8", summary)
+        self.assertNotIn(f"Не проголосовали — {len(ROSTER)}", summary)
 
     def test_shared_historical_alias_remains_ambiguous(self):
         state = state_with_answers({"7": profile("Ruslan", [1])})

@@ -352,6 +352,19 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
 
 
 class EventSourceFilteringTests(unittest.TestCase):
+    def test_monday_game_is_not_polled_again_next_monday(self):
+        monday_game = {"name": "Квиз Плюс — КЧАУ", "event_date": date(2026, 11, 9), "time": "19:30"}
+        wednesday_game = {"name": "Классический тур", "event_date": date(2026, 11, 11), "time": "20:00"}
+        state = {"polls": {"earlier": {"chat_id": CHAT, "events": {"0": {
+            "name": monday_game["name"], "event_date": "2026-11-09", "time": "19:30",
+        }}}}}
+        self.assertEqual(
+            bot_module.unpolled_weekly_events(
+                [monday_game, wednesday_game], state, CHAT, reference=date(2026, 11, 9),
+            ),
+            [wednesday_game],
+        )
+
     def test_github_feed_drops_general_games(self):
         payload = {"ok": True, "events": [
             {"name": "Игра #1021.2", "org": "Squiz", "event_date": "2026-11-03"},
