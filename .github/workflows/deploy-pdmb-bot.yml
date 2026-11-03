@@ -16,6 +16,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SERVER_HOST: 89.124.83.34
     steps:
       - uses: actions/checkout@v4
       - name: Prepare private team IDs
@@ -41,7 +43,6 @@ jobs:
       - name: Configure SSH
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          SERVER_HOST: ${{ vars.SERVER_HOST }}
           SERVER_PORT: ${{ vars.SERVER_PORT }}
         run: |
           install -d -m 700 ~/.ssh
@@ -50,7 +51,6 @@ jobs:
           ssh-keyscan -p "$SERVER_PORT" -H "$SERVER_HOST" >> ~/.ssh/known_hosts
       - name: Upload bot
         env:
-          SERVER_HOST: ${{ vars.SERVER_HOST }}
           SERVER_USER: ${{ vars.SERVER_USER }}
           SERVER_PORT: ${{ vars.SERVER_PORT }}
         run: |
@@ -61,7 +61,6 @@ jobs:
           fi
       - name: Install and restart
         env:
-          SERVER_HOST: ${{ vars.SERVER_HOST }}
           SERVER_USER: ${{ vars.SERVER_USER }}
           SERVER_PORT: ${{ vars.SERVER_PORT }}
         run: |
