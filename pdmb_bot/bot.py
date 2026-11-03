@@ -22,6 +22,7 @@ from dotenv import load_dotenv
 
 from training_data import build_training_questions
 from poll_summary import build_game_day_reminder, build_game_day_summaries
+from sport_filter import filter_sport_quizzes
 from team_members import apply_private_ids, remember_team_user, resolve_team_members
 
 
@@ -141,7 +142,7 @@ def save_poll_state(state: dict) -> None:
 
 def save_events_cache(events: list[dict]) -> None:
     serializable = []
-    for event in events:
+    for event in filter_sport_quizzes(events):
         item = dict(event)
         event_date = item.get("event_date")
         item["event_date"] = event_date.isoformat() if event_date else None
@@ -175,7 +176,7 @@ def load_events_cache() -> list[dict]:
             raw_date = item.get("event_date")
             item["event_date"] = date.fromisoformat(raw_date) if raw_date else None
             result.append(item)
-        return result
+        return filter_sport_quizzes(result)
     except Exception:
         logging.exception("Не удалось прочитать кэш расписания")
         return []
@@ -430,7 +431,7 @@ def _fetch_quiz_events_once() -> list[dict]:
 
     if not events:
         raise RuntimeError("FindQuiz вернул пустое расписание")
-    return events
+    return filter_sport_quizzes(events)
 
 
 
@@ -476,7 +477,7 @@ def _events_from_api_payload(payload: dict) -> list[dict]:
 
     if not events:
         raise RuntimeError("Источник расписания вернул пустой список")
-    return events
+    return filter_sport_quizzes(events)
 
 
 def _fetch_quiz_events_from_api() -> list[dict]:
@@ -541,7 +542,7 @@ def fetch_quiz_events() -> list[dict]:
 
 def format_quiz_schedule(events: list[dict]) -> str:
     if not events:
-        return "❌ На сайте не найдено ни одного квиза."
+        return "❌ Спортивных квизов в расписании не найдено."
 
     result = "🗓 <b>Расписание спортивных квизов</b>\n\n"
     for index, event in enumerate(events[:10], start=1):
