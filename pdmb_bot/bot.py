@@ -472,6 +472,7 @@ def _events_from_api_payload(payload: dict) -> list[dict]:
                 "location": raw.get("location") or "Место не указано",
                 "price": raw.get("price") or "Цена не указана",
                 "event_url": raw.get("event_url"),
+                "source_channel": raw.get("source_channel"),
             }
         )
 
@@ -550,7 +551,11 @@ def format_quiz_schedule(events: list[dict]) -> str:
         result += f"🏢 Организатор: {html.escape(event['org'])}\n"
         result += f"📅 {html.escape(event['formatted_date'])}\n"
         result += f"📍 {html.escape(event['location'])}\n"
-        result += f"💰 {html.escape(event['price'])}\n\n"
+        result += f"💰 {html.escape(event['price'])}\n"
+        event_url = event.get("event_url")
+        if isinstance(event_url, str) and event_url.startswith("https://"):
+            result += f'🔗 <a href="{html.escape(event_url, quote=True)}">Анонс и запись</a>\n'
+        result += "\n"
 
     return result + "⚽ Готов к спортивной баталии?"
 
