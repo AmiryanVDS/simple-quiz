@@ -41,16 +41,50 @@ def poll_events(poll: dict):
         yield option_id, option_text, event_date
 
 
-def build_game_day_reminder(state: dict, chat_id: int, today: date) -> dict | None:
-    """Build one reminder for all today's games already present in weekly polls."""
+def _event_clock(poll: dict, option_id: int, option_text: str) -> tuple[int, int] | None:
+    """Return event HH:MM from stored metadata or a legacy poll option."""
+    event = poll.get("events", {}).get(str(option_id))
+    raw_time = event.get("time") if isinstance(event, dict) else None
+    if raw_time:
+        try:
+            hour, minute = (int(part) for part in raw_time.split(":", 1))
+            if 0 <= hour <= 23 and 0 <= minute <= 59:
+                return hour, minute
+        except (TypeError, ValueError):
+            pass
+
+    match = OPTION_PATTERN.match(option_text)
+    if match:
+        try:
+            hour, minute = (int(part) for part in match[3].split(":", 1))
+            if 0 <= hour <= 23 and 0 <= minute <= 59:
+                return hour, minute
+        except (TypeError, ValueError):
+            pass
+    return None
+
+
+def build_game_day_reminder(
+    state: dict,
+    chat_id: int,
+    today: date,
+    current_time: tuple[int, int] | None = None,
+) -> dict | None:
+    """Build one reminder only for today's games that have not started yet."""
     games: dict[str, int] = {}
     for poll in state.get("polls", {}).values():
         if poll.get("chat_id") != chat_id:
             continue
         message_id = poll.get("message_id") or 0
-        for _, option_text, event_date in poll_events(poll):
-            if event_date == today:
-                games[option_text] = max(games.get(option_text, 0), message_id)
+        for option_id, option_text, event_date in poll_events(poll):
+            if event_date != today:
+                continue
+
+            event_clock = _event_clock(poll, option_id, option_text)
+            if current_time is not None and event_clock is not None and event_clock <= current_time:
+                continue
+
+            games[option_text] = max(games.get(option_text, 0), message_id)
 
     if not games:
         return None
@@ -64,7 +98,7 @@ def build_game_day_reminder(state: dict, chat_id: int, today: date) -> dict | No
         lines.append(f"• {title}")
     lines.extend([
         "",
-        "Проверьте свой ответ в недельном опросе до 17:00 МСК, "
+        "Проверьте свой ответ в недельном опросе до начала квиза, "
         "чтобы ваш выбор попал в итог.",
     ])
     return {
