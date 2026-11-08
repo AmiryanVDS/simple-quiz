@@ -702,14 +702,32 @@ async def send_game_day_summaries(
     now: datetime | None = None,
 ) -> int:
     now = now or datetime.now(MOSCOW_TZ)
-    if (now.hour, now.minute) < (17, 0):
-        return 0
 
     state = load_poll_state()
     team = resolve_team_members(state, chat_id, TEAM_ROSTER)
     summaries = build_game_day_summaries(state, chat_id, now.date(), team=team)
     sent_count = 0
     for summary in summaries:
+        event_clock = summary.get("event_clock")
+        if event_clock is None:
+            logging.warning(
+                "Не отправляю итог без времени начала: %s",
+                summary.get("text", "").splitlines()[:2],
+            )
+            continue
+
+        event_start = datetime.combine(
+            now.date(),
+            datetime.min.time(),
+            tzinfo=MOSCOW_TZ,
+        ).replace(hour=event_clock[0], minute=event_clock[1])
+        summary_time = event_start - timedelta(hours=1)
+
+        # Итог отправляется один раз в последний час перед началом игры.
+        # Если бот был выключен и запустился уже после старта, устаревший итог не отправляем.
+        if now < summary_time or now >= event_start:
+            continue
+
         state = load_poll_state()
         if summary["key"] in state.get("sent_game_summaries", {}):
             continue
@@ -731,13 +749,14 @@ async def send_game_day_summaries(
             state = load_poll_state()
             state.setdefault("sent_game_summaries", {})[summary["key"]] = {
                 "event_date": summary["event_date"],
+                "event_time": f"{event_clock[0]:02d}:{event_clock[1]:02d}",
                 "message_id": message.message_id,
                 "sent_at": now.isoformat(),
             }
             save_poll_state(state)
             sent_count += 1
         except Exception:
-            logging.exception("Не удалось отправить итог по квизу в день игры")
+            logging.exception("Не удалось отправить итог за час до квиза")
     return sent_count
 
 
@@ -1109,8 +1128,8 @@ async def run_scheduled_tasks(now: datetime) -> None:
     # Одно напоминание в день: при позднем запуске досылаем до 17:00.
     await send_game_day_reminder(now=now)
 
-    # В 17:00 МСК отправляем итоги только по играм сегодняшней даты.
-    # Недельного итога в следующий понедельник больше нет.
+    # По каждой сегодняшней игре итог отправляется за 1 час до начала.
+    # После старта игры просроченный итог уже не досылаем.
     await send_game_day_summaries(now=now)
 
 
@@ -1136,16 +1155,15 @@ async def on_startup() -> None:
         len(members), sum(bool(member.get("user_id")) for member in members),
     )
     now = datetime.now(MOSCOW_TZ)
-    if (now.hour, now.minute) >= (17, 0):
-        try:
-            summaries = build_game_day_summaries(state, CHAT_ID, now.date(), team=members)
-            sent = state.get("sent_game_summaries", {})
-            logging.info(
-                "Итоги сегодняшних квизов: %s всего, %s уже отмечены отправленными",
-                len(summaries), sum(summary["key"] in sent for summary in summaries),
-            )
-        except Exception:
-            logging.exception("Не удалось проверить состояние сегодняшних итогов")
+    try:
+        summaries = build_game_day_summaries(state, CHAT_ID, now.date(), team=members)
+        sent = state.get("sent_game_summaries", {})
+        logging.info(
+            "Итоги сегодняшних квизов: %s всего, %s уже отмечены отправленными",
+            len(summaries), sum(summary["key"] in sent for summary in summaries),
+        )
+    except Exception:
+        logging.exception("Не удалось проверить состояние сегодняшних итогов")
     asyncio.create_task(weekly_schedule_loop())
     await bot.set_my_commands(
         [
