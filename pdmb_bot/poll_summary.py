@@ -98,8 +98,8 @@ def build_game_day_reminder(
         lines.append(f"• {title}")
     lines.extend([
         "",
-        "Проверьте свой ответ в недельном опросе до начала квиза, "
-        "чтобы ваш выбор попал в итог.",
+        "Проверьте свой ответ в недельном опросе до начала квиза: "
+        "выберите игру или вариант «Не иду».",
     ])
     return {
         "text": "\n".join(lines),
@@ -124,7 +124,17 @@ def build_game_day_summaries(
             # The option text also identifies legacy games without stored metadata.
             identity = json.dumps([chat_id, event_date.isoformat(), option_text], ensure_ascii=False)
             key = hashlib.sha256(identity.encode("utf-8")).hexdigest()
-            game = games.setdefault(key, {"option_text": option_text, "answers": {}, "message_id": 0})
+            game = games.setdefault(
+                key,
+                {
+                    "option_text": option_text,
+                    "answers": {},
+                    "message_id": 0,
+                    "event_clock": _event_clock(poll, option_id, option_text),
+                },
+            )
+            if game.get("event_clock") is None:
+                game["event_clock"] = _event_clock(poll, option_id, option_text)
             game["message_id"] = max(game["message_id"], poll.get("message_id", 0))
             for user_id, answer in poll.get("answers", {}).items():
                 previous = game["answers"].get(user_id)
@@ -190,6 +200,7 @@ def build_game_day_summaries(
         result.append({
             "key": key,
             "event_date": today.isoformat(),
+            "event_clock": game.get("event_clock"),
             "text": "\n".join(lines),
             "poll_message_id": game["message_id"],
         })
