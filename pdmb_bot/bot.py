@@ -755,7 +755,12 @@ async def send_game_day_reminder(
     state = load_poll_state()
     if reminder_key in state.get("sent_game_reminders", {}):
         return False
-    reminder = build_game_day_reminder(state, chat_id, now.date())
+    reminder = build_game_day_reminder(
+        state,
+        chat_id,
+        now.date(),
+        current_time=(now.hour, now.minute),
+    )
     if reminder is None:
         return False
 
