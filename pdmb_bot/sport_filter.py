@@ -1,4 +1,4 @@
-"""Keep sports games from FindQuiz and the two selected quiz channels."""
+"""Keep sports games from FindQuiz and the selected quiz channels."""
 
 import re
 import unicodedata
@@ -10,7 +10,7 @@ SPORT_ORGANIZERS = {
     "футбольный квиз удар головой",
     "проспорт",
 }
-SPORT_CHANNELS = {"simple_quiz", "quizplusmsk"}
+SPORT_CHANNELS = {"simple_quiz", "quizplusmsk", "quizpubrangers"}
 
 SPORT_TITLE = re.compile(
     r"\b(?:спорт\w*|футбол\w*|хокке\w*|баскетбол\w*|волейбол\w*|"
