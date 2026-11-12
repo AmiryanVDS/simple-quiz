@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 from training_data import build_training_questions
-from poll_summary import build_game_day_reminder, build_game_day_summaries
+from poll_summary import build_game_day_reminder
 from sport_filter import filter_sport_quizzes
 from team_members import apply_private_ids, remember_team_user, resolve_team_members
 
@@ -115,18 +115,17 @@ DATE_WEEKDAY_SHORT = {
 
 def load_poll_state() -> dict:
     if not os.path.exists(POLL_STATE_FILE):
-        return {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "sent_game_summaries": {}}
+        return {"polls": {}, "last_schedule_date": None, "last_poll_date": None}
     try:
         with open(POLL_STATE_FILE, "r", encoding="utf-8") as file:
             data = json.load(file)
-            return data if isinstance(data, dict) else {"polls": {}, "last_schedule_date": None, "last_poll_date": None, "sent_game_summaries": {}}
+            return data if isinstance(data, dict) else {"polls": {}, "last_schedule_date": None, "last_poll_date": None}
     except Exception:
         logging.exception("Не удалось прочитать weekly_poll_state.json")
         return {
             "polls": {},
             "last_schedule_date": None,
             "last_poll_date": None,
-            "sent_game_summaries": {},
         }
 
 
@@ -697,76 +696,13 @@ async def send_weekly_poll(
     return True
 
 
-async def send_game_day_summaries(
-    chat_id: int = CHAT_ID,
-    now: datetime | None = None,
-) -> int:
-    now = now or datetime.now(MOSCOW_TZ)
-
-    state = load_poll_state()
-    team = resolve_team_members(state, chat_id, TEAM_ROSTER)
-    summaries = build_game_day_summaries(state, chat_id, now.date(), team=team)
-    sent_count = 0
-    for summary in summaries:
-        event_clock = summary.get("event_clock")
-        if event_clock is None:
-            logging.warning(
-                "Не отправляю итог без времени начала: %s",
-                summary.get("text", "").splitlines()[:2],
-            )
-            continue
-
-        event_start = datetime.combine(
-            now.date(),
-            datetime.min.time(),
-            tzinfo=MOSCOW_TZ,
-        ).replace(hour=event_clock[0], minute=event_clock[1])
-        summary_time = event_start - timedelta(hours=1)
-
-        # Итог отправляется один раз в последний час перед началом игры.
-        # Если бот был выключен и запустился уже после старта, устаревший итог не отправляем.
-        if now < summary_time or now >= event_start:
-            continue
-
-        state = load_poll_state()
-        if summary["key"] in state.get("sent_game_summaries", {}):
-            continue
-        try:
-            reply = (
-                types.ReplyParameters(
-                    message_id=summary["poll_message_id"],
-                    allow_sending_without_reply=True,
-                )
-                if summary["poll_message_id"] else None
-            )
-            message = await bot.send_message(
-                chat_id=chat_id,
-                text=summary["text"],
-                parse_mode="HTML",
-                reply_parameters=reply,
-            )
-            # Poll answers may have arrived while Telegram was sending the message.
-            state = load_poll_state()
-            state.setdefault("sent_game_summaries", {})[summary["key"]] = {
-                "event_date": summary["event_date"],
-                "event_time": f"{event_clock[0]:02d}:{event_clock[1]:02d}",
-                "message_id": message.message_id,
-                "sent_at": now.isoformat(),
-            }
-            save_poll_state(state)
-            sent_count += 1
-        except Exception:
-            logging.exception("Не удалось отправить итог за час до квиза")
-    return sent_count
-
-
 async def send_game_day_reminder(
     chat_id: int = CHAT_ID,
     now: datetime | None = None,
 ) -> bool:
     now = now or datetime.now(MOSCOW_TZ)
-    # В понедельник утреннее напоминание заменяют расписание и опрос.
-    if now.weekday() == 0 or not (10 <= now.hour < 17):
+    # В день игры напоминаем об уже опубликованном недельном опросе.
+    if not (10 <= now.hour < 17):
         return False
 
     today = now.date().isoformat()
@@ -864,7 +800,7 @@ async def send_weekly_package() -> None:
         return
 
     try:
-        created = await send_weekly_poll(events, chat_id=CHAT_ID)
+        await send_weekly_poll(events, chat_id=CHAT_ID)
     except Exception as error:
         logging.exception("Автоматический опрос создать не удалось")
         await bot.send_message(
@@ -876,19 +812,6 @@ async def send_weekly_package() -> None:
             parse_mode="HTML",
         )
         raise
-
-    if not created:
-        message = (
-            "ℹ️ Расписание опубликовано, но игры до следующего понедельника "
-            "уже включены в предыдущий опрос."
-            if weekly_events(events)
-            else "ℹ️ Расписание опубликовано, но до следующего понедельника "
-            "включительно квизов для опроса не найдено."
-        )
-        await bot.send_message(
-            chat_id=CHAT_ID,
-            text=message,
-        )
 
     state = load_poll_state()
     state["last_poll_date"] = today
@@ -1125,12 +1048,8 @@ async def run_scheduled_tasks(now: datetime) -> None:
             except Exception:
                 logging.exception("Не удалось выполнить еженедельную рассылку")
 
-    # Одно напоминание в день: при позднем запуске досылаем до 17:00.
+    # Одно напоминание в день игры, включая понедельник.
     await send_game_day_reminder(now=now)
-
-    # По каждой сегодняшней игре итог отправляется за 1 час до начала.
-    # После старта игры просроченный итог уже не досылаем.
-    await send_game_day_summaries(now=now)
 
 
 async def weekly_schedule_loop() -> None:
@@ -1154,16 +1073,6 @@ async def on_startup() -> None:
         "Состав команды: %s участников, Telegram ID известны для %s",
         len(members), sum(bool(member.get("user_id")) for member in members),
     )
-    now = datetime.now(MOSCOW_TZ)
-    try:
-        summaries = build_game_day_summaries(state, CHAT_ID, now.date(), team=members)
-        sent = state.get("sent_game_summaries", {})
-        logging.info(
-            "Итоги сегодняшних квизов: %s всего, %s уже отмечены отправленными",
-            len(summaries), sum(summary["key"] in sent for summary in summaries),
-        )
-    except Exception:
-        logging.exception("Не удалось проверить состояние сегодняшних итогов")
     asyncio.create_task(weekly_schedule_loop())
     await bot.set_my_commands(
         [

@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pdmb_bot"))
-from poll_summary import build_game_day_reminder, build_game_day_summaries
+from poll_summary import build_game_day_reminder
 
 IMPORT_STATE = tempfile.TemporaryDirectory()
 with patch.dict(os.environ, {
@@ -48,80 +48,7 @@ def answer(name, options, updated="2026-09-29T12:00:00+03:00"):
     return {"name": name, "option_ids": options, "updated_at": updated}
 
 
-class SummaryTests(unittest.TestCase):
-    def test_today_only_and_going_not_going(self):
-        state = {"polls": {"p": poll(answers={
-            "1": answer("Идёт", [0, 1]),
-            "2": answer("Другая игра", [1]),
-            "3": answer("Отказ", [2]),
-            "4": answer("Отменил", []),
-        })}}
-        summaries = build_game_day_summaries(state, CHAT, TODAY)
-        self.assertEqual(len(summaries), 1)
-        text = summaries[0]["text"]
-        self.assertIn("Идут — 1", text)
-        self.assertIn("Не идут — 2", text)
-        self.assertIn("Другая игра, Отказ", text)
-        self.assertNotIn("Отменил", text)
-        self.assertNotIn("Футбол", text)
-
-    def test_same_names_count_by_telegram_id_and_escape_html(self):
-        p = poll(answers={"1": answer("<Иван>", [0]), "2": answer("<Иван>", [0])})
-        text = build_game_day_summaries({"polls": {"p": p}}, CHAT, TODAY)[0]["text"]
-        self.assertIn("Идут — 2", text)
-        self.assertIn("&lt;Иван&gt;, &lt;Иван&gt;", text)
-
-    def test_metadata_date_is_authoritative(self):
-        p = poll(events={"0": {"event_date": "2026-10-01"}})
-        self.assertEqual(build_game_day_summaries({"polls": {"p": p}}, CHAT, TODAY), [])
-        self.assertEqual(len(build_game_day_summaries({"polls": {"p": p}}, CHAT, date(2026, 10, 1))), 1)
-
-    def test_legacy_dates_cross_year_and_invalid_options(self):
-        p = poll(
-            options=["01.01 (ПТ) 19:00 — Новый год", "31.02 (СР) 20:00 — Ошибка", "Свой вариант"],
-            week_start="2026-12-28", week_end="2027-01-04",
-        )
-        summaries = build_game_day_summaries({"polls": {"p": p}}, CHAT, date(2027, 1, 1))
-        self.assertEqual(len(summaries), 1)
-        self.assertIn("Новый год", summaries[0]["text"])
-
-    def test_multiple_games_and_chat_isolation(self):
-        p = poll(options=["30.09 (СР) 19:00 — Один", "30.09 (СР) 21:00 — Два", "❌ Не иду"])
-        other = poll(chat_id=42)
-        summaries = build_game_day_summaries({"polls": {"p": p, "other": other}}, CHAT, TODAY)
-        self.assertEqual(len(summaries), 2)
-
-    def test_duplicate_polls_use_latest_vote_even_when_revoked(self):
-        older = poll(answers={"1": answer("Первый", [0]), "2": answer("Второй", [0])})
-        newer = poll(answers={
-            "1": answer("Первый", [2], "2026-09-30T11:00:00+03:00"),
-            "2": answer("Второй", [], "2026-09-30T11:00:00+03:00"),
-        })
-        # Deliberately put the newer poll first: insertion order must not decide.
-        summaries = build_game_day_summaries({"polls": {"new": newer, "old": older}}, CHAT, TODAY)
-        self.assertEqual(len(summaries), 1)
-        self.assertIn("Идут — 0", summaries[0]["text"])
-        self.assertIn("Не идут — 1", summaries[0]["text"])
-        self.assertNotIn("Второй", summaries[0]["text"])
-
-    def test_overlapping_mondays_keep_same_game_identity(self):
-        text = "05.10 (ПН) 20:00 — Спорт"
-        previous = poll(options=[text, "❌ Не иду"], answers={"1": answer("Иван", [0])})
-        current = poll(options=[text, "❌ Не иду"], week_start="2026-10-05", week_end="2026-10-12")
-        state = {"polls": {"old": previous, "new": current}}
-        summaries = build_game_day_summaries(state, CHAT, date(2026, 10, 5))
-        self.assertEqual(len(summaries), 1)
-        old_key = build_game_day_summaries({"polls": {"p": previous}}, CHAT, date(2026, 10, 5))[0]["key"]
-        self.assertEqual(summaries[0]["key"], old_key)
-        self.assertIn("Идут — 1", summaries[0]["text"])
-
-    def test_unanswered_game_still_has_both_lists(self):
-        text = build_game_day_summaries({"polls": {"p": poll()}}, CHAT, TODAY)[0]["text"]
-        self.assertIn("Идут — 0", text)
-        self.assertIn("Не идут — 0", text)
-
-
-class ReminderSummaryTests(unittest.TestCase):
+class ReminderTests(unittest.TestCase):
     def test_one_message_links_each_game_to_its_poll(self):
         first = poll(
             options=["30.09 (СР) 20:00 — Видеоигры", "❌ Не иду"],
@@ -142,7 +69,7 @@ class ReminderSummaryTests(unittest.TestCase):
         self.assertEqual(reminder["text"].count("Видеоигры"), 1)
         self.assertIn('href="https://t.me/c/123/123"', reminder["text"])
         self.assertIn('href="https://t.me/c/123/456"', reminder["text"])
-        self.assertIn("до 17:00 МСК", reminder["text"])
+        self.assertIn("до начала квиза", reminder["text"])
 
     def test_only_today_and_correct_chat(self):
         state = {"polls": {
@@ -168,19 +95,9 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         self.bot_patch = patch.object(bot_module, "bot", SimpleNamespace(send_message=self.sender))
         self.bot_patch.start()
         self.addCleanup(self.bot_patch.stop)
-        bot_module.save_poll_state({"polls": {"p": poll()}, "last_summary_date": "2026-09-30"})
+        bot_module.save_poll_state({"polls": {"p": poll()}})
 
-    async def test_1700_and_late_restart_send_once_with_legacy_state(self):
-        self.assertEqual(await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 16, 59, tzinfo=MOSCOW)), 0)
-        self.sender.assert_not_awaited()
-        self.assertEqual(await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW)), 1)
-        self.assertEqual(await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 19, 0, tzinfo=MOSCOW)), 0)
-        self.assertEqual(self.sender.await_count, 1)
-        record = next(iter(bot_module.load_poll_state()["sent_game_summaries"].values()))
-        self.assertEqual(record["event_date"], "2026-09-30")
-        self.assertEqual(record["message_id"], 77)
-
-    async def test_morning_reminder_catches_up_once_before_summary(self):
+    async def test_morning_reminder_catches_up_once(self):
         state = bot_module.load_poll_state()
         state["polls"]["p"]["message_id"] = 123
         bot_module.save_poll_state(state)
@@ -194,14 +111,10 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(self.sender.await_args.kwargs["reply_parameters"].message_id, 123)
         saved = bot_module.load_poll_state()
         self.assertIn(f"{CHAT}:2026-09-30", saved["sent_game_reminders"])
-        self.assertNotIn("sent_game_summaries", saved)
 
-    async def test_morning_reminder_skips_monday_and_after_1700(self):
-        for when in (
-            datetime(2026, 10, 5, 10, 0, tzinfo=MOSCOW),
-            datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW),
-        ):
-            self.assertFalse(await bot_module.send_game_day_reminder(now=when))
+    async def test_morning_reminder_skips_after_1700(self):
+        self.assertFalse(await bot_module.send_game_day_reminder(
+            now=datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW)))
         self.sender.assert_not_awaited()
 
     async def test_no_morning_game_can_be_sent_if_poll_arrives_later(self):
@@ -231,46 +144,30 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         self.assertIn("5", bot_module.load_poll_state()["polls"]["p"]["answers"])
         self.assertEqual(self.sender.await_count, 2)
 
-    async def test_no_game_does_not_mark_day_done(self):
-        bot_module.save_poll_state({"polls": {}})
-        now = datetime(2026, 9, 30, 18, 0, tzinfo=MOSCOW)
-        self.assertEqual(await bot_module.send_game_day_summaries(now=now), 0)
-        self.assertNotIn("sent_game_summaries", bot_module.load_poll_state())
-        bot_module.save_poll_state({"polls": {"p": poll()}})
-        self.assertEqual(await bot_module.send_game_day_summaries(now=now), 1)
-
-    async def test_next_day_does_not_send_yesterdays_game(self):
-        self.assertEqual(await bot_module.send_game_day_summaries(now=datetime(2026, 10, 1, 18, 0, tzinfo=MOSCOW)), 0)
-        self.sender.assert_not_awaited()
-
-    async def test_failure_retries_only_unsent_game(self):
-        p = poll(options=["30.09 (СР) 19:00 — Один", "30.09 (СР) 21:00 — Два"])
-        bot_module.save_poll_state({"polls": {"p": p}})
-        self.sender.side_effect = [RuntimeError("Telegram temporarily unavailable"), SimpleNamespace(message_id=78)]
-        now = datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW)
-        with self.assertLogs(level="ERROR"):
-            self.assertEqual(await bot_module.send_game_day_summaries(now=now), 1)
-        self.sender.side_effect = None
-        self.assertEqual(await bot_module.send_game_day_summaries(now=now), 1)
-        self.assertEqual(len(bot_module.load_poll_state()["sent_game_summaries"]), 2)
-        self.assertEqual(self.sender.await_count, 3)
-
-    async def test_answers_arriving_during_send_are_preserved(self):
-        async def sending(**kwargs):
-            state = bot_module.load_poll_state()
-            state["polls"]["p"]["answers"]["5"] = answer("Поздний", [0])
-            bot_module.save_poll_state(state)
-            return SimpleNamespace(message_id=77)
-        self.sender.side_effect = sending
-        await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW))
-        self.assertIn("5", bot_module.load_poll_state()["polls"]["p"]["answers"])
-
-    async def test_monday_only_reports_mondays_games_and_keeps_package(self):
+    async def test_monday_keeps_weekly_package(self):
         bot_module.save_poll_state({"polls": {"p": poll()}, "last_schedule_date": None, "last_poll_date": None})
         with patch.object(bot_module, "send_weekly_package", new_callable=AsyncMock) as package:
             await bot_module.run_scheduled_tasks(datetime(2026, 10, 5, 17, 0, tzinfo=MOSCOW))
             package.assert_awaited_once()
         self.sender.assert_not_awaited()
+
+    async def test_monday_game_reminder_links_to_existing_poll(self):
+        monday_poll = poll(
+            options=["05.10 (ПН) 20:00 — Футбол", "❌ Не иду"],
+            message_id=123,
+        )
+        bot_module.save_poll_state({
+            "polls": {"p": monday_poll},
+            "last_schedule_date": None,
+            "last_poll_date": None,
+        })
+        with patch.object(bot_module, "send_weekly_package", new_callable=AsyncMock) as package:
+            await bot_module.run_scheduled_tasks(datetime(2026, 10, 5, 10, 0, tzinfo=MOSCOW))
+            package.assert_awaited_once()
+            await bot_module.run_scheduled_tasks(datetime(2026, 10, 5, 10, 1, tzinfo=MOSCOW))
+        self.sender.assert_awaited_once()
+        self.assertEqual(self.sender.await_args.kwargs["reply_parameters"].message_id, 123)
+        self.assertIn("05.10", self.sender.await_args.kwargs["text"])
 
     async def test_poll_answers_replace_and_revoke_previous_vote(self):
         user = bot_module.types.User(id=1, is_bot=False, first_name="Иван")
@@ -282,19 +179,6 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
             stored = bot_module.load_poll_state()["polls"]["p"]["answers"]["1"]
             self.assertEqual(stored["option_ids"], options)
         self.sender.assert_not_awaited()
-
-    async def test_team_reminder_replies_to_poll_and_mentions_only_nonvoter(self):
-        roster = [{"name": "Иван", "user_id": 1}, {"name": "Анна", "user_id": 2}]
-        bot_module.save_poll_state({"polls": {"p": poll(
-            message_id=123, answers={"1": answer("Иван", [0])},
-        )}})
-        with patch.object(bot_module, "TEAM_ROSTER", roster):
-            await bot_module.send_game_day_summaries(now=datetime(2026, 9, 30, 17, 0, tzinfo=MOSCOW))
-        sent = self.sender.await_args.kwargs
-        self.assertEqual(sent["reply_parameters"].message_id, 123)
-        self.assertTrue(sent["reply_parameters"].allow_sending_without_reply)
-        self.assertIn('<a href="tg://user?id=2">Анна</a>', sent["text"])
-        self.assertNotIn("tg://user?id=1", sent["text"])
 
     async def test_team_message_and_poll_answer_save_user_binding(self):
         roster = [{"name": "Иван"}, {"name": "Анна"}]

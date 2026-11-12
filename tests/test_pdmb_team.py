@@ -1,18 +1,15 @@
 import json
 import sys
 import unittest
-from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pdmb_bot"))
-from poll_summary import build_game_day_summaries
 from team_members import apply_private_ids, normalized_name, remember_team_user, resolve_team_members
 
 
 CHAT = -100123
-TODAY = date(2026, 9, 30)
 TEAM = [{"name": "Иван", "user_id": 1}, {"name": "Пётр", "user_id": 2}, {"name": "Анна", "user_id": 3}]
 ROSTER = json.loads((Path(__file__).resolve().parents[1] / "pdmb_bot" / "team_roster.json").read_text())
 
@@ -32,49 +29,6 @@ def profile(name, options):
     return {"name": name, "option_ids": options, "updated_at": "2026-09-30T12:00:00+03:00"}
 
 
-class NonvoterTests(unittest.TestCase):
-    def test_three_groups_with_id_mention_and_poll_reply(self):
-        state = state_with_answers({"1": profile("Иван", [0]), "2": profile("Пётр", [1])})
-        summary = build_game_day_summaries(state, CHAT, TODAY, team=TEAM)[0]
-        self.assertIn("Идут — 1", summary["text"])
-        self.assertIn("Не идут — 1", summary["text"])
-        self.assertIn("Не проголосовали — 1", summary["text"])
-        self.assertIn('<a href="tg://user?id=3">Анна</a>', summary["text"])
-        self.assertNotIn('tg://user?id=1', summary["text"])
-        self.assertNotIn('tg://user?id=2', summary["text"])
-        self.assertIn("Пожалуйста, ответьте в опросе", summary["text"])
-        self.assertEqual(summary["poll_message_id"], 123)
-
-    def test_retracted_vote_is_unanswered_not_refusal(self):
-        state = state_with_answers({"1": profile("Иван", []), "2": profile("Пётр", [1]), "3": profile("Анна", [0])})
-        text = build_game_day_summaries(state, CHAT, TODAY, team=TEAM)[0]["text"]
-        self.assertIn("Не идут — 1", text)
-        self.assertIn('<a href="tg://user?id=1">Иван</a>', text)
-        self.assertIn("Не проголосовали — 1", text)
-
-    def test_all_answered_no_reminder(self):
-        state = state_with_answers({str(i): profile(str(i), [1]) for i in (1, 2, 3)})
-        text = build_game_day_summaries(state, CHAT, TODAY, team=TEAM)[0]["text"]
-        self.assertIn("Не проголосовали — 0", text)
-        self.assertIn("Все участники команды ответили", text)
-        self.assertNotIn("Пожалуйста", text)
-
-    def test_unknown_id_uses_plain_escaped_name(self):
-        text = build_game_day_summaries(state_with_answers({}), CHAT, TODAY, team=[{"name": "<Анна>"}])[0]["text"]
-        self.assertIn("Не проголосовали — 1", text)
-        self.assertIn("&lt;Анна&gt;", text)
-        self.assertNotIn("tg://user", text)
-
-    def test_votes_from_other_polls_do_not_count_as_current_response(self):
-        state = state_with_answers({})
-        state["polls"]["old"] = {
-            "chat_id": CHAT, "week_start": "2026-09-21", "week_end": "2026-09-28",
-            "options": ["23.09 (СР) 20:00 — Спорт"], "answers": {"1": profile("Иван", [0])},
-        }
-        text = build_game_day_summaries(state, CHAT, TODAY, team=TEAM)[0]["text"]
-        self.assertIn("Не проголосовали — 3", text)
-
-
 class MemberBindingTests(unittest.TestCase):
     def test_new_member_has_username_and_can_receive_private_id(self):
         member = next(item for item in ROSTER if item["name"] == "Никита Соколовский")
@@ -91,10 +45,6 @@ class MemberBindingTests(unittest.TestCase):
         team = resolve_team_members(state, CHAT, members)
         self.assertEqual([member["user_id"] for member in team], [7, 8])
         self.assertNotIn("user_id", roster[0])
-        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
-        self.assertIn("Идут — 1", summary)
-        self.assertIn("Не проголосовали — 1", summary)
-        self.assertIn('tg://user?id=8', summary)
 
     def test_private_ids_reject_duplicate_or_unknown_bindings(self):
         roster = [{"name": "Иван"}, {"name": "Анна"}]
@@ -120,16 +70,9 @@ class MemberBindingTests(unittest.TestCase):
         })
         team = resolve_team_members(state, CHAT, ROSTER)
         self.assertEqual(sum(bool(member.get("user_id")) for member in team), 7)
-        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
-        self.assertIn("Не идут — 7", summary)
-        self.assertIn(f"Не проголосовали — {len(ROSTER) - 7}", summary)
-        self.assertIn("Али Алекперов", summary)
-        self.assertIn("Никита Соколовский", summary)
-        self.assertNotIn("@david_test", summary)
-        self.assertNotIn("Kostya", summary)
-        for member in team:
-            if member["name"] not in {"Али Алекперов", "Никита Соколовский"}:
-                self.assertEqual(summary.count(member["name"]), 1)
+        self.assertEqual(len({member["user_id"] for member in team if member.get("user_id")}), 7)
+        self.assertIn("Али Алекперов", [member["name"] for member in team])
+        self.assertIn("Никита Соколовский", [member["name"] for member in team])
 
     def test_username_beats_conflicting_display_name(self):
         state = state_with_answers({"7": {
@@ -166,10 +109,6 @@ class MemberBindingTests(unittest.TestCase):
         team = resolve_team_members(state, CHAT, ROSTER)
         ruslan = next(member for member in team if member["name"] == "Руслан Исмаилов")
         self.assertEqual(ruslan["user_id"], 7)
-        summary = build_game_day_summaries(state, CHAT, TODAY, team=team)[0]["text"]
-        self.assertIn("Руслан Исмаилов", summary)
-        self.assertNotIn("Новое имя", summary)
-        self.assertNotIn(f"Не проголосовали — {len(ROSTER)}", summary)
 
     def test_shared_historical_alias_remains_ambiguous(self):
         state = state_with_answers({"7": profile("Ruslan", [1])})
